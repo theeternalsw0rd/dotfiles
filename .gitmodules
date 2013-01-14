@@ -1,6 +1,6 @@
-[submodule ".vim"]
-	path = .vim
+[submodule "vim"]
+	path = vim
 	url = git://github.com/eternalsword/vim-pathogen.git
-[submodule ".oh-my-zsh"]
-	path = .oh-my-zsh
+[submodule "oh-my-zsh"]
+	path = oh-my-zsh
 	url = git://github.com/eternalsword/oh-my-zsh.git
