@@ -13,7 +13,7 @@ Master branch contains general configurations.
 
 Other branches can be used for tracking machine specific configuration changes.
 
-This repository contains some submodules: oh-my-zsh (.oh-my-zsh), vim-pathogen (.vim/autoload), vim-sensible (.vim/bundle/vim-sensible), vim-scriptease (.vim/bundle/vim-scriptease).
+This repository contains some submodules: oh-my-zsh (.oh-my-zsh), vim-pathogen (.vim), vim-sensible (.vim/bundle/vim-sensible), vim-scriptease (.vim/bundle/vim-scriptease).
 
 If you find my submodules to be out of date, you can add the upstream versions instead using `git add remote upstream URI` and then `git pull upstream master` inside the submodule directory. 
 
