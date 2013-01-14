@@ -38,7 +38,7 @@ set modelines=0
 "		Visual		
 "------------------------------------------////
 syntax on 			" enable color syntax
-set relativenumber 		" show line numbers relative to current line on left side
+set number 		" show line numbers relative to current line on left side
 
 set ignorecase 			" ignore case when searching
 set hlsearch 			" highlight searches
