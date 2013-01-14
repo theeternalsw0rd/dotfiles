@@ -82,3 +82,7 @@ if [ ! -e "$HOME/$FILE" ]; then
 else
 	echo "leaving ~/$FILE intact"
 fi
+
+mkdir -p $HOME/.cache/vim/undo
+echo "Created $HOME/.cache/vim/undo for sane persistent undo"
+
