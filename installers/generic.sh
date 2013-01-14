@@ -61,6 +61,20 @@ fi
 ln -f -s "$BASEDIR/$FILE" "$HOME/.$FILE"
 echo ".$FILE installed"
 
+FILE=tmux.mouse.sh
+if [ -e "$HOME/.$FILE" ]; then
+	if [ -L "$HOME/.$FILE" ]; then
+		SYMLINK=`readlink "$HOME/.$FILE"`
+		unlink "$HOME/.$FILE"
+		echo "Removed link from ~/.$FILE to $SYMLINK"
+	else
+		mv "$HOME/.$FILE" "$HOME/.$FILE.$TIMESTAMP.bak"
+		echo "Existing ~/.$FILE moved to ~/.$FILE.$TIMESTAMP.bak"
+	fi
+fi
+ln -f -s "$BASEDIR/$FILE" "$HOME/.$FILE"
+echo ".$FILE installed"
+
 FILE=oh-my-zsh
 if [ -e "$HOME/.$FILE" ]; then
 	if [ -L "$HOME/.$FILE" ]; then
