@@ -14,9 +14,11 @@ txtrst=`tput sgr0` # Text reset.
 
 if [ ! -e "$HOME/.scripts" ]; then
 	mkdir -p "$HOME/.scripts"
+	echo
 	echo "${txtgrn} ~/.scripts staged${txtrst}"
 fi
-echo "${txtwht}\nInstalling zsh configuration files${txtrst}"
+echo
+echo "${txtwht}Installing zsh configuration files${txtrst}"
 if [ `command -v zsh` ]; then
 	FILE=zshrc
 	if [ -e "$HOME/.$FILE" ]; then
@@ -57,7 +59,8 @@ else
 	echo "${txtred}zsh not installed or not in path so skipping related configuration files.${txtrst}"
 fi
 
-echo "${txtwht}\nInstalling vim configuration files${txtrst}"
+echo
+echo "${txtwht}Installing vim configuration files${txtrst}"
 if [ `command -v vim` ]; then
 	FILE=vimrc
 	if [ -e "$HOME/.$FILE" ]; then
@@ -95,7 +98,8 @@ else
 	echo "${txtred}vim not installed or not in path so skipping related configuration files.${txtrst}"
 fi
 
-echo "${txtwht}\nInstalling tmux configuration files${txtrst}"
+echo
+echo "${txtwht}Installing tmux configuration files${txtrst}"
 if [ `command -v tmux` ]; then
 	FILE=tmux.conf
 	if [ -e "$HOME/.$FILE" ]; then
@@ -130,5 +134,6 @@ fi
 
 if [ x`ls -A "$HOME/.scripts" 2> /dev/null` == "x" ]; then
 	rm "$HOME/.scripts"
+	echo
 	echo "${txtgrn}~/.scripts was not needed and has been removed.${txtrst}"
 fi
