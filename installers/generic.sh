@@ -132,7 +132,8 @@ else
 	echo "${txtred}tmux not installed or not in path so skipping related configuration files.${txtrst}"
 fi
 
-if [ x`ls -A "$HOME/.scripts" 2> /dev/null` == "x" ]; then
+TEST=`ls -A "$HOME/.scripts" 2> /dev/null`
+if [ "x$TEST" == "x" ]; then
 	rm "$HOME/.scripts"
 	echo
 	echo "${txtgrn}~/.scripts was not needed and has been removed.${txtrst}"
