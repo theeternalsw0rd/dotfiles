@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+ZSH=$HOME/.scripts/zsh/oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -25,8 +25,8 @@ DISABLE_AUTO_TITLE="true"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load? (plugins can be found in ~/.scripts/zsh/oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.scripts/zsh/oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git vi-mode)
 
@@ -48,4 +48,4 @@ alias svndiff='svn diff --diff-cmd diff -x "--unified=8 -p"'
 alias copy='rsync --progress'
 alias copydir='rsync --progress -av'
 
-source ~/.local.zsh
+source $ZSH/local.zsh

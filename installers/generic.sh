@@ -34,7 +34,7 @@ if [ `command -v zsh` ]; then
 	ln -f -s "$BASEDIR/$FILE.zsh" "$HOME/.$FILE"
 	echo "${txtgrn}.$FILE installed${txtrst}"
 
-	FILE=oh-my-zsh
+	FILE=scripts/zsh
 	if [ -e "$HOME/.$FILE" ]; then
 		if [ -L "$HOME/.$FILE" ]; then
 			SYMLINK=`readlink "$HOME/.$FILE"`
@@ -48,12 +48,12 @@ if [ `command -v zsh` ]; then
 	ln -f -s "$BASEDIR/$FILE" "$HOME/.$FILE"
 	echo "${txtgrn}.$FILE installed${txtrst}"
 
-	FILE=.local.zsh
-	if [ ! -e "$HOME/$FILE" ]; then
-		echo "# local zsh configuration" > $HOME/$FILE
-		echo "${txtgrn}local zsh configuration ~/$FILE created${txtrst}"
+	FILE=scripts/zsh/local.zsh
+	if [ ! -e "$HOME/.$FILE" ]; then
+		echo "# local zsh configuration" > $HOME/.$FILE
+		echo "${txtgrn}local zsh configuration ~/.$FILE created${txtrst}"
 	else
-		echo "${txtylw}leaving ~/$FILE intact${txtrst}"
+		echo "${txtylw}leaving ~/.$FILE intact${txtrst}"
 	fi
 else
 	echo "${txtred}zsh not installed or not in path so skipping related configuration files.${txtrst}"
