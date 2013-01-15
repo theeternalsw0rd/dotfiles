@@ -48,4 +48,4 @@ alias svndiff='svn diff --diff-cmd diff -x "--unified=8 -p"'
 alias copy='rsync --progress'
 alias copydir='rsync --progress -av'
 
-source $ZSH/local.zsh
+source ~/.scripts/zsh/local.zsh
