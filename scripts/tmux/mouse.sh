@@ -1,5 +1,5 @@
 #!/bin/sh
-STATE=`tmux show-window-options -g | grep mode-mouse | grep -c on`
+STATE=`tmux show-window-options -g | grep mode-mouse | grep -cw on`
 if [ x$STATE == "x1" ]; then
 	tmux setw -g mode-mouse off > /dev/null &
 	tmux setw -g mouse-select-pane off > /dev/null &

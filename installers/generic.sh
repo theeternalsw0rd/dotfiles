@@ -12,7 +12,10 @@ txtylw=`tput setaf 3` # Yellow
 txtwht=`tput setaf 7` # White
 txtrst=`tput sgr0` # Text reset.
 
-
+if [ ! -e "$HOME/.scripts" ]; then
+	mkdir -p "$HOME/.scripts"
+	echo "${txtgrn} ~/.scripts staged${txtrst}"
+fi
 echo "${txtwht}\nInstalling zsh configuration files${txtrst}"
 if [ `command -v zsh` ]; then
 	FILE=zshrc
@@ -108,7 +111,7 @@ if [ `command -v tmux` ]; then
 	ln -f -s "$BASEDIR/$FILE" "$HOME/.$FILE"
 	echo "${txtgrn}.$FILE installed${txtrst}"
 
-	FILE=tmux.mouse.sh
+	FILE=scripts/tmux
 	if [ -e "$HOME/.$FILE" ]; then
 		if [ -L "$HOME/.$FILE" ]; then
 			SYMLINK=`readlink "$HOME/.$FILE"`
@@ -123,4 +126,9 @@ if [ `command -v tmux` ]; then
 	echo "${txtgrn}.$FILE installed${txtrst}"
 else
 	echo "${txtred}tmux not installed or not in path so skipping related configuration files.${txtrst}"
+fi
+
+if [ x`ls -A "$HOME/.scripts" 2> /dev/null` == "x" ]; then
+	rm "$HOME/.scripts"
+	echo "${txtgrn}~/.scripts was not needed and has been removed.${txtrst}"
 fi
