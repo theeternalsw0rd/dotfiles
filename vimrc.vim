@@ -28,7 +28,7 @@ filetype plugin on		" enable detection, plugin, indenting
 "vim powerline
 set nocompatible   " Disable vi-compatibility
 "set laststatus=2   " Always show the statusline
-"set encoding=utf-8 " Necessary to show unicode glyphs
+set encoding=utf-8 " Necessary to show unicode glyphs
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 
 " protect from security issue
@@ -45,9 +45,6 @@ set hlsearch 			" highlight searches
 set incsearch			" increamental search, find as you type word
 
 set title			" show title in console title bar
-"set cursorcolumn		" show column highlight 
-"set cursorline			" show line highlight
-
 
 "set mouse-=a			" disable mouse automatically entering visual mode
 "set mouse=a			" enable mouse support and activate visual mode with dragging
@@ -65,11 +62,11 @@ set title			" show title in console title bar
 "		Hotkey		
 "------------------------------------------////
 
-				" toggle line numbers 
+" toggle line numbers 
 nmap <C-N><C-N> :set invnumber<CR>
-				" toggle paste mode, for issue when pasting
-	
-			" from GUI to vim
+
+" toggle paste mode, for issue when pasting
+" from GUI to vim
 " http://simon.xn--schnbeck-p4a.dk/vim-paste-indent-problems/
 set pastetoggle=<F10> " in insert mode, enable pasting
 
@@ -81,8 +78,12 @@ set pastetoggle=<F10> " in insert mode, enable pasting
 "------------------------------------------////
 syntax enable
 "set background=dark		" set background dark color
-set background=light		" set background light color
+set background=light		" set background light color (this should be called normal)
 hi LineNr ctermfg=gray
+
+" cursorline highlights the current line and can cause slowdowns in huge files
+set cursorline
+hi CursorLine cterm=none ctermbg=black
 
 "------------------------------------------////
 "		Folding		
