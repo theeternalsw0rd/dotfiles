@@ -82,6 +82,7 @@ set pastetoggle=<F10> " in insert mode, enable pasting
 syntax enable
 "set background=dark		" set background dark color
 set background=light		" set background light color
+hi LineNr ctermfg=gray
 
 "------------------------------------------////
 "		Folding		
