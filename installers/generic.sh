@@ -18,6 +18,20 @@ if [ ! -e "$HOME/.scripts" ]; then
 	echo "${txtgrn} ~/.scripts staged${txtrst}"
 fi
 echo
+echo "${txtwht}Installing generic helper scripts"
+if [ -e "$HOME/.scripts/helper" ]; then
+	if [ -L "$HOME/.scripts/helper" ]; then
+		SYMLINK=`readlink "$HOME/.scripts/helper"`
+		unlink "$HOME/.scripts/helper"
+		echo "${txtylw}Removed link from ~/.scripts/helper to $SYMLINK${txtrst}"
+	else
+		mv "$HOME/.scripts/helper" "$HOME/.scripts/helper.$TIMESTAMP.bak${txtrst}"
+		echo "${txtylw}Existing ~/.scripts/helper moved to ~/.scripts/helper.$TIMESTAMP.bak${txtrst}"
+	fi
+fi
+ln -f -s "$BASEDIR/scripts/helper" "$HOME/.scripts/helper"
+echo "${txtgrn}helper scripts installed"
+echo
 echo "${txtwht}Installing zsh configuration files${txtrst}"
 if [ `command -v zsh` ]; then
 	FILE=zshrc
@@ -46,7 +60,7 @@ if [ `command -v zsh` ]; then
 		fi
 	fi
 	ln -f -s "$BASEDIR/$FILE" "$HOME/.$FILE"
-	echo "${txtgrn}.$FILE installed${txtrst}"
+	echo "${txtgrn}zsh scripts installed${txtrst}"
 
 	FILE=scripts/zsh/local.zsh
 	if [ ! -e "$HOME/.$FILE" ]; then
@@ -127,7 +141,7 @@ if [ `command -v tmux` ]; then
 		fi
 	fi
 	ln -f -s "$BASEDIR/$FILE" "$HOME/.$FILE"
-	echo "${txtgrn}.$FILE installed${txtrst}"
+	echo "${txtgrn}tmux scripts installed${txtrst}"
 else
 	echo "${txtred}tmux not installed or not in path so skipping related configuration files.${txtrst}"
 fi
