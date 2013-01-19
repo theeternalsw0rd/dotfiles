@@ -11,6 +11,7 @@ set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\
 "               Mouse
 "------------------------------------------////
 set mouse=a
+set ttymouse=xterm2
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
