@@ -18,6 +18,20 @@ if [ ! -e "$HOME/.scripts" ]; then
 	echo "${txtgrn} ~/.scripts staged${txtrst}"
 fi
 echo
+echo "${txtwht}Installing vimpager scripts"
+if [ -e "$HOME/.scripts/vimpager" ]; then
+	if [ -L "$HOME/.scripts/vimpager" ]; then
+		SYMLINK=`readlink "$HOME/.scripts/vimpager"`
+		unlink "$HOME/.scripts/vimpager"
+		echo "${txtylw}Removed link from ~/.scripts/vimpager to $SYMLINK${txtrst}"
+	else
+		mv "$HOME/.scripts/vimpager" "$HOME/.scripts/vimpager.$TIMESTAMP.bak${txtrst}"
+		echo "${txtylw}Existing ~/.scripts/vimpager moved to ~/.scripts/vimpager.$TIMESTAMP.bak${txtrst}"
+	fi
+fi
+ln -f -s "$BASEDIR/scripts/vimpager" "$HOME/.scripts/vimpager"
+echo "${txtgrn}vimpager scripts installed"
+echo
 echo "${txtwht}Installing generic helper scripts"
 if [ -e "$HOME/.scripts/helper" ]; then
 	if [ -L "$HOME/.scripts/helper" ]; then
