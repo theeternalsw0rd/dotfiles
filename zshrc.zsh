@@ -53,4 +53,7 @@ alias pager='~/.scripts/vimpager/vimpager'
 
 export MANPAGER='~/.scripts/vimpager/vimpager'
 export PAGER='~/.scripts/vimpager/vimpager'
+
+bindkey -v
+
 source ~/.scripts/zsh/local.zsh
