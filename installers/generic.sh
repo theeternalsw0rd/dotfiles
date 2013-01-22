@@ -155,6 +155,14 @@ if [ `command -v tmux` ]; then
 		fi
 	fi
 	ln -f -s "$BASEDIR/$FILE" "$HOME/.$FILE"
+
+	FILE=scripts/tmux/local.conf
+	if [ ! -e "$HOME/.$FILE" ]; then
+		echo "# local tmux configuration" > $HOME/.$FILE
+		echo "${txtgrn}local tmux configuration ~/.$FILE created${txtrst}"
+	else
+		echo "${txtylw}leaving ~/.$FILE intact${txtrst}"
+	fi
 	echo "${txtgrn}tmux scripts installed${txtrst}"
 else
 	echo "${txtred}tmux not installed or not in path so skipping related configuration files.${txtrst}"
