@@ -39,7 +39,7 @@ export EDITOR=/usr/bin/vim
 
 # global user shortcuts
 alias irc='weechat-curses'
-alias e='vim'
+alias edit='vim'
 alias lsnew='ls -t | head -n 20'
 alias lsdir='ls -F | grep '\/' | sed 's-/--g' | sort'
 alias lsc='ls -1'
@@ -55,5 +55,25 @@ export MANPAGER='~/.scripts/vimpager/vimpager'
 export PAGER='~/.scripts/vimpager/vimpager'
 
 bindkey -v
+
+# \e[\x31 - blinking block
+# \e[\x32 - solid block
+# \e[\x33 - blinking underline
+# \e[\x34 - solid underline
+# \e[\x35 - blinking vertical bar (tmux > 1.6 ! urxvt)
+# \e[\x36 - solid vertical bar (tmux > 1.6 ! urxvt)
+
+function zle-keymap-select {
+	if [[ $KEYMAP = vicmd ]]; then
+		echo -ne "\e[\x32 q"
+	else
+		echo -ne "\e[\x34 q"
+	fi
+	zle reset-prompt
+}
+
+# just echo instead of zle -N zle-line-init
+echo -ne "\e[\x34 q"
+zle -N zle-keymap-select
 
 source ~/.scripts/zsh/local.zsh

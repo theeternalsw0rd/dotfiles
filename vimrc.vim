@@ -38,19 +38,25 @@ set modelines=0
 "------------------------------------------////
 "		Visual		
 "------------------------------------------////
-syntax on 			" enable color syntax
+syntax on 		" enable color syntax
 set number 		" show line numbers relative to current line on left side
 
-set ignorecase 			" ignore case when searching
-set hlsearch 			" highlight searches
-set incsearch			" increamental search, find as you type word
+set ignorecase 		" ignore case when searching
+set hlsearch 		" highlight searches
+set incsearch		" increamental search, find as you type word
 
-set title			" show title in console title bar
+set title		" show title in console title bar
 
-"set mouse-=a			" disable mouse automatically entering visual mode
-"set mouse=a			" enable mouse support and activate visual mode with dragging
 
-"set clipboard=unnamedplus,autoselect " yank and copy between OS and vim
+" I only use vim in xterm compatible terminals so set underscore and block
+" cursors
+let &t_SI .= "\<Esc>[4 q"
+let &t_EI .= "\<Esc>[2 q"
+
+"set mouse-=a		" disable mouse automatically entering visual mode
+"set mouse=a		" enable mouse support and activate visual mode with dragging
+
+"set clipboard=unnamedplus,autoselect " yank and copy between OS and vim (doesn't work over ssh)
 
 
 " display highlighted cursor location on idle
