@@ -35,10 +35,9 @@ source $ZSH/oh-my-zsh.sh
 # global user exports
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export EDITOR=/usr/bin/vim
+export EDITOR=`which vim`
 
 # global user shortcuts
-alias irc='weechat-curses'
 alias edit='vim'
 alias lsnew='ls -t | head -n 20'
 alias lsdir='ls -F | grep '\/' | sed 's-/--g' | sort'
@@ -73,6 +72,14 @@ bindkey -v
 
 [ -z "$LOCALOS" ] && LOCALOS=`uname`
 
+function irc () {
+	if [[ $TMUX = '' ]]; then
+		weechat-curses
+	else
+		TERM=screen-256color weechat-curses
+	fi
+}
+
 function zle-keymap-select {
 	if [[ $KEYMAP == vicmd ]]; then
 		if [[ $LOCALOS == 'Darwin' ]]; then
@@ -105,7 +112,7 @@ function zle-keymap-select {
 			fi
 		fi
 	fi
-	zle reset-prompt
+	#zle reset-prompt
 }
 
 

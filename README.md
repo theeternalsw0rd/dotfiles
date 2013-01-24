@@ -24,6 +24,6 @@ I am including a script that will install everything where it should go.  It can
 
 I am also including the font I use in my terminals DejaVuSansMono (Menlo works fine too). I've included the ttf and its license in the font directory.
 
-With regards to terminals, on OSX, I highly recommend iTerm2. On linux I started out using tilda, then switched to guake and finally settled on rxvt-unicode (urxvt).
+With regards to terminals, on OSX, I highly recommend iTerm2. On linux I started out using tilda, then switched to guake then to rxvt-unicode (urxvt) and finally settled on good old xterm built with unicode support. xterm acts the most like iTerm2 on OSX allowing for easier cross-platform configuration.
 
 I will put linux-specific items in the linux subdirectory and osx-specific items in the osx subdirectory, each with their own sub-installers.
