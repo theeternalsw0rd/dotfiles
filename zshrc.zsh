@@ -7,7 +7,7 @@ else
 	esac
 fi
 if [ "$SESSION_TYPE" = "remote/ssh" ] && [ -z "$TMUX" ]; then
-	tmux a || tmux && exit
+	tmux -u a || tmux -u && exit
 fi
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.scripts/zsh/oh-my-zsh
