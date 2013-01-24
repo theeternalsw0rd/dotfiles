@@ -114,14 +114,14 @@ function zle-keymap-select {
 			fi
 		fi
 		if [[ `uname` == 'Linux' ]]; then
-			if [ -z "$TMUX" ]]; then
+			if [ -z "$TMUX" ]; then
 				printf '\e[6 q'
 			else
 				printf '\ePtmux;\e\e[6 q\e\\'
 			fi
 		fi
 	fi
-	#zle reset-prompt
+	zle reset-prompt
 }
 
 
