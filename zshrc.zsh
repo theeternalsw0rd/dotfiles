@@ -56,24 +56,75 @@ export PAGER='~/.scripts/vimpager/vimpager'
 
 bindkey -v
 
-# \e[\x31 - blinking block
-# \e[\x32 - solid block
-# \e[\x33 - blinking underline
-# \e[\x34 - solid underline
-# \e[\x35 - blinking vertical bar (tmux > 1.6 ! urxvt)
-# \e[\x36 - solid vertical bar (tmux > 1.6 ! urxvt)
+# xterm cursor - '\e[# q'
+# 1 - blinking block
+# 2 - solid block
+# 3 - blinking underline
+# 4 - solid underline
+# 5 - blinking vertical bar
+# 6 - solid vertical bar
+#
+# iTerm2 cursor - '\e]50;CursorShape=#\x7'
+# 0 - solid block
+# 1 - solid vertical bar
+# 2 - solid underline
+#
+# tmux escape sequence (... is passed to terminal) - '\ePtmux;\e...\e\\'
+
+[ -z "$LOCALOS" ] && LOCALOS=`uname`
 
 function zle-keymap-select {
-	if [[ $KEYMAP = vicmd ]]; then
-		echo -ne "\e[\x32 q"
+	if [[ $KEYMAP == vicmd ]]; then
+		if [[ $LOCALOS == 'Darwin' ]]; then
+			if [ -z "$TMUX" ]; then
+				printf '\e]50;CursorShape=0\x7'
+			else
+				printf '\ePtmux;\e\e]50;CursorShape=0\x7\e\\'
+			fi
+		fi
+		if [[ $LOCALOS == 'Linux' ]]; then
+			if [ -z "$TMUX" ]; then
+				printf '\e[2 q'
+			else
+				printf '\ePtmux;\e\e[2 q\e\\'
+			fi
+		fi
 	else
-		echo -ne "\e[\x34 q"
+		if [[ $LOCALOS == 'Darwin' ]]; then
+			if [ -z "$TMUX" ]; then
+				printf '\e]50;CursorShape=1\x7'
+			else
+				printf '\ePtmux;\e\e]50;CursorShape=1\x7\e\\'
+			fi
+		fi
+		if [[ $LOCALOS == 'Linux' ]]; then
+			if [ -z "$TMUX" ]]; then
+				printf '\e[6 q'
+			else
+				printf '\ePtmux;\e\e[6 q\e\\'
+			fi
+		fi
 	fi
 	zle reset-prompt
 }
 
+
 # just echo instead of zle -N zle-line-init
-echo -ne "\e[\x34 q"
+if [[ $LOCALOS == 'Darwin' ]]; then
+	if [ -z "$TMUX" ]; then
+		printf '\e]50;CursorShape=1\x7'
+	else
+		printf '\ePtmux;\e\e]50;CursorShape=1\x7\e\\'
+	fi
+fi
+if [[ $LOCALOS == 'Linux' ]]; then
+	if [ -z "$TMUX" ]; then
+		printf '\e[6 q'
+	else
+		printf '\ePtmux;\e\e[6 q\e\\'
+	fi
+fi
+
 zle -N zle-keymap-select
 
 source ~/.scripts/zsh/local.zsh
