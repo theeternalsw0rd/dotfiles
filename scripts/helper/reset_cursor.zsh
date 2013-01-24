@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 if [[ $LOCALOS == 'Darwin' ]]; then
 	if [ -z "$TMUX" ]; then
 		printf '\e]50;CursorShape=1\x7'
