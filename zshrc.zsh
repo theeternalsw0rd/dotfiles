@@ -91,56 +91,16 @@ function irc () {
 
 function zle-keymap-select {
 	if [[ $KEYMAP == vicmd ]]; then
-		if [[ `uname` == 'Darwin' ]]; then
-			if [ -z "$TMUX" ]; then
-				printf '\e]50;CursorShape=0\x7'
-			else
-				printf '\ePtmux;\e\e]50;CursorShape=0\x7\e\\'
-			fi
-		fi
-		if [[ `uname` == 'Linux' ]]; then
-			if [ -z "$TMUX" ]; then
-				printf '\e[2 q'
-			else
-				printf '\ePtmux;\e\e[2 q\e\\'
-			fi
-		fi
+		~/.scripts/helper/cursor_command.zsh
 	else
-		if [[ `uname` == 'Darwin' ]]; then
-			if [ -z "$TMUX" ]; then
-				printf '\e]50;CursorShape=1\x7'
-			else
-				printf '\ePtmux;\e\e]50;CursorShape=1\x7\e\\'
-			fi
-		fi
-		if [[ `uname` == 'Linux' ]]; then
-			if [ -z "$TMUX" ]; then
-				printf '\e[6 q'
-			else
-				printf '\ePtmux;\e\e[6 q\e\\'
-			fi
-		fi
+		~/.scripts/helper/cursor_insert.zsh
 	fi
 	zle reset-prompt
 }
 
 
 # just echo instead of zle -N zle-line-init
-if [[ `uname` == 'Darwin' ]]; then
-	if [ -z "$TMUX" ]; then
-		printf '\e]50;CursorShape=1\x7'
-	else
-		printf '\ePtmux;\e\e]50;CursorShape=1\x7\e\\'
-	fi
-fi
-if [[ `uname` == 'Linux' ]]; then
-	if [ -z "$TMUX" ]; then
-		printf '\e[6 q'
-	else
-		printf '\ePtmux;\e\e[6 q\e\\'
-	fi
-fi
-
+~/.scripts/helper/cursor_insert.zsh
 zle -N zle-keymap-select
 
 source ~/.scripts/zsh/local.zsh

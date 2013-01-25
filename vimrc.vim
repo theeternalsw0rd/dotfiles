@@ -48,10 +48,25 @@ set incsearch		" increamental search, find as you type word
 set title		" show title in console title bar
 
 
-" I only use vim in xterm compatible terminals so set underscore and block
-" cursors
-let &t_SI .= "\<Esc>[4 q"
-let &t_EI .= "\<Esc>[2 q"
+" magic cross-platform cursors
+
+if exists('$ITERM_PROFILE')
+	if exists('$TMUX')
+		let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+		let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+	else
+		let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+		let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+	endif
+else
+	if exists('$TMUX')
+		let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>[6 q\<Esc>\\"
+		let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>[2 q\<Esc>\\"
+	else
+		let &t_SI = "\<Esc>[6 q"
+		let &t_EI = "\<Esc>[2 q"
+	endif
+endif
 
 "set mouse-=a		" disable mouse automatically entering visual mode
 "set mouse=a		" enable mouse support and activate visual mode with dragging
