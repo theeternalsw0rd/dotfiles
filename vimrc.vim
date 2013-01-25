@@ -97,9 +97,6 @@ nmap <C-N><C-N> :set invnumber<CR>
 " http://simon.xn--schnbeck-p4a.dk/vim-paste-indent-problems/
 set pastetoggle=<F10> " in insert mode, enable pasting
 
-
-
-
 "------------------------------------------////
 "		Themes		
 "------------------------------------------////
@@ -122,3 +119,8 @@ set foldmethod=indent   "fold based on indent
 "set foldnestmax=10      "deepest fold is 10 levels
 set nofoldenable        "dont fold by default
 "set foldlevel=1         "this is just what i use
+
+"------------------------------------------////
+"		FileType specific overrides		
+"------------------------------------------////
+au FileType javascript call JavaScriptFold()
