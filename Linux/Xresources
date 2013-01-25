@@ -1,0 +1,88 @@
+! XTerm configuration
+ xterm*faceName:            DejaVu Sans Mono:pixelsize=20
+ xterm*cursorColor:  #99e343
+ *xterm*background:  #1b1e23
+ *xterm*foreground:  #81aedc
+! black + red
+ *xterm*color0:      #000000
+ *xterm*color1:      #d71e00
+! green + yellow
+ *xterm*color2:      #5ea701
+ *xterm*color3:      #cfad00
+! blue + purple
+ *xterm*color4:      #427ab3
+ *xterm*color5:      #89658e
+! cyan + white
+ *xterm*color6:      #00a7aa
+ *xterm*color7:      #ffffff
+! bright-black + bright-red
+ *xterm*color8:      #686a66
+ *xterm*color9:      #f54136
+! bright-green + bright-yellow
+ *xterm*color10:     #99e343
+ *xterm*color11:     #fdea60
+! bright-blue + bright-purple
+ *xterm*color12:     #b7daff
+ *xterm*color13:     #bc94b7
+! bright-cyan + bright-white
+ *xterm*color14:     #37e5e8
+ *xterm*color15:     #f1f1f0
+XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+
+! urxvt configuration
+! urxvtq*termName:  rxvt-unicode-256color
+! urxvtq*loginShell:         true
+! urxvtq*scrollBar:         false
+! urxvtq*secondaryScroll:    true
+! urxvtq*saveLines:         65535
+! !rxvtq*cursorBlink:       false
+! !urxvtq*urgentOnBell:       true
+! !urxvtq*override-redirect:false
+! !urxvtq*borderLess:       false
+! !urxvtq*internalBorder:       0
+! !urxvtq*externalBorder:       0
+ 
+! Extensions
+! urxvtq*perl-lib:        /usr/lib/urxvt/perl/
+! urxvtq*perl-ext-common: default,matcher,searchable-scrollback,clipboard
+! urxvtq.keysym.M-c: perl:clipboard:copy
+! urxvtq.keysym.M-v: perl:clipboard:paste
+! urxvtq*urlLauncher:     /usr/bin/firefox
+! urxvtq*matcher.button:  1
+!  - catch ugly URLs
+!urxvtq.cutchars:        `()'*<>[]{|}"
+ 
+! Appearance
+!  - use xft for drawing fonts
+! urxvtq*font:       xft:DejaVu Sans Mono:size=9
+! urxvtq*boldFont:   xft:DejaVu Sans Mono:size=9
+!  - cursor
+! urxvtq.depth: 32
+! urxvtq*cursorColor: #81aedc
+!  - color scheme
+! urxvtq.background:  [90]#1b1e23
+! urxvtq.foreground:  #81aedc
+! black + red
+! urxvtq*color0:      #000000
+! urxvtq*color1:      #d71e00
+! green + yellow
+! urxvtq*color2:      #5ea701
+! urxvtq*color3:      #cfad00
+! blue + purple
+! urxvtq*color4:      #427ab3
+! urxvtq*color5:      #89658e
+! cyan + white
+! urxvtq*color6:      #00a7aa
+! urxvtq*color7:      #ffffff
+! bright-black + bright-red
+! urxvtq*color8:      #686a66
+! urxvtq*color9:      #f54136
+! bright-green + bright-yellow
+! urxvtq*color10:     #99e343
+! urxvtq*color11:     #fdea60
+! bright-blue + bright-purple
+! urxvtq*color12:     #b7daff
+! urxvtq*color13:     #bc94b7
+! bright-cyan + bright-white
+! urxvtq*color14:     #37e5e8
+! urxvtq*color15:     #f1f1f0
