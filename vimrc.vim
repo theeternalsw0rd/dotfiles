@@ -34,6 +34,7 @@ set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 
 " protect from security issue
 set modelines=0
+set nomodeline
 
 "------------------------------------------////
 "		Visual		
@@ -114,10 +115,10 @@ hi CursorLine cterm=none ctermbg=black
 "------------------------------------------////
 "		Folding		
 "------------------------------------------////
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+"au BufWinLeave * mkview " causes options to be saved
+"au BufWinEnter * silent loadview " causes options to be restored
 "set foldmethod=manual	"fold based on manual user input
-"set foldmethod=indent   "fold based on indent
+set foldmethod=indent   "fold based on indent
 "set foldnestmax=10      "deepest fold is 10 levels
-"set nofoldenable        "dont fold by default
+set nofoldenable        "dont fold by default
 "set foldlevel=1         "this is just what i use
