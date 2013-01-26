@@ -1,3 +1,8 @@
+# global user exports go up top so subscripts have access
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export EDITOR=`which vim`
+
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 	SESSION_TYPE=remote/ssh
 	# many other tests omitted
@@ -43,11 +48,6 @@ DISABLE_AUTO_TITLE="true"
 plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
-
-# global user exports
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export EDITOR=`which vim`
 
 # global user shortcuts
 alias edit='vim'
