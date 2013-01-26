@@ -7,3 +7,6 @@
 [submodule "scripts/vimpager"]
 	path = scripts/vimpager
 	url = https://github.com/rkitover/vimpager.git
+[submodule "fonts/powerline-fonts"]
+	path = fonts/powerline-fonts
+	url = git://github.com/eternalsword/powerline-fonts.git
