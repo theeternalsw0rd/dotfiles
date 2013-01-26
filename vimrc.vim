@@ -26,7 +26,8 @@ filetype plugin indent on		" enable detection, plugin, indenting
 
 filetype plugin on		" enable detection, plugin, indenting
 
-"vim powerline
+python from powerline.bindings.vim import source_plugin; source_plugin()
+
 set nocompatible   " Disable vi-compatibility
 "set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show unicode glyphs
@@ -108,6 +109,8 @@ hi LineNr ctermfg=gray
 " cursorline highlights the current line and can cause slowdowns in huge files
 set cursorline
 hi CursorLine cterm=none ctermbg=black
+
+set fillchars+=stl:\ ,stlnc:\
 
 "------------------------------------------////
 "		Folding		
