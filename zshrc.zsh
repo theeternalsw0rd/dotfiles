@@ -96,13 +96,13 @@ function zle-keymap-select {
 	else
 		~/.scripts/helper/cursor_insert.zsh
 	fi
-	zle reset-prompt
+	#zle reset-prompt
 }
 
 
-precmd() {
-	~/.scripts/helper/cursor_insert.zsh
-}
+#precmd() {
+#	~/.scripts/helper/cursor_insert.zsh
+#}
 
 # just echo instead of zle -N zle-line-init
 ~/.scripts/helper/cursor_insert.zsh
