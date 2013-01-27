@@ -53,9 +53,11 @@ set title		" show title in console title bar
 " magic cross-platform cursors
 
 if exists('$TMUX')
-	au VimEnter * silent !echo -ne "\ePtmux;\e\e]50;CursorShape=0\x7\e\\"
-	let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-	let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+	au VimEnter * silent !~/.scripts/helper/cursor_command.zsh
+	au InsertEnter * silent !~/.scripts/helper/cursor_insert.zsh
+	au InsertLeave * silent !~/.scripts/helper/cursor_command.zsh
+	"let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+	"let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 else
 	au VimEnter * silent !echo -ne "\e]50;CursorShape=0\x7"
 	let &t_SI = "\<Esc>]50;CursorShape=1\x7"
