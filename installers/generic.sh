@@ -19,26 +19,6 @@ if [ ! -e "$HOME/.scripts" ]; then
 	echo
 	echo "${txtgrn} ~/.scripts staged${txtrst}"
 fi
-if [ "$OS" == "Linux" ]; then
-	if [ ! `which xrdb` == "" ]; then
-		echo
-		echo "${txtwht}Installing $FILE"
-		FILE=Xresources
-		if [ -e "$HOME/.$file" ]; then
-			if [ -L "$HOME/.$FILE" ]; then
-				SYMLINK=`readlink "$HOME/.$FILE"`
-				unlink "$HOME/.$FILE"
-				echo "${txtylw}Removed link from ~/.$FILE to $SYMLINK${txtrst}"
-			else
-				mv "$HOME/.$FILE" "$HOME/.$FILE.$TIMESTAMP.bak${txtrst}"
-				echo "${txtylw}Existing ~/.$FILE moved to ~/.$FILE.$TIMESTAMP.bak${txtrst}"
-			fi
-		fi
-		ln -f -s "$BASEDIR/Linux/$FILE" "$HOME/.$FILE"
-		DISPLAY=:0.0 xrdb -merge "$HOME/.$FILE" &> /dev/null
-		echo "${txtgrn}$HOME/.$FILE installed"
-	fi
-fi
 echo
 echo "${txtwht}Installing vimpager scripts"
 if [ -e "$HOME/.scripts/vimpager" ]; then
