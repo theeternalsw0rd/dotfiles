@@ -1,3 +1,4 @@
+STARTUP="true"
 # global user exports go up top so subscripts have access
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -90,22 +91,11 @@ function irc () {
 	fi
 }
 
-function zle-keymap-select {
-	if [[ $KEYMAP == vicmd ]]; then
-		~/.scripts/helper/cursor_command.zsh
-	else
-		~/.scripts/helper/cursor_insert.zsh
-	fi
-	#zle reset-prompt
-}
-
-
 #precmd() {
 #	~/.scripts/helper/cursor_insert.zsh
 #}
 
 # just echo instead of zle -N zle-line-init
-~/.scripts/helper/cursor_insert.zsh
-zle -N zle-keymap-select
+#~/.scripts/helper/cursor_insert.zsh
 
 source ~/.scripts/zsh/local.zsh

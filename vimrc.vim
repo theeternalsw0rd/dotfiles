@@ -50,12 +50,12 @@ set incsearch		" increamental search, find as you type word
 set title		" show title in console title bar
 
 
-" magic cross-platform cursors
+" magic cursors doesn't work switching panes in tmux
 
-au VimEnter * silent !~/.scripts/helper/cursor_command.zsh
-au VimLeave * silent !~/.scripts/helper/cursor_insert.zsh
-au InsertEnter * silent !~/.scripts/helper/cursor_insert.zsh
-au InsertLeave * silent !~/.scripts/helper/cursor_command.zsh
+"au VimEnter * silent !~/.scripts/helper/cursor_command.zsh
+"au VimLeave * silent !~/.scripts/helper/cursor_insert.zsh
+"au InsertEnter * silent !~/.scripts/helper/cursor_insert.zsh
+"au InsertLeave * silent !~/.scripts/helper/cursor_command.zsh
 "let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
 "let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
