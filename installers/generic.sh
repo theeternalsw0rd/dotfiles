@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-echo $DISPLAY
+if [ "x$XDG_CONFIG_HOME" = "x" ]; then
+	XDG_CONFIG_HOME="$HOME/.config"
+fi
 OS=`uname`
 cd ..
 BASEDIR=`pwd`
@@ -14,6 +16,20 @@ txtylw=`tput setaf 3` # Yellow
 txtwht=`tput setaf 7` # White
 txtrst=`tput sgr0` # Text reset.
 
+echo
+echo "${txtwht}Installing powerline configuration"
+if [ -e "$XDG_CONFIG_HOME/powerline" ]; then
+	if [ -L "$XDG_CONFIG_HOME/powerline" ]; then
+		SYMLINK=`readlink "$XDG_CONFIG_HOME/powerline"`
+		unlink "$XDG_CONFIG_HOME/powerline"
+		echo "${txtylw}Removed link from $XDG_CONFIG_HOME/powerline to $SYMLINK${txtrst}"
+	else
+		mv "$XDG_CONFIG_HOME/powerline" "$XDG_CONFIG_HOME/powerline.$TIMESTAMP.bak${txtrst}"
+		echo "${txtylw}Existing $XDG_CONFIG_HOME/powerline moved to $XDG_CONFIG_HOME/powerline.$TIMESTAMP.bak${txtrst}"
+	fi
+fi
+ln -f -s "$BASEDIR/powerline" "$XDG_CONFIG_HOME/powerline"
+echo "${txtgrn}powerline configuration installed"
 if [ ! -e "$HOME/.scripts" ]; then
 	mkdir -p "$HOME/.scripts"
 	echo
