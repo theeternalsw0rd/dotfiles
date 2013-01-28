@@ -17,6 +17,8 @@ txtwht=`tput setaf 7` # White
 txtrst=`tput sgr0` # Text reset.
 
 echo
+mkdir -p "$XDG_CONFIG_HOME"
+echo
 echo "${txtwht}Installing powerline configuration"
 if [ -e "$XDG_CONFIG_HOME/powerline" ]; then
 	if [ -L "$XDG_CONFIG_HOME/powerline" ]; then
