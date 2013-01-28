@@ -22,9 +22,12 @@ map <ScrollWheelDown> <C-E>
 call pathogen#infect()			" include all plugins in bundle folder
 call pathogen#helptags()		" include helppage for vim plugins in bundle folder
 " call pathogen#runtime_append_all_bundles()
-filetype plugin indent on		" enable detection, plugin, indenting
 
+filetype plugin indent on		" enable detection, plugin, indenting
 filetype plugin on		" enable detection, plugin, indenting
+
+" override default filetypes
+au Bufread,BufNewFile *.zsh-theme set filetype=zsh
 
 python from powerline.bindings.vim import source_plugin; source_plugin()
 
