@@ -6,7 +6,7 @@
 scriptencoding utf-8
 set encoding=utf-8
 set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\ 
-
+let mapleader=","
 "------------------------------------------////
 "               Mouse
 "------------------------------------------////
