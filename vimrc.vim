@@ -80,7 +80,7 @@ set title		" show title in console title bar
 
 " toggle line numbers 
 nmap <C-N><C-N> :set invnumber<CR>
-imap ii <Esc>
+inoremap <CR> <Esc>
 " toggle paste mode, for issue when pasting
 " from GUI to vim
 " http://simon.xn--schnbeck-p4a.dk/vim-paste-indent-problems/
