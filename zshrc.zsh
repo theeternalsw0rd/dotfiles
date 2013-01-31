@@ -1,4 +1,3 @@
-STARTUP="true"
 # global user exports go up top so subscripts have access
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -67,6 +66,8 @@ export MANPAGER='~/.scripts/vimpager/vimpager'
 export PAGER='~/.scripts/vimpager/vimpager'
 
 bindkey -v
+
+bindkey -M viins '^[[Z' vi-cmd-mode
 
 # xterm cursor - '\e[# q'
 # 1 - blinking block
