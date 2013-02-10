@@ -58,12 +58,12 @@ alias rsync='rsync --human-readable --progress -t'
 alias svndiff='svn diff --diff-cmd diff -x "--unified=8 -p"'
 alias copy='rsync --progress'
 alias copydir='rsync --progress -av'
-alias rping='~/.scripts/helper/rping.zsh'
-alias cat='~/.scripts/vimpager/vimcat'
-alias pager='~/.scripts/vimpager/vimpager'
+alias rping="$HOME/.scripts/helper/rping.zsh"
+alias cat="$HOME/.scripts/vimpager/vimcat"
+alias pager="$HOME/.scripts/vimpager/vimpager"
 
-export MANPAGER='~/.scripts/vimpager/vimpager'
-export PAGER='~/.scripts/vimpager/vimpager'
+export MANPAGER="$HOME/.scripts/vimpager/vimpager"
+export PAGER="$HOME/.scripts/vimpager/vimpager"
 
 bindkey -v
 
@@ -99,4 +99,4 @@ function irc () {
 # just echo instead of zle -N zle-line-init
 #~/.scripts/helper/cursor_insert.zsh
 
-source ~/.scripts/zsh/local.zsh
+source $HOME/.scripts/zsh/local.zsh
