@@ -59,7 +59,6 @@ alias svndiff='svn diff --diff-cmd diff -x "--unified=8 -p"'
 alias copy='rsync --progress'
 alias copydir='rsync --progress -av'
 alias rping="$HOME/.scripts/helper/rping.zsh"
-alias cat="$HOME/.scripts/vimpager/vimcat"
 alias pager="$HOME/.scripts/vimpager/vimpager"
 
 export MANPAGER="$HOME/.scripts/vimpager/vimpager"
