@@ -68,6 +68,13 @@ export PAGER="$HOME/.scripts/vimpager/vimpager"
 bindkey -v
 
 bindkey -M viins '^[[Z' vi-cmd-mode
+bindkey -a u undo
+bindkey -a '^R' redo
+bindkey '^?' backward-delete-char
+bindkey '^H' backward-delete-char
+bindkey '^f' history-incremental-search-backward
+bindkey -M vicmd '?' vi-history-search-backward
+bindkey -M vicmd '/' vi-history-search-forward
 
 # xterm cursor - '\e[# q'
 # 1 - blinking block
