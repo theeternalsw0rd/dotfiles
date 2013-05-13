@@ -119,4 +119,3 @@ au FileType javascript call JavaScriptFold()
 au BufNewFile,BufReadPost *.sass setl softtabstop=2 shiftwidth=2 expandtab
 au BufNewFile,BufReadPost *.coffee setl softtabstop=2 shiftwidth=2 expandtab
 au BufNewFile,BufReadPost *.haml setl softtabstop=2 shiftwidth=2 expandtab
-au BufNewFile,BufReadPost *.json setl softtabstop=4 shiftwidth=4 expandtab
