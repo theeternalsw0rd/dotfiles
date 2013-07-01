@@ -16,8 +16,24 @@ txtylw=`tput setaf 3` # Yellow
 txtwht=`tput setaf 7` # White
 txtrst=`tput sgr0` # Text reset.
 
-echo
 mkdir -p "$XDG_CONFIG_HOME"
+echo
+if [ `command -v git` ]; then
+	echo "${txtwht}Installing git global ignore"
+	if [ -e "$HOME/.gitignore_global" ]; then
+		if [ -L "$HOME/.gitignore_global" ]; then
+			SYMLINK=`readlink "$HOME/.gitignore_global"`
+			unlink "$HOME/.gitignore_global"
+			echo "${txtylw}Removed link from $HOME/.gitignore_global to $SYMLINK${txtrst}"
+		else
+			mv "$HOME/.gitignore_global" "$HOME/.gitignore_global.$TIMESTAMP.bak${txtrst}"
+			echo "${txtylw}Existing $HOME/.gitignore_global moved to $HOME/.gitignore_global.$TIMESTAMP.bak${txtrst}"
+		fi
+	fi
+	ln -f -s "$BASEDIR/gitignore_global.conf" "$HOME/.gitignore_global"
+	git config --global core.excludesfile "$HOME/.gitignore_global"
+	echo "${txtgrn}global gitignore installed to ~/.gitignore_global and activated"
+fi
 echo
 echo "${txtwht}Installing powerline configuration"
 if [ -e "$XDG_CONFIG_HOME/powerline" ]; then

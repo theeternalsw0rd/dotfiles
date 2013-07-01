@@ -10,6 +10,7 @@ set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 set encoding=utf-8 " Necessary to show unicode glyphs
 set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\ 
 let mapleader=","
+set tabpagemax=50
 "------------------------------------------////
 "               Mouse
 "------------------------------------------////
@@ -113,3 +114,6 @@ set nofoldenable        "dont fold by default
 "		FileType specific overrides		
 "------------------------------------------////
 au FileType javascript call JavaScriptFold()
+au BufNewFile,BufReadPost *.sass setl softtabstop=2 shiftwidth=2 expandtab
+au BufNewFile,BufReadPost *.coffee setl softtabstop=2 shiftwidth=2 expandtab
+au BufNewFile,BufReadPost *.haml setl softtabstop=2 shiftwidth=2 expandtab
