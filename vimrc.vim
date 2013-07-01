@@ -8,7 +8,8 @@ set nocompatible   " Disable vi-compatibility
 "set laststatus=2   " Always show the statusline
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 set encoding=utf-8 " Necessary to show unicode glyphs
-set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\ 
+set list
+set listchars=trail:·,precedes:«,extends:»,eol:¬,tab:▸\ 
 let mapleader=","
 set backspace=indent,eol,start
 set tabpagemax=50
@@ -93,6 +94,8 @@ syntax enable
 "set background=dark		" set background dark color
 set background=light		" set background light color (this should be called normal)
 hi LineNr ctermfg=gray
+hi NonText ctermfg=darkgray
+hi SpecialKey ctermfg=darkgray
 
 " cursorline highlights the current line and can cause slowdowns in huge files
 set cursorline
