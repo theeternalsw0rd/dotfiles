@@ -4,7 +4,10 @@
 " located on ~/.vimrc
 
 scriptencoding utf-8
-set encoding=utf-8
+set nocompatible   " Disable vi-compatibility
+"set laststatus=2   " Always show the statusline
+set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
+set encoding=utf-8 " Necessary to show unicode glyphs
 set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\ 
 let mapleader=","
 "------------------------------------------////
@@ -30,11 +33,6 @@ filetype plugin on		" enable detection, plugin, indenting
 au Bufread,BufNewFile *.zsh-theme set filetype=zsh
 
 python from powerline.bindings.vim import source_plugin; source_plugin()
-
-set nocompatible   " Disable vi-compatibility
-"set laststatus=2   " Always show the statusline
-set encoding=utf-8 " Necessary to show unicode glyphs
-set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 
 " protect from security issue
 set modelines=0
