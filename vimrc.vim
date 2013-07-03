@@ -74,6 +74,9 @@ set title		" show title in console title bar
 "autocmd CursorMoved,InsertEnter *
 "    \ if &l:cursorline | setlocal nocursorline nocursorcolumn | endif
 
+"------------------------------------------////
+"		Functions
+"------------------------------------------////
 
 "------------------------------------------////
 "		Hotkey		
@@ -81,7 +84,7 @@ set title		" show title in console title bar
 
 " toggle line numbers 
 nmap <C-N><C-N> :set invnumber<CR>
-inoremap <S-Tab> <Esc>
+inoremap <s-tab> <c-n>
 " toggle paste mode, for issue when pasting
 " from GUI to vim
 " http://simon.xn--schnbeck-p4a.dk/vim-paste-indent-problems/
