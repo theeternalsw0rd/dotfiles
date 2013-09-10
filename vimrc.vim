@@ -4,9 +4,14 @@
 " located on ~/.vimrc
 
 scriptencoding utf-8
-set encoding=utf-8
-set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\ 
+set nocompatible   " Disable vi-compatibility
+"set laststatus=2   " Always show the statusline
+set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
+set encoding=utf-8 " Necessary to show unicode glyphs
+set list
+set listchars=trail:·,precedes:«,extends:»,eol:¬,tab:▸\ 
 let mapleader=","
+set backspace=indent,eol,start
 set tabpagemax=50
 "------------------------------------------////
 "               Mouse
@@ -31,11 +36,6 @@ filetype plugin on		" enable detection, plugin, indenting
 au Bufread,BufNewFile *.zsh-theme set filetype=zsh
 
 python from powerline.bindings.vim import source_plugin; source_plugin()
-
-set nocompatible   " Disable vi-compatibility
-"set laststatus=2   " Always show the statusline
-set encoding=utf-8 " Necessary to show unicode glyphs
-set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 
 " protect from security issue
 set modelines=0
@@ -74,6 +74,9 @@ set title		" show title in console title bar
 "autocmd CursorMoved,InsertEnter *
 "    \ if &l:cursorline | setlocal nocursorline nocursorcolumn | endif
 
+"------------------------------------------////
+"		Functions
+"------------------------------------------////
 
 "------------------------------------------////
 "		Hotkey		
@@ -81,7 +84,7 @@ set title		" show title in console title bar
 
 " toggle line numbers 
 nmap <C-N><C-N> :set invnumber<CR>
-inoremap <S-Tab> <Esc>
+inoremap <s-tab> <c-n>
 " toggle paste mode, for issue when pasting
 " from GUI to vim
 " http://simon.xn--schnbeck-p4a.dk/vim-paste-indent-problems/
@@ -126,6 +129,8 @@ syntax enable
 "set background=dark		" set background dark color
 set background=light		" set background light color (this should be called normal)
 hi LineNr ctermfg=gray
+hi NonText ctermfg=darkgray
+hi SpecialKey ctermfg=darkgray
 
 " cursorline highlights the current line and can cause slowdowns in huge files
 set cursorline
