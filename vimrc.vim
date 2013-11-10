@@ -1,4 +1,4 @@
-"------------------------------------------////
+﻿"------------------------------------------////
 "	    VIM CONFIGURATION		
 "------------------------------------------////
 " located on ~/.vimrc
@@ -35,6 +35,8 @@ filetype plugin on		" enable detection, plugin, indenting
 " override default filetypes
 au Bufread,BufNewFile *.zsh-theme set filetype=zsh
 
+let g:UltiSnipsNoPythonWarning = 1
+
 " python from powerline.bindings.vim import source_plugin; source_plugin()
 
 let g:airline_powerline_fonts = 1
@@ -47,6 +49,21 @@ set nomodeline
 "------------------------------------------////
 "		Visual		
 "------------------------------------------////
+if has("gui_running")
+  set guioptions-=m "remove menu bar
+  set guioptions-=T "remove toolbar
+  set guioptions-=r "remove scrollbar
+  if has("gui_gtk2")
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+  elseif has("gui_macvim")
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
+  elseif has("gui_win32")
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI
+  endif
+endif
+
+colorscheme jellybeans
+
 syntax on 		" enable color syntax
 set number 		" show line numbers relative to current line on left side
 
