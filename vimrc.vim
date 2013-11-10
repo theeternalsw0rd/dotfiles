@@ -35,7 +35,10 @@ filetype plugin on		" enable detection, plugin, indenting
 " override default filetypes
 au Bufread,BufNewFile *.zsh-theme set filetype=zsh
 
-python from powerline.bindings.vim import source_plugin; source_plugin()
+" python from powerline.bindings.vim import source_plugin; source_plugin()
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " protect from security issue
 set modelines=0
