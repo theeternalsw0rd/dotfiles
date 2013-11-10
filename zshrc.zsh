@@ -1,4 +1,5 @@
 # global user exports go up top so subscripts have access
+source $HOME/.scripts/zsh/local.zsh
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=`which vim`
@@ -105,4 +106,3 @@ function irc () {
 # just echo instead of zle -N zle-line-init
 #~/.scripts/helper/cursor_insert.zsh
 
-source $HOME/.scripts/zsh/local.zsh
