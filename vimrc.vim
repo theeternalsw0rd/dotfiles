@@ -9,11 +9,7 @@ set nocompatible   " Disable vi-compatibility
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 set encoding=utf-8 " Necessary to show unicode glyphs
 set list
-if has("win32")
-  set listchars=trail:·,precedes:<,extends:>,eol:¬,tab:»\ 
-else
-  set listchars=trail:·,precedes:«,extends:»,eol:¬,tab:→\ 
-endif
+set listchars=trail:·,precedes:«,extends:»,eol:¬,tab:→\ 
 let mapleader=","
 set backspace=indent,eol,start
 set tabpagemax=50
@@ -137,7 +133,7 @@ command! -nargs=? -range=% RetabIndent call IndentConvert(<line1>,<line2>,&et,<q
 "------------------------------------------////
 syntax enable
 set background=dark
-let g:italic = 0
+let g:solarized_italic = 0
 colorscheme solarized
 " hi LineNr ctermfg=gray
 " hi NonText ctermbg=none
