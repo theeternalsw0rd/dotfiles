@@ -137,6 +137,7 @@ command! -nargs=? -range=% RetabIndent call IndentConvert(<line1>,<line2>,&et,<q
 "------------------------------------------////
 syntax enable
 set background=dark
+let g:italic = 0
 colorscheme solarized
 " hi LineNr ctermfg=gray
 " hi NonText ctermbg=none
