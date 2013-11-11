@@ -4,24 +4,11 @@
 		"right": [
 			{
 				"name": "uptime",
-				"before": "⇑  ",
 				"priority": 50,
 				"divider_highlight_group": "background:divider"
 			},
 			{
 				"name": "external_ip",
-				"before": "ⓦ  ",
-				"priority": 50,
-				"divider_highlight_group": "background:divider"
-			},
-			{
-				"name": "system_load",
-				"priority": 50,
-				"divider_highlight_group": "background:divider"
-			},
-			{
-				"name": "weather",
-				"args": {"unit": "f"},
 				"priority": 50,
 				"divider_highlight_group": "background:divider"
 			},
