@@ -119,7 +119,7 @@ Windows Registry Editor Version 5.00
 "TryPalette"=dword:00000000
 "ANSIColour"=dword:00000001
 "Xterm256Colour"=dword:00000001
-"BoldAsColour"=dword:00000002
+"BoldAsColour"=dword:00000000
 "Colour0"="38,139,210"
 "Colour1"="38,139,210"
 "Colour2"="230,230,230"
