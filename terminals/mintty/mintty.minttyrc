@@ -25,3 +25,4 @@ Font=DejaVu Sans Mono for Powerline
 FontHeight=12
 ClicksPlaceCursor=yes
 Scrollbar=none
+BoldAsColour=no
