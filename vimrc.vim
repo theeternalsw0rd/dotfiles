@@ -136,7 +136,7 @@ set background=dark
 colorscheme solarized
 " hi LineNr ctermfg=gray
 " hi NonText ctermbg=none
-hi SpecialKey ctermbg=none guibg=none
+hi SpecialKey ctermbg=none
 
 " cursorline highlights the current line and can cause slowdowns in huge files
 set cursorline
