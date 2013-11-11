@@ -49,20 +49,6 @@ set nomodeline
 "------------------------------------------////
 "		Visual		
 "------------------------------------------////
-if has("gui_running")
-  set guioptions-=m "remove menu bar
-  set guioptions-=T "remove toolbar
-  set guioptions-=r "remove scrollbar
-  if has("gui_gtk2")
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
-  elseif has("gui_macvim")
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
-  elseif has("gui_win32")
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI
-  endif
-endif
-
-colorscheme jellybeans
 
 syntax on 		" enable color syntax
 set number 		" show line numbers relative to current line on left side
@@ -146,15 +132,28 @@ command! -nargs=? -range=% RetabIndent call IndentConvert(<line1>,<line2>,&et,<q
 "		Themes		
 "------------------------------------------////
 syntax enable
-"set background=dark		" set background dark color
-set background=light		" set background light color (this should be called normal)
-hi LineNr ctermfg=gray
-hi NonText ctermfg=darkgray
-hi SpecialKey ctermfg=darkgray
+set background=dark
+colorscheme solarized
+" hi LineNr ctermfg=gray
+" hi NonText ctermbg=none
+hi SpecialKey ctermbg=none guibg=none
 
 " cursorline highlights the current line and can cause slowdowns in huge files
 set cursorline
-hi CursorLine cterm=none ctermbg=black
+" hi CursorLine cterm=none ctermbg=black
+
+if has("gui_running")
+  set guioptions-=m "remove menu bar
+  set guioptions-=T "remove toolbar
+  set guioptions-=r "remove scrollbar
+  if has("gui_gtk2")
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+  elseif has("gui_macvim")
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
+  elseif has("gui_win32")
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI
+  endif
+endif
 
 set fillchars+=stl:\ ,stlnc:\
 
