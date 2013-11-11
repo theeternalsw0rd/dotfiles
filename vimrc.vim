@@ -136,7 +136,6 @@ set background=dark
 colorscheme solarized
 " hi LineNr ctermfg=gray
 " hi NonText ctermbg=none
-hi SpecialKey ctermbg=none
 
 " cursorline highlights the current line and can cause slowdowns in huge files
 set cursorline
@@ -146,6 +145,7 @@ if has("gui_running")
   set guioptions-=m "remove menu bar
   set guioptions-=T "remove toolbar
   set guioptions-=r "remove scrollbar
+  hi SpecialKey guibg=NONE
   if has("gui_gtk2")
     set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
   elseif has("gui_macvim")
@@ -153,6 +153,8 @@ if has("gui_running")
   elseif has("gui_win32")
     set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI
   endif
+else
+  hi SpecialKey ctermbg=none
 endif
 
 set fillchars+=stl:\ ,stlnc:\
