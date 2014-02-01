@@ -136,8 +136,7 @@ command! -nargs=? -range=% RetabIndent call IndentConvert(<line1>,<line2>,&et,<q
 "		Themes		
 "------------------------------------------////
 syntax enable
-set background=dark
-colorscheme Midnight
+colorscheme midnight
 " hi LineNr ctermfg=gray
 " hi NonText ctermbg=none
 
