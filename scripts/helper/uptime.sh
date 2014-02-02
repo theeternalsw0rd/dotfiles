@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 platform='unknown'
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
