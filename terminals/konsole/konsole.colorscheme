@@ -1,97 +1,97 @@
 # --- ~/.kde/share/apps/konsole/NAME.colorscheme -------------------------------
-# ------------------------------------------------------------------------------
-# --- generated with 4bit Terminal Color Scheme Designer -----------------------
-# ------------------------------------------------------------------------------
-# --- http://ciembor.github.com/4bit -------------------------------------------
-# ------------------------------------------------------------------------------
-
-# --- special colors ---
-
-[Background]
-Color=9,8,18
-Transparency=false
-
-[BackgroundIntense]
-color=9,8,18
-Transparency=false
-
-[Foreground]
-Color=181,205,250
-Transparency=false
-
-[ForegroundIntense]
-Color=181,205,250
-Bold=true
-Transparency=false
-
-# --- standard colors ---
-
-[Color0]
-Color=18,18,18
-Transparency=false
-
-[Color0Intense]
-Color=74,74,74
-Transparency=false
-
-[Color1]
-Color=205,74,96
-Transparency=false
-
-[Color1Intense]
-Color=218,120,137
-Transparency=false
-
-[Color2]
-Color=96,205,74
-Transparency=false
-
-[Color2Intense]
-Color=137,218,120
-Transparency=false
-
-[Color3]
-Color=205,183,74
-Transparency=false
-
-[Color3Intense]
-Color=218,202,120
-Transparency=false
-
-[Color4]
-Color=74,96,205
-Transparency=false
-
-[Color4Intense]
-Color=120,137,218
-Transparency=false
-
-[Color5]
-Color=183,74,205
-Transparency=false
-
-[Color5Intense]
-Color=202,120,218
-Transparency=false
-
-[Color6]
-Color=74,205,183
-Transparency=false
-
-[Color6Intense]
-Color=120,218,202
-Transparency=false
-
-[Color7]
-Color=188,188,188
-Transparency=false
-
-[Color7Intense]
-Color=239,239,239
-Transparency=false
-
-# --- general options ---
-
-[General]
-Description=4bit-b5cdfa-on-090812
-Opacity=1
+# # ------------------------------------------------------------------------------
+# # --- generated with 4bit Terminal Color Scheme Designer -----------------------
+# # ------------------------------------------------------------------------------
+# # --- http://ciembor.github.com/4bit -------------------------------------------
+# # ------------------------------------------------------------------------------
+#
+# # --- special colors ---
+#
+# [Background]
+# Color=23,25,31
+# Transparency=false
+#
+# [BackgroundIntense]
+# color=23,25,31
+# Transparency=false
+#
+# [Foreground]
+# Color=138,170,188
+# Transparency=false
+#
+# [ForegroundIntense]
+# Color=138,170,188
+# Bold=true
+# Transparency=false
+#
+# # --- standard colors ---
+#
+# [Color0]
+# Color=26,26,26
+# Transparency=false
+#
+# [Color0Intense]
+# Color=26,26,26
+# Transparency=false
+#
+# [Color1]
+# Color=153,77,87
+# Transparency=false
+#
+# [Color1Intense]
+# Color=189,124,132
+# Transparency=false
+#
+# [Color2]
+# Color=87,153,77
+# Transparency=false
+#
+# [Color2Intense]
+# Color=132,189,124
+# Transparency=false
+#
+# [Color3]
+# Color=153,142,77
+# Transparency=false
+#
+# [Color3Intense]
+# Color=189,180,124
+# Transparency=false
+#
+# [Color4]
+# Color=77,87,153
+# Transparency=false
+#
+# [Color4Intense]
+# Color=124,132,189
+# Transparency=false
+#
+# [Color5]
+# Color=142,77,153
+# Transparency=false
+#
+# [Color5Intense]
+# Color=180,124,189
+# Transparency=false
+#
+# [Color6]
+# Color=77,153,142
+# Transparency=false
+#
+# [Color6Intense]
+# Color=124,189,180
+# Transparency=false
+#
+# [Color7]
+# Color=208,208,208
+# Transparency=false
+#
+# [Color7Intense]
+# Color=208,208,208
+# Transparency=false
+#
+# # --- general options ---
+#
+# [General]
+# Description=Midnight
+# Opacity=1
