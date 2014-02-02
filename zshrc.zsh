@@ -24,6 +24,10 @@ ZSH=$HOME/.scripts/zsh/oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="ys"
 
+# Base16 Shell
+BASE16_SHELL="$HOME/.scripts/zsh/base16.sh"
+[[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
