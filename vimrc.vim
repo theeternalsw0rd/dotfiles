@@ -1,22 +1,4 @@
-﻿"------------------------------------------////
-"	    VIM CONFIGURATION		
-"------------------------------------------////
-" located on ~/.vimrc
-
-scriptencoding utf-8
-set nocompatible   " Disable vi-compatibility
-"set laststatus=2   " Always show the statusline
-set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
-set encoding=utf-8 " Necessary to show unicode glyphs
-set list
-if has("win32")
-  set listchars=trail:·,precedes:<,extends:>,eol:¬,tab:»\ 
-else
-  set listchars=trail:·,precedes:«,extends:»,eol:¬,tab:→\ 
-endif
-let mapleader=","
-set backspace=indent,eol,start
-set tabpagemax=50
+﻿set tabpagemax=50
 "------------------------------------------////
 "               Mouse
 "------------------------------------------////
@@ -136,7 +118,8 @@ command! -nargs=? -range=% RetabIndent call IndentConvert(<line1>,<line2>,&et,<q
 "		Themes		
 "------------------------------------------////
 syntax enable
-colorscheme midnight
+set background=dark
+colorscheme base16-railscasts
 " hi LineNr ctermfg=gray
 " hi NonText ctermbg=none
 
