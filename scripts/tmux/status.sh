@@ -6,7 +6,11 @@ if [[ "$1" == "times" ]]; then
 	echo "$uptime  $date  $time"
 fi
 if [[ "$1" == "host" ]]; then
-	ip=`dig +short myip.opendns.com @resolver1.opendns.com`
+	if hash dig 2>/dev/null; then
+		ip=`dig +short myip.opendns.com @resolver1.opendns.com`
+	else
+		ip="install dig"
+	fi
 	hostname=`hostname`
-	echo "`~/.scripts/helper/padder.sh $ip 15 ' '`  `~/.scripts/helper/padder.sh $hostname 8 ' '`"
+	echo "`~/.scripts/helper/padder.sh "$ip" 15 ' '`  `~/.scripts/helper/padder.sh $hostname 8 ' '`"
 fi
