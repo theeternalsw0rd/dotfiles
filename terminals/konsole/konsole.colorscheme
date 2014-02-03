@@ -1,65 +1,64 @@
 [Background]
-Color=0,43,54
+Color=34,34,34
 
 [BackgroundIntense]
-Color=invalid
-color=0,43,54
+Color=35,35,35
 
 [Color0]
-Color=7,54,66
+Color=35,35,35
 
 [Color0Intense]
-Color=0,43,54
+Color=90,100,126
 
 [Color1]
-Color=220,50,47
+Color=218,73,57
 
 [Color1Intense]
-Color=203,75,22
+Color=218,73,57
 
 [Color2]
-Color=133,153,0
+Color=165,194,97
 
 [Color2Intense]
-Color=88,110,117
+Color=165,194,97
 
 [Color3]
-Color=181,137,0
+Color=255,198,109
 
 [Color3Intense]
-Color=101,123,131
+Color=255,198,109
 
 [Color4]
-Color=38,139,210
+Color=109,156,190
 
 [Color4Intense]
-Color=131,148,150
+Color=109,156,190
 
 [Color5]
-Color=211,54,130
+Color=182,179,235
 
 [Color5Intense]
-Color=108,113,196
+Color=182,179,235
 
 [Color6]
-Color=42,161,152
+Color=81,159,80
 
 [Color6Intense]
-Color=147,161,161
+Color=81,159,80
 
 [Color7]
-Color=238,232,213
+Color=212,207,201
 
 [Color7Intense]
-Color=253,246,227
+Color=244,241,237
 
 [Foreground]
-Color=38,139,210
+Color=212,207,201
 
 [ForegroundIntense]
-Color=38,139,210
+Color=212,207,201
 
 [General]
-Description=Solarized
-Opacity=0.9
+Description=Base16 Railscasts
+Opacity=0.95
 Wallpaper=

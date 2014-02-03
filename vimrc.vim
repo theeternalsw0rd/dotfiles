@@ -45,6 +45,7 @@ let g:UltiSnipsNoPythonWarning = 1
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = "railscasts"
 
 " protect from security issue
 set modelines=0
@@ -137,9 +138,7 @@ command! -nargs=? -range=% RetabIndent call IndentConvert(<line1>,<line2>,&et,<q
 "------------------------------------------////
 syntax enable
 set background=dark
-let g:solarized_termtrans = 1
-let g:solarized_italic = 0
-colorscheme solarized
+colorscheme base16-railscasts
 " hi LineNr ctermfg=gray
 " hi NonText ctermbg=none
 
