@@ -1,12 +1,16 @@
 #!/bin/bash
 platform='unknown'
 unamestr=`uname`
+unameostr=`uname -o`
 if [[ "$unamestr" == 'Linux' ]]; then
 	platform='linux'
 	seconds=`cat /proc/uptime | sed 's/\([0-9]*\).*/\1/'`
 elif [[ "$unamestr" == 'Darwin' ]]; then
 	platform='darwin'
 	seconds=$((`awk 'BEGIN{srand();print srand()}'`-`sysctl -n kern.boottime | sed 's/[^0-9]*\([0-9]*\).*/\1/'`))
+elif [[ "$unameostr" == 'Cygwin' ]]; then
+	platform='cygwin'
+	seconds=`cat /proc/uptime | sed 's/\([0-9]*\).*/\1/'`
 fi
 if [[ "$platform" != 'unknown' ]]; then
 	days=$(($seconds/60/60/24))
