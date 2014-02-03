@@ -1,97 +1,64 @@
-# --- ~/.kde/share/apps/konsole/NAME.colorscheme -------------------------------
-# # ------------------------------------------------------------------------------
-# # --- generated with 4bit Terminal Color Scheme Designer -----------------------
-# # ------------------------------------------------------------------------------
-# # --- http://ciembor.github.com/4bit -------------------------------------------
-# # ------------------------------------------------------------------------------
-#
-# # --- special colors ---
-#
-# [Background]
-# Color=23,25,31
-# Transparency=false
-#
-# [BackgroundIntense]
-# color=23,25,31
-# Transparency=false
-#
-# [Foreground]
-# Color=138,170,188
-# Transparency=false
-#
-# [ForegroundIntense]
-# Color=138,170,188
-# Bold=true
-# Transparency=false
-#
-# # --- standard colors ---
-#
-# [Color0]
-# Color=26,26,26
-# Transparency=false
-#
-# [Color0Intense]
-# Color=26,26,26
-# Transparency=false
-#
-# [Color1]
-# Color=153,77,87
-# Transparency=false
-#
-# [Color1Intense]
-# Color=189,124,132
-# Transparency=false
-#
-# [Color2]
-# Color=87,153,77
-# Transparency=false
-#
-# [Color2Intense]
-# Color=132,189,124
-# Transparency=false
-#
-# [Color3]
-# Color=153,142,77
-# Transparency=false
-#
-# [Color3Intense]
-# Color=189,180,124
-# Transparency=false
-#
-# [Color4]
-# Color=77,87,153
-# Transparency=false
-#
-# [Color4Intense]
-# Color=124,132,189
-# Transparency=false
-#
-# [Color5]
-# Color=142,77,153
-# Transparency=false
-#
-# [Color5Intense]
-# Color=180,124,189
-# Transparency=false
-#
-# [Color6]
-# Color=77,153,142
-# Transparency=false
-#
-# [Color6Intense]
-# Color=124,189,180
-# Transparency=false
-#
-# [Color7]
-# Color=208,208,208
-# Transparency=false
-#
-# [Color7Intense]
-# Color=208,208,208
-# Transparency=false
-#
-# # --- general options ---
-#
-# [General]
-# Description=Midnight
-# Opacity=1
+[Background]
+Color=34,34,34
+
+[BackgroundIntense]
+Color=35,35,35
+
+[Color0]
+Color=35,35,35
+
+[Color0Intense]
+Color=90,100,126
+
+[Color1]
+Color=218,73,57
+
+[Color1Intense]
+Color=218,73,57
+
+[Color2]
+Color=165,194,97
+
+[Color2Intense]
+Color=165,194,97
+
+[Color3]
+Color=255,198,109
+
+[Color3Intense]
+Color=255,198,109
+
+[Color4]
+Color=109,156,190
+
+[Color4Intense]
+Color=109,156,190
+
+[Color5]
+Color=182,179,235
+
+[Color5Intense]
+Color=182,179,235
+
+[Color6]
+Color=81,159,80
+
+[Color6Intense]
+Color=81,159,80
+
+[Color7]
+Color=212,207,201
+
+[Color7Intense]
+Color=244,241,237
+
+[Foreground]
+Color=212,207,201
+
+[ForegroundIntense]
+Color=212,207,201
+
+[General]
+Description=Base16 Railscasts
+Opacity=0.95
+Wallpaper=
