@@ -10,24 +10,10 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 fi
 if [[ "$platform" != 'unknown' ]]; then
 	days=$(($seconds/60/60/24))
-	daystring=""
-	if [[ $days > 0 ]]; then
-		daystring=$days"d "
-	fi
+	daystring=$days"d"
 	hours=$((($seconds/60/60)%24))
-	hourstring=""
-	if [[ $hours > 0 || $days > 0 ]]; then
-		if [[ $hours < 10 ]]; then
-			hourstring="0"$hours"h "
-		else
-			hourstring=$hours"h "
-		fi
-	fi
+	hourstring="`~/.scripts/helper/padder.sh $hours 2 0`h"
 	minutes=$((($seconds/60)%60))
-	if [[ $minutes < 10 ]]; then
-		minutestring="0"$minutes"m"
-	else
-		minutestring=$minutes"m"
-	fi
-	echo $daystring$hourstring$minutestring
+	minutestring="`~/.scripts/helper/padder.sh $minutes 2 0`m"
+	echo "$daystring $hourstring $minutestring"
 fi
