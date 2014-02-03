@@ -19,5 +19,5 @@ fi
 if [[ "$1" == "host" ]]; then
 	ip=`dig +short myip.opendns.com @resolver1.opendns.com`
 	hostname=`hostname`
-	echo "`lpad $ip 15 ' ' right`  `lpad $hostname 8 ' '`"
+	echo "`lpad $ip 15 ' '`  `lpad $hostname 8 ' '`"
 fi
