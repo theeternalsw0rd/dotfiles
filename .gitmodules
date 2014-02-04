@@ -10,3 +10,6 @@
 [submodule "fonts/powerline-fonts"]
 	path = fonts/powerline-fonts
 	url = git://github.com/eternalsword/powerline-fonts.git
+[submodule "chrome/devtools-themes/zerodarkmatrix"]
+	path = chrome/devtools-themes/zerodarkmatrix
+	url = git://github.com/eternalsword/chrome-devtools-zerodarkmatrix-theme
