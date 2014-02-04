@@ -10,3 +10,6 @@
 [submodule "fonts/powerline-fonts"]
 	path = fonts/powerline-fonts
 	url = git://github.com/eternalsword/powerline-fonts.git
+[submodule "chrome/devtools-themes/railscasts"]
+	path = chrome/devtools-themes/railscasts
+	url = git://github.com/eternalsword/sample-devtools-theme-extension
