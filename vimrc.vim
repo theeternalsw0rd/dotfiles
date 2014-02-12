@@ -22,8 +22,8 @@ set tabpagemax=50
 "------------------------------------------////
 set mouse=a
 set ttymouse=xterm2
-map <ScrollWheelUp> <C-Y>
-map <ScrollWheelDown> <C-E>
+map <ScrollWheelUp> <C-Y><C-Y><C-Y><C-Y><C-Y>
+map <ScrollWheelDown> <C-E><C-E><C-E><C-E><C-E>
 
 "------------------------------------------////
 "		Plugins		
