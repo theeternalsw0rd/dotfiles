@@ -12,5 +12,5 @@ if [[ "$1" == "host" ]]; then
 		ip="install dig"
 	fi
 	hostname=`hostname`
-	echo "`~/.scripts/helper/padder.sh "$ip" 15 ' '`  `~/.scripts/helper/padder.sh $hostname 8 ' '`"
+	echo "`~/.scripts/helper/padder.sh $hostname 8 ' '`"
 fi
