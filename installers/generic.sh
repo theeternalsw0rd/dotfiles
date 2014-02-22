@@ -82,6 +82,7 @@ fi
 ln -f -s "$BASEDIR/scripts/helper" "$HOME/.scripts/helper"
 echo "${txtgrn}helper scripts installed"
 echo
+echo "${txtwht}Installing rtorrent configuration files${txtrst}"
 if [ `command -v rtorrent` ]; then
 	FILE=rtorrent.rc
 	if [ -e "$HOME/.$FILE" ]; then
