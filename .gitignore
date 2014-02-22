@@ -4,3 +4,4 @@ vim/view/
 vim/view/*
 scripts/zsh/local.zsh
 scripts/tmux/local.conf
+scripts/rtorrent/local.rtorrent.rc

@@ -1,0 +1,10 @@
+max_peers = 200
+max_peers_seed = -1
+download_rate = 0
+upload_rate = 330
+schedule = low_diskspace,5,60,close_low_diskspace=2000M
+port_range = 9363-9373
+use_udp_trackers = yes
+encryption = require
+peer_exchange = yes
+import = ~/.scripts/rtorrent/local.rtorrent.rc

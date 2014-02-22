@@ -82,6 +82,46 @@ fi
 ln -f -s "$BASEDIR/scripts/helper" "$HOME/.scripts/helper"
 echo "${txtgrn}helper scripts installed"
 echo
+if [ `command -v rtorrent` ]; then
+	FILE=rtorrent.rc
+	if [ -e "$HOME/.$FILE" ]; then
+		if [ -L "$HOME/.$FILE" ]; then
+			SYMLINK=`readlink "$HOME/.$FILE"`
+			unlink "$HOME/.$FILE"
+			echo "${txtylw}Removed link from ~/.$FILE to $SYMLINK${txtrst}"
+		else
+			mv "$HOME/.$FILE" "$HOME/.$FILE.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/.$FILE moved to ~/.$FILE.$TIMESTAMP.bak${txtrst}"
+		fi
+	fi
+	ln -f -s "$BASEDIR/$FILE" "$HOME/.$FILE"
+	echo "${txtgrn}.$FILE installed${txtrst}"
+
+	FILE=scripts/rtorrent
+	if [ -e "$HOME/.$FILE" ]; then
+		if [ -L "$HOME/.$FILE" ]; then
+			SYMLINK=`readlink "$HOME/.$FILE"`
+			unlink "$HOME/.$FILE"
+			echo "${txtylw}Removed link from ~/.$FILE to $SYMLINK${txtrst}"
+		else
+			mv "$HOME/.$FILE" "$HOME/.$FILE.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/.$FILE moved to ~/.$FILE.$TIMESTAMP.bak${txtrst}"
+		fi
+	fi
+	ln -f -s "$BASEDIR/$FILE" "$HOME/.$FILE"
+	echo "${txtgrn}rtorrent configuration scripts installed${txtrst}"
+
+	FILE=scripts/rtorrent/local.rtorrent.rc
+	if [ ! -e "$HOME/.$FILE" ]; then
+		echo "# local rtorrent configuration" > $HOME/.$FILE
+		echo "${txtgrn}local rtorrent configuration ~/.$FILE created${txtrst}"
+	else
+		echo "${txtylw}leaving ~/.$FILE intact${txtrst}"
+	fi
+else
+	echo "${txtred}rtorrent not installed or not in path so skipping related configuration files.${txtrst}"
+fi
+echo
 echo "${txtwht}Installing zsh configuration files${txtrst}"
 if [ `command -v zsh` ]; then
 	FILE=zshrc
