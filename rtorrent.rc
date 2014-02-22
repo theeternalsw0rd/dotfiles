@@ -7,4 +7,32 @@ port_range = 9363-9373
 use_udp_trackers = yes
 encryption = require
 peer_exchange = yes
+ratio.enable=
+ratio.min.set = 100
+ratio.max.set = 200
+session = ./.rtorrent
+schedule = session_save,240,300,session_save=
+schedule = watch_directory,5,5,load_start=./Downloads/torrents/*.torrent # vim syntax hightlighting tweak comment */
+schedule = tied_directory,6,5,start_tied=
+schedule = untied_directory,7,5,stop_untied=
+system.method.set = group.seeding.ratio.command, d.close=
+# Sort the main view by ratio
+view.sort_current = main,greater=d.get_ratio=
+view.sort_new = main,less=d.get_ratio=
+view.sort = main
+view.sort_current = seeding,greater=d.get_up_rate=
+view.filter = seeding,"and=d.get_complete=,d.get_peers_connected="
+view.sort_new = seeding,less=d.get_up_rate=
+view.sort = seeding
+view.sort_current = leeching,greater=d.get_name=
+view.sort_new = leeching,greater=d.get_name=
+view.sort = leeching
+view.sort_current = active,less=d.get_name=
+view.sort_new = leeching,less=d.get_name=
+view.filter = active,d.get_peers_connected=
+view.sort = active
+schedule = sort_main,11,5,view.sort=main
+schedule = sort_seeding,12,5,view.sort=seeding
+schedule = sort_leeching,13,5,view.sort=leeching
+schedule = sort_active,14,5,view.sort=active
 import = ~/.scripts/rtorrent/local.rtorrent.rc
