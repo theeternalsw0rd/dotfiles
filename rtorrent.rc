@@ -12,7 +12,8 @@ ratio.min.set = 100
 ratio.max.set = 200
 session = ./.rtorrent
 schedule = session_save,240,300,session_save=
-schedule = watch_directory,5,5,load_start=./Downloads/torrents/*.torrent # vim syntax hightlighting tweak comment */
+schedule = watch_directory,5,5,load_start=./Downloads/torrents/*.torrent
+# vim syntax hightlighting tweak comment */
 schedule = tied_directory,6,5,start_tied=
 schedule = untied_directory,7,5,stop_untied=
 system.method.set = group.seeding.ratio.command, d.close=
