@@ -69,45 +69,28 @@ fi
 ln -f -s "$BASEDIR/scripts/helper" "$HOME/.scripts/helper"
 echo "${txtgrn}helper scripts installed"
 echo
-echo "${txtwht}Installing rtorrent configuration files${txtrst}"
-if [ `command -v rtorrent` ]; then
-	FILE=rtorrent.rc
-	if [ -e "$HOME/.$FILE" ]; then
-		if [ -L "$HOME/.$FILE" ]; then
-			SYMLINK=`readlink "$HOME/.$FILE"`
-			unlink "$HOME/.$FILE"
-			echo "${txtylw}Removed link from ~/.$FILE to $SYMLINK${txtrst}"
-		else
-			mv "$HOME/.$FILE" "$HOME/.$FILE.$TIMESTAMP.bak"
-			echo "${txtylw}Existing ~/.$FILE moved to ~/.$FILE.$TIMESTAMP.bak${txtrst}"
-		fi
-	fi
-	ln -f -s "$BASEDIR/$FILE" "$HOME/.$FILE"
-	echo "${txtgrn}.$FILE installed${txtrst}"
-
-	FILE=scripts/rtorrent
-	if [ -e "$HOME/.$FILE" ]; then
-		if [ -L "$HOME/.$FILE" ]; then
-			SYMLINK=`readlink "$HOME/.$FILE"`
-			unlink "$HOME/.$FILE"
-			echo "${txtylw}Removed link from ~/.$FILE to $SYMLINK${txtrst}"
-		else
-			mv "$HOME/.$FILE" "$HOME/.$FILE.$TIMESTAMP.bak"
-			echo "${txtylw}Existing ~/.$FILE moved to ~/.$FILE.$TIMESTAMP.bak${txtrst}"
-		fi
-	fi
-	ln -f -s "$BASEDIR/$FILE" "$HOME/.$FILE"
-	echo "${txtgrn}rtorrent configuration scripts installed${txtrst}"
-
-	FILE=scripts/rtorrent/local.rtorrent.rc
-	if [ ! -e "$HOME/.$FILE" ]; then
-		echo "# local rtorrent configuration" > $HOME/.$FILE
-		echo "${txtgrn}local rtorrent configuration ~/.$FILE created${txtrst}"
-	else
-		echo "${txtylw}leaving ~/.$FILE intact${txtrst}"
-	fi
+if [ "`pidof transmission-daemon | sed 's/[0-9]*/1/'`" = "1" ]; then
+	echo "${txtred}transmission-daemon is currently running, skipping configuration"
 else
-	echo "${txtred}rtorrent not installed or not in path so skipping related configuration files.${txtrst}"
+	echo "${txtwht}Installing transmission-daemon configuration files${txtrst}"
+	if [ `command -v transmission-daemon` ]; then
+		mkdir -p $XDG_CONFIG_HOME/transmission-daemon
+		FILE="transmission-daemon/settings.json"
+		if [ -e "$XDG_CONFIG_HOME/$FILE" ]; then
+			if [ -L "$XDG_CONFIG_HOME/$FILE" ]; then
+				SYMLINK=`readlink "$XDG_CONFIG_HOME/$FILE"`
+				unlink "$XDG_CONFIG_HOME/$FILE"
+				echo "${txtylw}Removed link from $XDG_CONFIG_HOME/$FILE to $SYMLINK${txtrst}"
+			else
+				mv "$XDG_CONFIG_HOME/$FILE" "$XDG_CONFIG_HOME/$FILE.$TIMESTAMP.bak"
+				echo "${txtylw}Existing $XDG_CONFIG_HOME/$FILE moved to $XDG_CONFIG_HOME/$FILE.$TIMESTAMP.bak${txtrst}"
+			fi
+		fi
+		ln -f -s "$BASEDIR/$FILE" "$XDG_CONFIG_HOME/$FILE"
+		echo "${txtgrn}$FILE installed${txtrst}"
+	else
+		echo "${txtred}transmission-cli not installed or not in path so skipping related configuration files.${txtrst}"
+	fi
 fi
 echo
 echo "${txtwht}Installing zsh configuration files${txtrst}"
