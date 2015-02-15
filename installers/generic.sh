@@ -86,7 +86,7 @@ else
 				echo "${txtylw}Existing $XDG_CONFIG_HOME/$FILE moved to $XDG_CONFIG_HOME/$FILE.$TIMESTAMP.bak${txtrst}"
 			fi
 		fi
-		ln -f -s "$BASEDIR/$FILE" "$XDG_CONFIG_HOME/$FILE"
+		cp "$BASEDIR/$FILE" "$XDG_CONFIG_HOME/$FILE"
 		echo "${txtgrn}$FILE installed${txtrst}"
 	else
 		echo "${txtred}transmission-cli not installed or not in path so skipping related configuration files.${txtrst}"
