@@ -105,6 +105,20 @@ function irc () {
 	fi
 }
 
+function codegrep () {
+	if (( $# == 0 )); then # zero arguments
+		echo "Usage:"
+		echo "1: codegrep 'search term'"
+		echo "2: codegrep ext 'search term'"
+	fi
+	if (( $# == 1 )); then # one argument
+		find . -type f -exec grep -n "$1" /dev/null {} \;
+	fi
+	if (( $# == 2 )); then # two arguments
+		find . -type f -name "*.$1" -exec grep -n "$2" /dev/null {} \;
+	fi
+}
+
 #precmd() {
 #	~/.scripts/helper/cursor_insert.zsh
 #}
