@@ -4,7 +4,6 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=`which vim`
 alias grep="grep --color=auto"
-unset -v GREP_OPTIONS
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 	SESSION_TYPE=remote/ssh
@@ -126,3 +125,5 @@ function codegrep () {
 # just echo instead of zle -N zle-line-init
 #~/.scripts/helper/cursor_insert.zsh
 
+# put at end to override any other scripts
+unset -v GREP_OPTIONS
