@@ -3,6 +3,7 @@ source $HOME/.scripts/zsh/local.zsh
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=`which vim`
+ulimit -n 2048
 alias grep="grep --color=auto"
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
@@ -127,3 +128,4 @@ function codegrep () {
 
 # put at end to override any other scripts
 unset -v GREP_OPTIONS
+eval $(/usr/libexec/path_helper -s)
