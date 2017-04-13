@@ -119,6 +119,11 @@ function codegrep () {
 	fi
 }
 
+function telnet() {
+	echoti rmkx
+	command telnet $@
+}
+
 #precmd() {
 #	~/.scripts/helper/cursor_insert.zsh
 #}
