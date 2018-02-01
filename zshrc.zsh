@@ -133,4 +133,4 @@ function telnet() {
 
 # put at end to override any other scripts
 unset -v GREP_OPTIONS
-eval $(/usr/libexec/path_helper -s)
+[[ -x /usr/libexec/path_helper ]] && eval $(/usr/libexec/path_helper -s)
