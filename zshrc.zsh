@@ -5,6 +5,7 @@ export LANG=en_US.UTF-8
 export EDITOR=`which vim`
 ulimit -n 2048
 alias grep="grep --color=auto"
+alias dog="$HOME/.scripts/vimpager/vimcat"
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 	SESSION_TYPE=remote/ssh
