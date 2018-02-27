@@ -134,4 +134,6 @@ function telnet() {
 
 # put at end to override any other scripts
 unset -v GREP_OPTIONS
+# oh-my-zsh has an alias. we have our own function.
+unalias ls
 [[ -x /usr/libexec/path_helper ]] && eval $(/usr/libexec/path_helper -s)
