@@ -59,9 +59,9 @@ source $ZSH/oh-my-zsh.sh
 
 # global user shortcuts
 alias edit='vim'
-alias lsnew='ls -t | head -n 20'
-alias lsdir='ls -F | grep '\/' | sed 's-/--g' | sort'
-alias lsc='ls -1'
+alias lsnew='exa --sort=oldest -l --color=always | head -n 20'
+alias lsdir="exa --color=always -F | grep '\/' | sed 's%/$%%g' | sort --ignore-case"
+alias lsc='exa -1'
 alias rsync='rsync --human-readable --progress -t'
 alias svndiff='svn diff --diff-cmd diff -x "--unified=8 -p"'
 alias copy='rsync --progress'
