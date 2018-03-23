@@ -137,6 +137,8 @@ fi
 echo
 echo "${txtwht}Installing vim configuration files${txtrst}"
 if [ `command -v vim` ]; then
+	mkdir -p "$HOME/.vim/tmp"
+	echo "${txtylw}Created ~/.vim/tmp to store vim temporary session files.${txtrst}"
 	FILE=vimrc
 	if [ -e "$HOME/.$FILE" ]; then
 		if [ -L "$HOME/.$FILE" ]; then
