@@ -9,6 +9,7 @@ set nocompatible   " Disable vi-compatibility
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 set encoding=utf-8 " Necessary to show unicode glyphs
 set list
+set directory=~/.vim/tmp
 if has("win32")
   set listchars=trail:·,precedes:<,extends:>,eol:¬,tab:»\ 
 else
