@@ -180,6 +180,8 @@ set nofoldenable        "dont fold by default
 "		FileType specific overrides		
 "------------------------------------------////
 au FileType javascript call JavaScriptFold()
-"au BufNewFile,BufReadPost *.sass setl softtabstop=2 shiftwidth=2 expandtab
-"au BufNewFile,BufReadPost *.coffee setl softtabstop=2 shiftwidth=2 expandtab
-"au BufNewFile,BufReadPost *.haml setl softtabstop=2 shiftwidth=2 expandtab
+au BufNewFile,BufReadPost *.php setl softtabstop=4 shiftwidth=4 expandtab
+au BufNewFile,BufReadPost *.blade.php setl softtabstop=4 shiftwidth=4 noexpandtab
+au BufNewFile,BufReadPost *.sass setl softtabstop=2 shiftwidth=2 expandtab
+au BufNewFile,BufReadPost *.coffee setl softtabstop=2 shiftwidth=2 expandtab
+au BufNewFile,BufReadPost *.haml setl softtabstop=2 shiftwidth=2 expandtab
