@@ -181,7 +181,7 @@ set nofoldenable        "dont fold by default
 "------------------------------------------////
 au FileType javascript call JavaScriptFold()
 au! BufNewFile,BufEnter *.php setl softtabstop=4 shiftwidth=4 expandtab
-au! BufNewFile,BufEnter *.blade.php setl softtabstop=4 shiftwidth=4 noexpandtab
+au! BufNewFile,BufEnter *.blade.php setl tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 au BufNewFile,BufReadPre,FileReadPre *.sass setl softtabstop=2 shiftwidth=2 expandtab
 au BufNewFile,BufReadPre,FileReadPre *.coffee setl softtabstop=2 shiftwidth=2 expandtab
 au BufNewFile,BufReadPre,FileReadPre *.haml setl softtabstop=2 shiftwidth=2 expandtab
