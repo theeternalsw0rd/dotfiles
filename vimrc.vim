@@ -22,7 +22,11 @@ set tabpagemax=50
 "               Mouse
 "------------------------------------------////
 set mouse=a
-set ttymouse=xterm2
+if has("mouse_sgr")
+  set ttymouse=sgr
+else
+  set ttymouse=xterm2
+end
 map <ScrollWheelUp> <C-Y><C-Y><C-Y><C-Y><C-Y>
 map <ScrollWheelDown> <C-E><C-E><C-E><C-E><C-E>
 
