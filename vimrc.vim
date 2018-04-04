@@ -37,7 +37,7 @@ map <ScrollWheelDown> <C-E><C-E><C-E><C-E><C-E>
 call pathogen#infect()			" include all plugins in bundle folder
 call pathogen#helptags()		" include helppage for vim plugins in bundle folder
 " call pathogen#runtime_append_all_bundles()
-
+let g:polyglot_disabled = ['blade']
 filetype plugin indent on		" enable detection, plugin, indenting
 filetype plugin on		" enable detection, plugin, indenting
 
