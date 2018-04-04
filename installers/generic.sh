@@ -130,6 +130,14 @@ if [ `command -v zsh` ]; then
 	else
 		echo "${txtylw}leaving ~/.$FILE intact${txtrst}"
 	fi
+
+	FILE=scripts/zsh/path.zsh
+	if [ ! -e "$HOME/.$FILE" ]; then
+		echo "# zsh path override configuration" > $HOME/.$FILE
+		echo "${txtgrn}zsh path override configuration ~/.$FILE created${txtrst}"
+	else
+		echo "${txtylw}leaving ~/.$FILE intact${txtrst}"
+	fi
 else
 	echo "${txtred}zsh not installed or not in path so skipping related configuration files.${txtrst}"
 fi

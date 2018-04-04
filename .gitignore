@@ -3,4 +3,5 @@ vim/view
 vim/view/
 vim/view/*
 scripts/zsh/local.zsh
+scripts/zsh/path.zsh
 scripts/tmux/local.conf
