@@ -33,6 +33,7 @@ map <ScrollWheelDown> <C-E><C-E><C-E><C-E><C-E>
 "------------------------------------------////
 "		Plugins		
 "------------------------------------------////
+syntax on 		" enable color syntax
 "pathogen plugin -- https://github.com/tpope/vim-pathogen
 call pathogen#infect()			" include all plugins in bundle folder
 call pathogen#helptags()		" include helppage for vim plugins in bundle folder
@@ -60,7 +61,6 @@ set nomodeline
 "		Visual		
 "------------------------------------------////
 
-syntax on 		" enable color syntax
 set number 		" show line numbers relative to current line on left side
 
 set ignorecase 		" ignore case when searching
