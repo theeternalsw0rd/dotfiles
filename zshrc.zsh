@@ -59,15 +59,6 @@ source $ZSH/oh-my-zsh.sh
 
 # global user shortcuts
 alias edit='vim'
-if [ `command -v exa` ]; then
-  alias lsnew='exa --sort=oldest -l --color=always | head -n 20'
-  alias lsdir="exa --color=always -F | grep '\/' | sed 's%/$%%g' | sort --ignore-case"
-  alias lsc='exa -1'
-else
-  alias lsnew='ls --sort=oldest -l --color=always | head -n 20'
-  alias lsdir="ls --color=always -F | grep '\/' | sed 's%/$%%g' | sort --ignore-case"
-  alias lsc='ls -1'
-fi
 alias rsync='rsync --human-readable --progress -t'
 alias svndiff='svn diff --diff-cmd diff -x "--unified=8 -p"'
 alias copy='rsync --progress'
@@ -135,12 +126,6 @@ function mkpasswd() {
 	base64 /dev/urandom | tr -d '/+oO0l1I' | head -c $1
 }
 
-if [ `command -v exa` ]; then
-  function ls() {
-    exa $@
-  }
-fi
-
 #precmd() {
 #	~/.scripts/helper/cursor_insert.zsh
 #}
@@ -154,3 +139,19 @@ unset -v GREP_OPTIONS
 unalias ls
 [[ -x /usr/libexec/path_helper ]] && export PATH='' && eval $(/usr/libexec/path_helper -s)
 source $HOME/.scripts/zsh/path.zsh
+
+if [ `command -v exa` ]; then
+  function ls() {
+    exa $@
+  }
+fi
+
+if [ `command -v exa` ]; then
+  alias lsnew='exa --sort=oldest -l --color=always | head -n 20'
+  alias lsdir="exa --color=always -F | grep '\/' | sed 's%/$%%g' | sort --ignore-case"
+  alias lsc='exa -1'
+else
+  alias lsnew='ls --sort=oldest -l --color=always | head -n 20'
+  alias lsdir="ls --color=always -F | grep '\/' | sed 's%/$%%g' | sort --ignore-case"
+  alias lsc='ls -1'
+fi
