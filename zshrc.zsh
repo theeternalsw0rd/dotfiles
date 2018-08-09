@@ -125,6 +125,10 @@ function telnet() {
 	command telnet $@
 }
 
+function mkpasswd() {
+	base64 /dev/urandom | tr -d '/+oO0l1I' | head -c $1
+}
+
 #precmd() {
 #	~/.scripts/helper/cursor_insert.zsh
 #}
