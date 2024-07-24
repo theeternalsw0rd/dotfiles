@@ -1,3 +1,25 @@
+# load antigen
+source ~/.scripts/zsh/antigen.zsh
+
+# install nvm via zsh-plugin
+export NVM_LAZY_LOAD=true
+antigen bundle lukechilds/zsh-nvm
+
+# load zsh-autosuggestions
+antigen bundle zsh-users/zsh-autosuggestions
+
+# load zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen apply
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # global user exports go up top so subscripts have access
 source $HOME/.scripts/zsh/local.zsh
 export LC_ALL=en_US.UTF-8
@@ -18,44 +40,12 @@ fi
 if [ "$SESSION_TYPE" = "remote/ssh" ] && [ -z "$TMUX" ]; then
 	tmux -u a || tmux -u && exit
 fi
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.scripts/zsh/oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="ys"
-
-# Base16 Shell
-BASE16_SHELL="$HOME/.scripts/zsh/base16.sh"
-[[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
+# load powerlevel10k
+source ~/.scripts/zsh/powerlevel10k/powerlevel10k.zsh-theme
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
-
-# Comment this out to disable bi-weekly auto-update checks
-# Do this through git since we utilize our own repository
-DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how many days you would like to wait before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.scripts/zsh/oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.scripts/zsh/oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git zsh-syntax-highlighting)
-
-source $ZSH/oh-my-zsh.sh
 
 # global user shortcuts
 alias edit='vim'
@@ -79,6 +69,9 @@ bindkey '^H' backward-delete-char
 bindkey '^f' history-incremental-search-backward
 bindkey -M vicmd '?' vi-history-search-backward
 bindkey -M vicmd '/' vi-history-search-forward
+
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
 
 # xterm cursor - '\e[# q'
 # 1 - blinking block
@@ -126,32 +119,42 @@ function mkpasswd() {
 	base64 /dev/urandom | tr -d '/+oO0l1I' | head -c $1
 }
 
-#precmd() {
-#	~/.scripts/helper/cursor_insert.zsh
-#}
-
-# just echo instead of zle -N zle-line-init
-#~/.scripts/helper/cursor_insert.zsh
+# zsh command history configuration
+HISTFILE=$HOME/.zhistory
+SAVEHIST=1000
+HISTSIZE=999
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_verify
 
 # put at end to override any other scripts
 unset -v GREP_OPTIONS
-# oh-my-zsh has an alias. we have our own function.
-unalias ls
 [[ -x /usr/libexec/path_helper ]] && export PATH='' && eval $(/usr/libexec/path_helper -s)
 source $HOME/.scripts/zsh/path.zsh
 
-if [ `command -v exa` ]; then
+if [ `command -v eza` ]; then
   function ls() {
-    exa $@
+    eza --icons $@
   }
 fi
 
-if [ `command -v exa` ]; then
-  alias lsnew='exa --sort=oldest -l --color=always | head -n 20'
-  alias lsdir="exa --color=always -F | grep '\/' | sed 's%/$%%g' | sort --ignore-case"
-  alias lsc='exa -1'
+if [ `command -v zoxide` ]; then
+  eval "$(zoxide init --no-cmd zsh)"
+  function cd() {
+    __zoxide_z $@
+  }
+fi
+
+if [ `command -v eza` ]; then
+  alias lsnew='eza --icons --sort=oldest -l --color=always | head -n 20'
+  alias lsdir="eza --icons --color=always -F | grep '\/' | sed 's%/$%%g' | sort --ignore-case"
+  alias lsc='eza --icons -1'
 else
   alias lsnew='ls --sort=oldest -l --color=always | head -n 20'
   alias lsdir="ls --color=always -F | grep '\/' | sed 's%/$%%g' | sort --ignore-case"
   alias lsc='ls -1'
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

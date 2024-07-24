@@ -93,6 +93,23 @@ else
 	fi
 fi
 echo
+echo "${txtwht}Installing wezterm configuration files${txtrst}"
+if [ `command -v wezterm` ]; then
+	FILE=wezterm.lua
+	if [ -e "$HOME/.$FILE" ]; then
+		if [ -L "$HOME/.$FILE" ]; then
+			SYMLINK=`readlink "$HOME/.$FILE"`
+			unlink "$HOME/.$FILE"
+			echo "${txtylw}Removed link from ~/.$FILE to $SYMLINK${txtrst}"
+		else
+			mv "$HOME/.$FILE" "$HOME/.$FILE.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/.$FILE moved to ~/.$FILE.$TIMESTAMP.bak${txtrst}"
+		fi
+	fi
+	ln -f -s "$BASEDIR/$FILE" "$HOME/.$FILE"
+	echo "${txtgrn}.$FILE installed${txtrst}"
+	echo
+fi
 echo "${txtwht}Installing zsh configuration files${txtrst}"
 if [ `command -v zsh` ]; then
 	FILE=zshrc
@@ -107,6 +124,20 @@ if [ `command -v zsh` ]; then
 		fi
 	fi
 	ln -f -s "$BASEDIR/$FILE.zsh" "$HOME/.$FILE"
+	echo "${txtgrn}.$FILE installed${txtrst}"
+
+	FILE=p10k.zsh
+	if [ -e "$HOME/.$FILE" ]; then
+		if [ -L "$HOME/.$FILE" ]; then
+			SYMLINK=`readlink "$HOME/.$FILE"`
+			unlink "$HOME/.$FILE"
+			echo "${txtylw}Removed link from ~/.$FILE to $SYMLINK${txtrst}"
+		else
+			mv "$HOME/.$FILE" "$HOME/.$FILE.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/.$FILE moved to ~/.$FILE.$TIMESTAMP.bak${txtrst}"
+		fi
+	fi
+	ln -f -s "$BASEDIR/$FILE" "$HOME/.$FILE"
 	echo "${txtgrn}.$FILE installed${txtrst}"
 
 	FILE=scripts/zsh

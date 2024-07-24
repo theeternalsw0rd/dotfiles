@@ -1,9 +1,6 @@
 [submodule "vim"]
 	path = vim
 	url = https://github.com/theeternalsw0rd/vim-pathogen.git
-[submodule "scripts/oh-my-zsh/oh-my-zsh"]
-	path = scripts/zsh/oh-my-zsh
-	url = https://github.com/theeternalsw0rd/oh-my-zsh.git
 [submodule "scripts/vimpager"]
 	path = scripts/vimpager
 	url = https://github.com/rkitover/vimpager.git
@@ -13,3 +10,6 @@
 [submodule "chrome/devtools-themes/zerodarkmatrix"]
 	path = chrome/devtools-themes/zerodarkmatrix
 	url = https://github.com/theeternalsw0rd/chrome-devtools-zerodarkmatrix-theme
+[submodule "scripts/zsh/powerlevel10k"]
+	path = scripts/zsh/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
