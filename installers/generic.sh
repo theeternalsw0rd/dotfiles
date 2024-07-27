@@ -68,6 +68,15 @@ if [ -e "$HOME/.scripts/helper" ]; then
 fi
 ln -f -s "$BASEDIR/scripts/helper" "$HOME/.scripts/helper"
 echo "${txtgrn}helper scripts installed"
+if [ `command -v tic` ]; then
+	echo
+	echo "${txtwht}Installing wezterm terminfo file"
+	tempfile=$(mktemp) \
+		&& curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo \
+		&& tic -x -o ~/.terminfo $tempfile \
+		&& rm $tempfile
+	echo "${txtgrn}wezterm terminfo file installed"
+fi
 echo
 if [ "`pidof transmission-daemon | sed 's/[0-9]*/1/'`" = "1" ]; then
 	echo "${txtred}transmission-daemon is currently running, skipping configuration"
@@ -172,7 +181,28 @@ if [ `command -v zsh` ]; then
 else
 	echo "${txtred}zsh not installed or not in path so skipping related configuration files.${txtrst}"
 fi
-
+echo
+echo "${txtwht}Installing nvim configuration files${txtrst}"
+if [ `command -v nvim` ]; then
+	TARGET=".config"
+	IPATH="$HOME/$TARGET"
+	mkdir -p $IPATH
+	FILE=nvim
+	if [ -e "$IPATH/$FILE" ]; then
+		if [ -L "$IPATH/$FILE" ]; then
+			SYMLINK=`readlink "$IPATH/$FILE"`
+			unlink "$IPATH/$FILE"
+			echo "${txtylw}Removed link from ~/$TARGET to $SYMLINK${txtrst}"
+		else
+			mv "$IPATH" "$IPATH.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/$TARGET moved to ~/$TARGET.$TIMESTAMP.bak${txtrst}"
+		fi
+	fi
+	ln -f -s "$BASEDIR/$FILE" "$IPATH"
+	echo "${txtgrn}nvim configuration installed${txtrst}"
+else
+	echo "${txtred}nvim not installed or not in path so skipping related configuration files.${txtrst}"
+fi
 echo
 echo "${txtwht}Installing vim configuration files${txtrst}"
 if [ `command -v vim` ]; then

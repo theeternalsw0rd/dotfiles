@@ -10,6 +10,8 @@ local config = wezterm.config_builder()
 
 config.font = wezterm.font("MesloLGS Nerd Font Mono")
 config.font_size = 14
+config.underline_thickness = 3
+config.underline_position = -4
 
 config.enable_tab_bar = false
 
@@ -17,7 +19,7 @@ config.window_decorations = "NONE"
 
 config.enable_wayland = true
 
-config.color_scheme = 'Tango (terminal.sexy)'
+config.color_scheme = 'tokyonight_night'
 config.window_background_opacity = 0.9
 
 return config

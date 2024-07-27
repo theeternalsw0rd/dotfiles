@@ -133,6 +133,13 @@ unset -v GREP_OPTIONS
 [[ -x /usr/libexec/path_helper ]] && export PATH='' && eval $(/usr/libexec/path_helper -s)
 source $HOME/.scripts/zsh/path.zsh
 
+# this is annoying but until universal support is available
+if [ `command -v nvim` ]; then
+  function wezvim() {
+    env TERM=wezterm nvim $@
+  }
+fi
+
 if [ `command -v eza` ]; then
   function ls() {
     eza --icons $@
