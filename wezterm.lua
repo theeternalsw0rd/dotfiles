@@ -20,6 +20,7 @@ config.window_decorations = "NONE"
 config.enable_wayland = true
 
 config.color_scheme = 'tokyonight_night'
-config.window_background_opacity = 0.9
+-- use os for opacity
+-- config.window_background_opacity = 0.9
 
 return config
