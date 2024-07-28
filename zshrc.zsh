@@ -139,11 +139,6 @@ if [ `command -v nvim` ]; then
   }
 fi
 
-if [ `command -v bat` ]; then
-  function cat() {
-    bat $@
-  }
-fi
 if [ `command -v eza` ]; then
   function ls() {
     eza --icons $@
