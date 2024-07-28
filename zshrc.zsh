@@ -1,10 +1,6 @@
 # load antigen
 source ~/.scripts/zsh/antigen.zsh
 
-# install nvm via zsh-plugin
-export NVM_LAZY_LOAD=true
-antigen bundle lukechilds/zsh-nvm
-
 # load zsh-autosuggestions
 antigen bundle zsh-users/zsh-autosuggestions
 
