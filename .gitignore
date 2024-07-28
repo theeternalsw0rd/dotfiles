@@ -1,7 +1,8 @@
 .DS_Store
-vim/view
-vim/view/
-vim/view/*
+nvim/lazy-lock.json
 scripts/zsh/local.zsh
 scripts/zsh/path.zsh
 scripts/tmux/local.conf
+vim/view
+vim/view/
+vim/view/*
