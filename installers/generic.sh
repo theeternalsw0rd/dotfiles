@@ -119,6 +119,27 @@ if [ `command -v wezterm` ]; then
 	echo "${txtgrn}.$FILE installed${txtrst}"
 	echo
 fi
+echo
+echo "${txtwht}Installing kitty configuration files${txtrst}"
+if [ `command -v kitty` ]; then
+  TARGET=$HOME/.config/kitty
+  mkdir -p $TARGET
+	FILE=kitty.conf
+	if [ -e "$TARGET/$FILE" ]; then
+		if [ -L "$TARGET/$FILE" ]; then
+			SYMLINK=`readlink "$TARGET/$FILE"`
+			unlink "$TARGET/$FILE"
+			echo "${txtylw}Removed link from ~/.config/kitty/$FILE to $SYMLINK${txtrst}"
+		else
+			mv "$TARGET/$FILE" "$TARGET/$FILE.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/.config/kitty/$FILE moved to ~/.config/kitty/$FILE.$TIMESTAMP.bak${txtrst}"
+		fi
+	fi
+	ln -f -s "$BASEDIR/$FILE" "$TARGET/$FILE"
+	echo "${txtgrn}$TARGET/$FILE installed${txtrst}"
+	echo
+fi
+echo
 echo "${txtwht}Installing zsh configuration files${txtrst}"
 if [ `command -v zsh` ]; then
 	FILE=zshrc
