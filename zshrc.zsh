@@ -20,7 +20,7 @@ fi
 source $HOME/.scripts/zsh/local.zsh
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export EDITOR=`which vim`
+export EDITOR=`which nvim`
 ulimit -n 2048
 alias grep="grep --color=auto"
 alias dog="$HOME/.scripts/vimpager/vimcat"
@@ -131,11 +131,19 @@ source $HOME/.scripts/zsh/path.zsh
 
 # this is annoying but until universal support is available
 if [ `command -v nvim` ]; then
+  function vim() {
+    nvim $@
+  }
   function wezvim() {
     env TERM=wezterm nvim $@
   }
 fi
 
+if [ `command -v bat` ]; then
+  function cat() {
+    bat $@
+  }
+fi
 if [ `command -v eza` ]; then
   function ls() {
     eza --icons $@
