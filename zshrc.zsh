@@ -1,3 +1,15 @@
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+	SESSION_TYPE=remote/ssh
+	# many other tests omitted
+else
+	case $(ps -o comm= -p $PPID) in
+		sshd|*/sshd) SESSION_TYPE=remote/ssh;;
+	esac
+fi
+if [ "$SESSION_TYPE" = "remote/ssh" ] && [ -z "$TMUX" ]; then
+	tmux -u a || tmux -u && exit
+fi
+
 # load antigen
 source ~/.scripts/zsh/antigen.zsh
 
@@ -24,18 +36,6 @@ export EDITOR=`which nvim`
 ulimit -n 2048
 alias grep="grep --color=auto"
 alias dog="$HOME/.scripts/vimpager/vimcat"
-
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-	SESSION_TYPE=remote/ssh
-	# many other tests omitted
-else
-	case $(ps -o comm= -p $PPID) in
-		sshd|*/sshd) SESSION_TYPE=remote/ssh;;
-	esac
-fi
-if [ "$SESSION_TYPE" = "remote/ssh" ] && [ -z "$TMUX" ]; then
-	tmux -u a || tmux -u && exit
-fi
 
 # load powerlevel10k
 source ~/.scripts/zsh/powerlevel10k/powerlevel10k.zsh-theme
