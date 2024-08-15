@@ -54,11 +54,18 @@ alias rping="$HOME/.scripts/helper/rping.zsh"
 
 
 if [ `command -v batcat` ]; then
-  export MANPAGER="batcat"
-  export PAGER="batcat"
-elif [ `command -v bat` ]; then
-  export MANPAGER="bat"
-  export PAGER="bat"
+  function cat() {
+    batcat $@
+  }
+fi
+if [ `command -v bat` ]; then
+  function cat() {
+    bat $@
+  }
+fi
+if [ `command -v nvimpager` ]; then
+  export MANPAGER="nvimpager"
+  export PAGER="nvimpager"
 else
   export MANPAGER="less"
   export PAGER="less"
