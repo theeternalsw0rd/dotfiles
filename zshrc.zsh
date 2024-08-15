@@ -16,6 +16,9 @@ source ~/.scripts/zsh/antigen.zsh
 # load zsh-autosuggestions
 antigen bundle zsh-users/zsh-autosuggestions
 
+# load better vim-mode
+antigen bundle jeffreytse/zsh-vi-mode
+
 # load zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-syntax-highlighting
 
@@ -35,7 +38,6 @@ export LANG=en_US.UTF-8
 export EDITOR=`which nvim`
 ulimit -n 2048
 alias grep="grep --color=auto"
-alias dog="$HOME/.scripts/vimpager/vimcat"
 
 # load powerlevel10k
 source ~/.scripts/zsh/powerlevel10k/powerlevel10k.zsh-theme
@@ -44,30 +46,41 @@ source ~/.scripts/zsh/powerlevel10k/powerlevel10k.zsh-theme
 # CASE_SENSITIVE="true"
 
 # global user shortcuts
-alias edit='vim'
 alias rsync='rsync --human-readable --progress -t'
 alias svndiff='svn diff --diff-cmd diff -x "--unified=8 -p"'
 alias copy='rsync --progress'
 alias copydir='rsync --progress -av'
 alias rping="$HOME/.scripts/helper/rping.zsh"
-alias pager="$HOME/.scripts/vimpager/vimpager"
 
-export MANPAGER="$HOME/.scripts/vimpager/vimpager"
-export PAGER="$HOME/.scripts/vimpager/vimpager"
 
-bindkey -v
+if [ `command -v batcat` ]; then
+  export MANPAGER="batcat"
+  export PAGER="batcat"
+elif [ `command -v bat` ]; then
+  export MANPAGER="bat"
+  export PAGER="bat"
+else
+  export MANPAGER="less"
+  export PAGER="less"
+fi
 
-bindkey -M viins '^[[Z' vi-cmd-mode
-bindkey -a u undo
-bindkey -a '^R' redo
-bindkey '^?' backward-delete-char
-bindkey '^H' backward-delete-char
-bindkey '^f' history-incremental-search-backward
-bindkey -M vicmd '?' vi-history-search-backward
-bindkey -M vicmd '/' vi-history-search-forward
+ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM
+ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
 
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
+#bindkey -v
+
+#bindkey -M viins '^[[Z' vi-cmd-mode
+#bindkey -a u undo
+#bindkey -a '^R' redo
+#bindkey '^?' backward-delete-char
+#bindkey '^H' backward-delete-char
+#bindkey '^f' history-incremental-search-backward
+#bindkey -M vicmd '?' vi-history-search-backward
+#bindkey -M vicmd '/' vi-history-search-forward
+
+#bindkey '^[[A' history-search-backward
+#bindkey '^[[B' history-search-forward
 
 # xterm cursor - '\e[# q'
 # 1 - blinking block
