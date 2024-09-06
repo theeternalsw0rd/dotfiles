@@ -41,20 +41,6 @@ if [ ! -e "$HOME/.scripts" ]; then
 	echo "${txtgrn} ~/.scripts staged${txtrst}"
 fi
 echo
-echo "${txtwht}Installing vimpager scripts"
-if [ -e "$HOME/.scripts/vimpager" ]; then
-	if [ -L "$HOME/.scripts/vimpager" ]; then
-		SYMLINK=`readlink "$HOME/.scripts/vimpager"`
-		unlink "$HOME/.scripts/vimpager"
-		echo "${txtylw}Removed link from ~/.scripts/vimpager to $SYMLINK${txtrst}"
-	else
-		mv "$HOME/.scripts/vimpager" "$HOME/.scripts/vimpager.$TIMESTAMP.bak${txtrst}"
-		echo "${txtylw}Existing ~/.scripts/vimpager moved to ~/.scripts/vimpager.$TIMESTAMP.bak${txtrst}"
-	fi
-fi
-ln -f -s "$BASEDIR/scripts/vimpager" "$HOME/.scripts/vimpager"
-echo "${txtgrn}vimpager scripts installed"
-echo
 echo "${txtwht}Installing generic helper scripts"
 if [ -e "$HOME/.scripts/helper" ]; then
 	if [ -L "$HOME/.scripts/helper" ]; then
@@ -224,47 +210,6 @@ if [ `command -v nvim` ]; then
 else
 	echo "${txtred}nvim not installed or not in path so skipping related configuration files.${txtrst}"
 fi
-echo
-echo "${txtwht}Installing vim configuration files${txtrst}"
-if [ `command -v vim` ]; then
-	mkdir -p "$HOME/.vim/tmp"
-	echo "${txtylw}Created ~/.vim/tmp to store vim temporary session files.${txtrst}"
-	FILE=vimrc
-	if [ -e "$HOME/.$FILE" ]; then
-		if [ -L "$HOME/.$FILE" ]; then
-			SYMLINK=`readlink "$HOME/.$FILE"`
-			unlink "$HOME/.$FILE"
-			echo "${txtylw}Removed link from ~/.$FILE to $SYMLINK${txtrst}"
-		else
-			mv "$HOME/.$FILE" "$HOME/.$FILE.$TIMESTAMP.bak"
-			echo "${txtylw}Existing ~/.$FILE moved to ~/.$FILE.$TIMESTAMP.bak${txtrst}"
-		fi
-	fi
-	ln -f -s "$BASEDIR/$FILE.vim" "$HOME/.$FILE"
-	echo "${txtgrn}.$FILE installed${txtrst}"
-
-	FILE=vim
-	if [ -e "$HOME/.$FILE" ]; then
-		if [ -L "$HOME/.$FILE" ]; then
-			SYMLINK=`readlink "$HOME/.$FILE"`
-			unlink "$HOME/.$FILE"
-			echo "${txtylw}Removed link from ~/.$FILE to $SYMLINK${txtrst}"
-		else
-			mv "$HOME/.$FILE" "$HOME/.$FILE.$TIMESTAMP.bak"
-			echo "${txtylw}Existing ~/.$FILE moved to ~/.$FILE.$TIMESTAMP.bak${txtrst}"
-		fi
-	fi
-	ln -f -s "$BASEDIR/$FILE" "$HOME/.$FILE"
-	echo "${txtgrn}.$FILE installed${txtrst}"
-
-	if [ ! -e "$HOME/.cache/vim/undo" ]; then
-		mkdir -p $HOME/.cache/vim/undo
-		echo "${txtgrn}Created ~/.cache/vim/undo for sane persistent undo${txtrst}"
-	fi
-else
-	echo "${txtred}vim not installed or not in path so skipping related configuration files.${txtrst}"
-fi
-
 echo
 echo "${txtwht}Installing tmux configuration files${txtrst}"
 if [ `command -v tmux` ]; then
