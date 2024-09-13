@@ -55,8 +55,6 @@ alias rsync='rsync --human-readable --progress -t'
 alias svndiff='svn diff --diff-cmd diff -x "--unified=8 -p"'
 alias copy='rsync --progress'
 alias copydir='rsync --progress -av'
-alias rping="$HOME/.scripts/helper/rping.zsh"
-
 
 if [ `command -v batcat` ]; then
   function cat() {
