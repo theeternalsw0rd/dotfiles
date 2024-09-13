@@ -42,6 +42,7 @@ export LANG=en_US.UTF-8
 export EDITOR=`which nvim`
 ulimit -n 2048
 alias grep="grep --color=auto"
+alias sudo="sudo "
 
 # load powerlevel10k
 source ~/.scripts/zsh/powerlevel10k/powerlevel10k.zsh-theme
