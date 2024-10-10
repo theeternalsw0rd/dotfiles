@@ -4,3 +4,6 @@
 [submodule "scripts/zsh/powerlevel10k"]
 	path = scripts/zsh/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "git-credential-with-kwallet"]
+	path = git-credential-with-kwallet
+	url = https://github.com/epwr/git-credential-with-kwallet
