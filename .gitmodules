@@ -7,3 +7,6 @@
 [submodule "git-credential-with-kwallet"]
 	path = git-credential-with-kwallet
 	url = https://github.com/epwr/git-credential-with-kwallet
+[submodule "wezterm-config"]
+	path = wezterm-config
+	url = https://github.com/theeternalsw0rd/wezterm-config.git
