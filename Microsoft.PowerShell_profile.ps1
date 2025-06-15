@@ -41,30 +41,34 @@ function tail {
   }
 }
 
-# Chocolatey profile
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
-  Import-Module "$ChocolateyProfile"
-}
-else {
-  Write-Host "choco is not installed yet."
+if($IsWindows) {
+  # Chocolatey profile
+  $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+  if (Test-Path($ChocolateyProfile)) {
+    Import-Module "$ChocolateyProfile"
+  }
+  else {
+    Write-Host "choco is not installed yet."
+  }
 }
 
 Set-Alias -Name which -Value Get-Command
 
-# rbenv for Windows
-$env:RBENV_ROOT = "C:\Ruby-on-Windows"
-$rbenvScript = "$env:RBENV_ROOT\rbenv\bin\rbenv.ps1"
+if($IsWindows) {
+  # rbenv for Windows
+  $env:RBENV_ROOT = "C:\Ruby-on-Windows"
+  $rbenvScript = "$env:RBENV_ROOT\rbenv\bin\rbenv.ps1"
 
-if (Test-Path($rbenvScript)) {
-  # Not easy to download on Github?
-  # Use a custom mirror!
-  # $env:RBENV_USE_MIRROR = "https://abc.com/abc-<version>"
+  if (Test-Path($rbenvScript)) {
+    # Not easy to download on Github?
+    # Use a custom mirror!
+    # $env:RBENV_USE_MIRROR = "https://abc.com/abc-<version>"
 
-  & "$rbenvScript" init
+    & "$rbenvScript" init
+  }
 }
 
-if (Get-Command "eza.exe" -ErrorAction SilentlyContinue) {
+if (Get-Command "eza" -ErrorAction SilentlyContinue) {
   Remove-Alias ls
   function ls { eza --icons $args }
   Set-Alias -Name winls -Value Get-ChildItem
