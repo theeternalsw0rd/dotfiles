@@ -1,6 +1,28 @@
 $adminCheck = [Security.Principal.WindowsPrincipal]([Security.Principal.WindowsIdentity]::GetCurrent())
 $isElevated = $adminCheck.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 $targetDirectory = (get-item $PSScriptRoot ).parent.FullName
+if (Get-Command "starship" -ErrorAction SilentlyContinue) {
+    if($isElevated) {
+        $starshipConfig = $targetDirectory + "\starship.toml"
+        $starshipLinkDirectory = $env:USERPROFILE + "\.config"
+        if (-not (Test-Path -Path $starshipLinkDirectory))
+        {
+            New-Item -Path $starshipLinkDirectory -ItemType Directory
+        }
+        $starshipLink = $starshipLinkDirectory + "\starship.toml"
+        if (Test-Path -Path $starshipLink) {
+            Remove-Item -Path $starshipLink
+        }
+        New-Item -ItemType SymbolicLink -Path $starshipLink -Target $starshipConfig
+        Write-Host "starship.toml has been installed"
+    }
+    else {
+        "installing starship configuration file utilizes symbolic links. script must be run elevated to have necessary privileges to do so."
+    }
+}
+else {
+    Write-Host "starship is not available in your system path and may not be installed. get that corrected and then rerun this script."
+}
 if (Get-Command "wtq.exe" -ErrorAction SilentlyContinue) {
     if ($isElevated) {
         $wtqConfig = $targetDirectory + "\wtq.jsonc"
@@ -13,7 +35,7 @@ if (Get-Command "wtq.exe" -ErrorAction SilentlyContinue) {
             Remove-Item -Path $wtqLink
         }
         New-Item -ItemType SymbolicLink -Path $wtqLink -Target $wtqConfig
-        Write-Host "wtq.jsonc Has Been Installed"
+        Write-Host "wtq.jsonc has been installed"
     }
     else {
         Write-Host "installing wtq configuration file utilizes symbolic links. script must be run elevated to have necessary privileges to do so."
@@ -51,5 +73,5 @@ if (Get-Command "git.exe" -ErrorAction SilentlyContinue) {
     Write-Host "global git configuration values set"
 }
 else {
-    Write-Host "git is not available. please install and then rerun this script"
+    Write-Host "git is not available in your system path and may not be installed. get that corrected and then rerun this script"
 }
