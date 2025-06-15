@@ -1,0 +1,264 @@
+# MIT License
+
+# Copyright (c) 2024 pixel-fabian
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+# documentation files (the "Software"), to deal in the Software without restriction, including without limitation
+# the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and
+# to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+# THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+# TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[](color_bg1)\
+$username\
+$os\
+$shell\
+[](bg:color_bg2 fg:color_bg1)\
+$directory\
+[](bg:color_bg3 fg:color_bg2)\
+$git_branch\
+$git_status\
+[](bg:color_bg4 fg:color_bg3)\
+$c\
+$docker_context\
+$elixir\
+$elm\
+$golang\
+$haskell\
+$java\
+$kotlin\
+$nodejs\
+$nim\
+$perl\
+$php\
+$python\
+$ruby\
+$rust\
+$scala\
+$swift\
+$zig\
+[](bg:color_bg5 fg:color_bg4)\
+$package\
+[](fg:color_bg5)\
+$line_break$time$character"""
+
+palette = 'purple-night'
+
+[palettes.purple-night]
+color_text = '#d7c1f4'
+color_text-red = '#fb8586'
+color_text-green = '#8eea9e'
+color_text-time = '#c082ff'
+color_bg1 = '#000000'
+color_bg2 = '#1f122c'
+color_bg3 = '#3e2358'
+color_bg4 = '#4d2c6e'
+color_bg5 = '#5d3584'
+color_bg6 = '#6c3e9a'
+
+
+# Disable the blank line at the start of the prompt
+# add_newline = false
+
+### First section (bg:color_bg1)
+[username]
+show_always = true                           # username is shown if root, connected via ssh or not the user that is logged in
+style_user = "bg:color_bg1"
+style_root = "bg:color_bg1 fg:color_text-red"
+format = '[$user ]($style)'
+
+[os]
+disabled = false
+style = "bg:color_bg1"
+format = "[$symbol ]($style)"
+
+[os.symbols]
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = ""
+Artix = ""
+CentOS = ""
+Debian = ""
+Fedora = ""
+FreeBSD = ""
+Gentoo = ""
+Linux = ""
+Macos = ""
+Manjaro = ""
+Mint = "󰣭"
+NixOS = ""
+OpenBSD = "󰈺"
+openSUSE = ""
+Raspbian = ""
+Redhat = ""
+Ubuntu = ""
+Unknown = ""
+Windows = ""
+
+[shell]
+disabled = false
+bash_indicator = "󱆃"
+fish_indicator = "󰈺"
+zsh_indicator = "󰬡"
+powershell_indicator = ""
+cmd_indicator = ""
+unknown_indicator = "󱜻"
+style = "bg:color_bg1"
+format = "[$indicator ]($style)"
+
+
+### Second section (bg:color_bg2)
+[directory]
+style = "bg:color_bg2"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+# shorten some paths
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+
+### Third section (bg:color_bg3)
+[git_branch]
+symbol = ""
+style = "bg:color_bg3"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+conflicted = "󰞇"
+ahead = "󰜷×${count}"
+behind = "󰜮×${count}"
+diverged = "󰒤 󰜷×${ahead_count} 󰜮×${behind_count})"
+untracked = "×${count}"
+stashed = ""
+modified = "×${count}"
+staged = "󰪶×${count}"
+renamed = "󰑕×${count}"
+deleted = "×${count}"
+style = "bg:color_bg3"
+format = '[$all_status $ahead_behind ]($style)'
+
+
+### Fourth section (bg:color_bg4)
+[c]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[docker_context]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol $context ]($style)'
+
+[elixir]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[elm]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[golang]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[haskell]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[java]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[kotlin]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[nim]
+symbol = "󰆥"
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[perl]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[php]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[python]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[rust]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[ruby]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[scala]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[swift]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+[zig]
+symbol = ""
+style = "bg:color_bg4"
+format = '[ $symbol ($version) ]($style)'
+
+
+### Fifth section (bg:color_bg5)
+[package]
+symbol = ""
+style = "bg:color_bg5"
+format = '[ $symbol ($version) ]($style)'
+
+### Second line
+[time]
+disabled = false
+time_format = "%R"
+style = "fg:color_text-time"
+format = '[  $time ]($style)'
+
+[character]
+disabled = false
+error_symbol = "[x](bold color_text-red)"
+success_symbol = "[](bold color_text)"
