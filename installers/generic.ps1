@@ -74,6 +74,27 @@ if (Get-Command "wezterm.exe" -ErrorAction SilentlyContinue) {
 else {
     Write-Host "wezterm is not available in your system path and may not be installed. get that corrected and then rerun this script."
 }
+if (Get-Command "nvim.exe" -ErrorAction SilentlyContinue) {
+    if ($isElevated) {
+        $nvimConfig = $targetDirectory + "\nvim"
+        $nvimLinkDirectory = $env:LOCALAPPDATA
+        if (-not (Test-Path -Path $nvimLinkDirectory)) {
+            New-Item -Path $nvimLinkDirectory -ItemType Directory
+        }
+        $nvimLink = $nvimLinkDirectory + "\nvim"
+        if (Test-Path -Path $nvimLink) {
+            Remove-Item -Path $nvimLink
+        }
+        New-Item -ItemType SymbolicLink -Path $nvimLink -Target $nvimConfig
+        Write-Host "nvim configuration Has Been Installed"
+    }
+    else {
+        Write-Host "installing nvim configuration files utilizes symbolic links. script must be run elevated to have necessary privileges to do so."
+    }
+}
+else {
+    Write-Host "nvim is not available in your system path and may not be installed. get that corrected and then rerun this script."
+}
 if (Get-Command "git.exe" -ErrorAction SilentlyContinue) {
     $gitignore = $targetDirectory + "\gitignore.conf"
     git config --global user.name "Micah Bucy"
