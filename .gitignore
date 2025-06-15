@@ -6,3 +6,4 @@ scripts/tmux/local.conf
 vim/view
 vim/view/
 vim/view/*
+.vscode/settings.json
