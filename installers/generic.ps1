@@ -1,6 +1,15 @@
 $adminCheck = [Security.Principal.WindowsPrincipal]([Security.Principal.WindowsIdentity]::GetCurrent())
 $isElevated = $adminCheck.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 $targetDirectory = (get-item $PSScriptRoot ).parent.FullName
+if ($isElevated) {
+    $pwshProfile = $targetDirectory + "\Microsoft.Powershell_profile.ps1"
+    if (!(Test-Path -Path $PROFILE)) { New-Item -ItemType File -Path $PROFILE -Force }
+    Remove-Item -Path $PROFILE
+    New-Item -ItemType SymbolicLink -Path $PROFILE -Target $pwshProfile
+}
+else {
+    Write-Host "installing powershell profile utilizes symbolic links. script must be run elevated to have necessary privileges to do so."
+}
 if (Get-Command "starship" -ErrorAction SilentlyContinue) {
     if($isElevated) {
         $starshipConfig = $targetDirectory + "\starship.toml"
