@@ -78,6 +78,6 @@ else {
   Write-Host "You have not installed eza yet, or it is not in your PATH."
 }
 
-if (Get-Command "gsudo" - -ErrorAction SilentlyContinue) {
+if (Get-Command "gsudo" -ErrorAction SilentlyContinue) {
   Set-Alias -Name sudo -Value gsudo -Force
 }
