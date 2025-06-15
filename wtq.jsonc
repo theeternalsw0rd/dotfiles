@@ -10,8 +10,9 @@
 				}
 			],
 			"FileName": "C:/Program Files/WezTerm/wezterm-gui.exe",
+			"Opacity": 90,
 			"HorizontalScreenCoverage": 100,
-			"VerticalScreenCoverage": 96,
+			"VerticalScreenCoverage": 100,
 			"VerticalOffset": 50
 		}
 	],
