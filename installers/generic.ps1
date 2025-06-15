@@ -23,9 +23,22 @@ else {
     Write-Host "wtq is not available in your system path and may not be installed. get that corrected and then rerun this script."
 }
 if (Get-Command "wezterm.exe" -ErrorAction SilentlyContinue) {
-    $weztermConfig = $targetDirectory + "\wezterm-config\wezterm.lua"
-    [Environment]::SetEnvironmentVariable("WEZTERM_CONFIG_FILE", $weztermConfig, "User")
-    Write-Host "WEZTERM_CONFIG_FILE user environment variable has been set."
+    if ($isElevated) {
+        $weztermConfig = $targetDirectory + "\wezterm-config"
+        $weztermLinkDirectory = $env:USERPROFILE + "\.config"
+        if (-not (Test-Path -Path $weztermLinkDirectory)) {
+            New-Item -Path $weztermLinkDirectory -ItemType Directory
+        }
+        $weztermLink = $weztermLinkDirectory + "\wezterm"
+        if (Test-Path -Path $weztermLink) {
+            Remove-Item -Path $weztermLink
+        }
+        New-Item -ItemType SymbolicLink -Path $weztermLink -Target $weztermConfig
+        Write-Host "wezterm configuration Has Been Installed"
+    }
+    else {
+        Write-Host "installing wezterm configuration files utilizes symbolic links. script must be run elevated to have necessary privileges to do so."
+    }
 }
 else {
     Write-Host "wezterm is not available in your system path and may not be installed. get that corrected and then rerun this script."
