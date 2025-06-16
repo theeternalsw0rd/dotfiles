@@ -92,7 +92,7 @@ else
 fi
 echo
 echo "${txtwht}Installing wezterm configuration files${txtrst}"
-if [ `command -v wezterm` ] && [[ -z "${MSYSTEM}" ]]; then
+if [ `type wezterm >/dev/null 2>&1` ] && [[ -z "${MSYSTEM}" ]]; then
 	FILE=wezterm.lua
 	if [ -e "$HOME/.$FILE" ]; then
 		if [ -L "$HOME/.$FILE" ]; then
@@ -130,7 +130,7 @@ if [ `command -v kitty` ]; then
 fi
 echo
 echo "${txtwht}Installing starship configuration file${txtrst}"
-if [ `command -v starship` ]; then
+if [ `type starship >/dev/null 2>&1` ]; then
   TARGET=$HOME/.config
   mkdir -p $TARGET
 	FILE=starship.toml
