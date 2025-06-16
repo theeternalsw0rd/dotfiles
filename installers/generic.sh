@@ -169,6 +169,26 @@ if [ `command -v fish` ]; then
 	echo
 fi
 echo
+echo "${txtwht}Installing nushell configuration file${txtrst}"
+if [ `command -v nushell` ]; then
+  TARGET=$HOME/.config/nushell
+  mkdir -p $TARGET
+	FILE=config.nu
+	if [ -e "$TARGET/$FILE" ]; then
+		if [ -L "$TARGET/$FILE" ]; then
+			SYMLINK=`readlink "$TARGET/$FILE"`
+			unlink "$TARGET/$FILE"
+			echo "${txtylw}Removed link from ~/.config/nushell/$FILE to $SYMLINK${txtrst}"
+		else
+			mv "$TARGET/$FILE" "$TARGET/$FILE.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/.config/nushell/$FILE moved to ~/.config/nushell/$FILE.$TIMESTAMP.bak${txtrst}"
+		fi
+	fi
+	ln -f -s "$BASEDIR/$FILE" "$TARGET/$FILE"
+	echo "${txtgrn}$TARGET/$FILE installed${txtrst}"
+	echo
+fi
+echo
 echo "${txtwht}Installing zsh configuration files${txtrst}"
 if [ `command -v zsh` ]; then
 	FILE=zshrc

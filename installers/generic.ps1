@@ -32,6 +32,28 @@ if (Get-Command "starship" -ErrorAction SilentlyContinue) {
 else {
     Write-Host "starship is not available in your system path and may not be installed. get that corrected and then rerun this script."
 }
+if (Get-Command "nu" -ErrorAction SilentlyContinue) {
+    if($isElevated) {
+        $nuConfig = $targetDirectory + "\config.nu"
+        $nuLinkDirectory = $env:APPDATA + "\nushell"
+        if (-not (Test-Path -Path $nuLinkDirectory))
+        {
+            New-Item -Path $nuLinkDirectory -ItemType Directory
+        }
+        $nuLink = $nuLinkDirectory + "\config.nu"
+        if (Test-Path -Path $nuLink) {
+            Remove-Item -Path $nuLink
+        }
+        New-Item -ItemType SymbolicLink -Path $nuLink -Target $nuConfig
+        Write-Host "config.nu has been installed"
+    }
+    else {
+        "installing nu configuration file utilizes symbolic links. script must be run elevated to have necessary privileges to do so."
+    }
+}
+else {
+    Write-Host "nushell is not available in your system path and may not be installed. get that corrected and then rerun this script."
+}
 if (Get-Command "wtq.exe" -ErrorAction SilentlyContinue) {
     if ($isElevated) {
         $wtqConfig = $targetDirectory + "\wtq.jsonc"
