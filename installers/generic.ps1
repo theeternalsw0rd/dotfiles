@@ -99,6 +99,7 @@ if (Get-Command "git.exe" -ErrorAction SilentlyContinue) {
     $gitignore = $targetDirectory + "\gitignore.conf"
     git config --global user.name "Micah Bucy"
     git config --global user.email "micah.bucy@theeternalsw0rd.rocks"
+	git config --global init.defaultBranch main
     git config --global core.excludeFiles "$gitignore"
     Write-Host "global git configuration values set"
 }

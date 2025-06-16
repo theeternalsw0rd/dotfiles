@@ -33,6 +33,9 @@ if [ `command -v git` ]; then
 	ln -f -s "$BASEDIR/gitignore_global.conf" "$HOME/.gitignore_global"
 	git config --global core.excludesfile "$HOME/.gitignore_global"
 	echo "${txtgrn}global gitignore installed to ~/.gitignore_global and activated"
+	git config --global user.name "Micah Bucy"
+	git config --global user.email "micah.bucy@theeternalsw0rd.rocks"
+	git config --global init.defaultBranch main
 fi
 echo
 if [ ! -e "$HOME/.scripts" ]; then
