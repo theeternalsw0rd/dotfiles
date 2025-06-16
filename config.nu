@@ -23,9 +23,57 @@ def 'is-installed' [ app: string ] {
 
 if (is-installed nvim) {
     $env.config.buffer_editor = "nvim"
+    alias vim = nvim
+    alias vi = nvim
 } else {
     echo "neovim is not installed or available in path. it is required for setting the buffer_editor"
 }
 
+if (is-installed eza) {
+    alias ls = eza --icons
+}
+else {
+    echo "eza is not installed or available in path."
+}
+
+if (is-installed rg) {
+    alias grep = rg
+}
+elseif (is-installed ripgrep) {
+    alias grep = ripgrep
+}
+else {
+    echo "ripgrep is not installed or available in path."
+}
+
+if (is-installed bat) {
+    alias cat = bat
+}
+elseif (is-installed batcat) {
+    alias cat = batcat
+}
+else {
+    echo "bat is not installed or available in path."
+}
+
+if (is-installed yazi) {
+    alias fm = yazi
+}
+else {
+    echo "yazi is not installed or available in path."
+}
+
 mkdir ($nu.data-dir | path join "vendor/autoload")
-starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+
+if (is-installed zoxide) {
+    zoxide init --cmd cd nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
+}
+else {
+    echo "zoxide is not installed or available in path."
+}
+
+if (is-installed starship) {
+    starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+} else {
+    echo "starship is not installed or available in path. it is required for fancy prompt."
+}

@@ -25,6 +25,15 @@ if type -q fastfetch
         command fastfetch $argv
     end
     fastfetch
+else if type -q neofetch
+    # Use neofetch if available
+    function neofetch
+        command neofetch $argv
+    end
+    neofetch
+    echo "Warning: neofetch is no longer maintained, switch to fastfetch."
+else
+    echo "Warning: 'neofetch' command is not available, please install fastfetch."
 end
 
 if type -q eza
@@ -37,6 +46,13 @@ else if type -q exa
     function ls
         command exa --icons $argv
     end
+    echo "Warning: 'exa' command is outdated, please switch to eza."
+else
+    # Use ls with color support if available
+    function ls
+        command ls --color=auto $argv
+    end
+    echo "Warning: 'ls' command is not eza, using default ls with color support."
 end
 
 if type -q bat
@@ -54,11 +70,15 @@ else if type -q less
     function cat
         command less --RAW-CONTROL-CHARS $argv
     end
+    echo "Warning: 'cat' command is not bat or batcat, using less with RAW-CONTROL-CHARS."
 else if type -q more
     # Use more as a replacement for cat if available
     function cat
         command more $argv
     end
+    echo "Warning: 'cat' command is not bat or batcat, and less is not available either so using more."
+else
+    echo "Warning: 'cat' command is not available, please install bat or batcat."
 end
 
 if type -q rg
@@ -66,11 +86,19 @@ if type -q rg
     function grep
         command rg --color=always $argv
     end
+else if type -q ripgrep
+    # Use ripgrep as a replacement for grep if available
+    function grep
+        command ripgrep --color=always $argv
+    end
 else if type -q grep
     # Use grep with color support if available
     function grep
         command grep --color=auto $argv
     end
+    echo "Warning: 'grep' command is not ripgrep or rg, using default grep with color support."
+else
+    echo "Warning: 'grep' command is not available, please install ripgrep or grep."
 end
 
 if type -q zoxide
