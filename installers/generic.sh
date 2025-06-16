@@ -92,7 +92,7 @@ else
 fi
 echo
 echo "${txtwht}Installing wezterm configuration files${txtrst}"
-if [ `command -v wezterm` && ![-v MSYSTEM] ]; then
+if [ `command -v wezterm` ] && [[ -z "${MSYSTEM}" ]]; then
 	FILE=wezterm.lua
 	if [ -e "$HOME/.$FILE" ]; then
 		if [ -L "$HOME/.$FILE" ]; then
