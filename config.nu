@@ -17,4 +17,15 @@
 # You can remove these comments if you want or leave
 # them for future reference.
 
-$env.config.buffer_editor = "nvim"
+def 'is-installed' [ app: string ] {
+  ((which $app | length) > 0)
+}
+
+if (is-installed nvim) {
+    $env.config.buffer_editor = "nvim"
+} else {
+    echo "neovim is not installed or available in path. it is required for setting the buffer_editor"
+}
+
+mkdir ($nu.data-dir | path join "vendor/autoload")
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
