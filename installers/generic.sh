@@ -89,7 +89,7 @@ else
 fi
 echo
 echo "${txtwht}Installing wezterm configuration files${txtrst}"
-if [ `command -v wezterm` ]; then
+if [ `command -v wezterm` && ![-v MSYSTEM] ]; then
 	FILE=wezterm.lua
 	if [ -e "$HOME/.$FILE" ]; then
 		if [ -L "$HOME/.$FILE" ]; then
@@ -119,6 +119,46 @@ if [ `command -v kitty` ]; then
 		else
 			mv "$TARGET/$FILE" "$TARGET/$FILE.$TIMESTAMP.bak"
 			echo "${txtylw}Existing ~/.config/kitty/$FILE moved to ~/.config/kitty/$FILE.$TIMESTAMP.bak${txtrst}"
+		fi
+	fi
+	ln -f -s "$BASEDIR/$FILE" "$TARGET/$FILE"
+	echo "${txtgrn}$TARGET/$FILE installed${txtrst}"
+	echo
+fi
+echo
+echo "${txtwht}Installing starship configuration file${txtrst}"
+if [ `command -v starship` ]; then
+  TARGET=$HOME/.config
+  mkdir -p $TARGET
+	FILE=starship.toml
+	if [ -e "$TARGET/$FILE" ]; then
+		if [ -L "$TARGET/$FILE" ]; then
+			SYMLINK=`readlink "$TARGET/$FILE"`
+			unlink "$TARGET/$FILE"
+			echo "${txtylw}Removed link from ~/.config/$FILE to $SYMLINK${txtrst}"
+		else
+			mv "$TARGET/$FILE" "$TARGET/$FILE.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/.config/$FILE moved to ~/.config/$FILE.$TIMESTAMP.bak${txtrst}"
+		fi
+	fi
+	ln -f -s "$BASEDIR/$FILE" "$TARGET/$FILE"
+	echo "${txtgrn}$TARGET/$FILE installed${txtrst}"
+	echo
+fi
+echo
+echo "${txtwht}Installing fish configuration file${txtrst}"
+if [ `command -v fish` ]; then
+  TARGET=$HOME/.config/fish
+  mkdir -p $TARGET
+	FILE=config.fish
+	if [ -e "$TARGET/$FILE" ]; then
+		if [ -L "$TARGET/$FILE" ]; then
+			SYMLINK=`readlink "$TARGET/$FILE"`
+			unlink "$TARGET/$FILE"
+			echo "${txtylw}Removed link from ~/.config/fish/$FILE to $SYMLINK${txtrst}"
+		else
+			mv "$TARGET/$FILE" "$TARGET/$FILE.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/.config/fish/$FILE moved to ~/.config/fish/$FILE.$TIMESTAMP.bak${txtrst}"
 		fi
 	fi
 	ln -f -s "$BASEDIR/$FILE" "$TARGET/$FILE"
