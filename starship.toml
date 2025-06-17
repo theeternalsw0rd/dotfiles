@@ -17,6 +17,8 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
+command_timeout = 1500 # Timeout for commands in milliseconds
+
 format = """
 [](color_bg1)\
 $username\
