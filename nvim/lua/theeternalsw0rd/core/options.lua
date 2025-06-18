@@ -16,39 +16,15 @@ opt.wrap = true
 -- visualize whitespace
 opt.list = true
 local space = '·'
-if vim.fn.has("win32") == 1 then
-  opt.listchars = {
-    trail = space,
-    lead = space,
-    multispace = space,
-    precedes = '<',
-    extends = '>',
-    eol = '¬',
-    tab = '» '
-  }
-else
-  if vim.env.TERM == "linux" then
-    opt.listchars = {
-      trail = space,
-      lead = space,
-      multispace = space,
-      precedes = '«',
-      extends = '»',
-      eol = '¬',
-      tab = '→ '
-    }
-  else
-    opt.listchars = {
-      trail = space,
-      lead = space,
-      multispace = space,
-      precedes = '',
-      extends = '',
-      eol = '󰌑',
-      tab = '󰌒 '
-    }
-  end
-end
+opt.listchars = {
+  trail = space,
+  lead = space,
+  multispace = space,
+  precedes = '',
+  extends = '',
+  eol = '󰌑',
+  tab = '󰌒 '
+}
 -- selection
 opt.virtualedit = { "block", "onemore" } -- when selecting to end of the line include last character visually in selection
 
