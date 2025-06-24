@@ -17,63 +17,88 @@
 # You can remove these comments if you want or leave
 # them for future reference.
 
-def 'is-installed' [ app: string ] {
-  ((which $app | length) > 0)
+def --wrapped 'vim' [...rest] {
+    if not (which nvim | is-empty) {
+        ^nvim ...$rest
+    } else {
+        print "neovim is not installed or available in path"
+        ^vim ...$rest
+    }
 }
 
-if (is-installed nvim) {
+def --wrapped 'vi' [...rest] {
+    if not (which nvim | is-empty) {
+        ^nvim ...$rest
+    } else {
+        print "neovim is not installed or available in path"
+        ^vi ...$rest
+    }
+}
+
+if not (which nvim | is-empty) {
     $env.config.buffer_editor = "nvim"
-    alias vim = nvim
-    alias vi = nvim
-} else {
-    echo "neovim is not installed or available in path. it is required for setting the buffer_editor"
 }
 
-if (is-installed eza) {
-    alias ls = eza --icons
-}
-else {
-    echo "eza is not installed or available in path."
+alias nuls = ls
+
+def --wrapped 'ls' [...rest] {
+    if not (which eza | is-empty) {
+        ^eza --icons ...$rest
+    } else {
+        if not (which exa | is-empty) {
+            print "still using exa which is unmaintained. use eza."
+            ^exa --icons ...$rest
+        }
+        else {
+            ^ls ...$rest
+        }
+    }
 }
 
-if (is-installed rg) {
-    alias grep = rg
-}
-elseif (is-installed ripgrep) {
-    alias grep = ripgrep
-}
-else {
-    echo "ripgrep is not installed or available in path."
-}
-
-if (is-installed bat) {
-    alias cat = bat
-}
-elseif (is-installed batcat) {
-    alias cat = batcat
-}
-else {
-    echo "bat is not installed or available in path."
+def --wrapped 'grep' [...rest] {
+    if not (which rg | is-empty) {
+        ^rg ...$rest
+    } else {
+        if not (which ripgrep | is-empty) {
+            ^ripgrep ...$rest
+        } else {
+            print "ripgrep not installed. using standard grep."
+            ^grep ...$rest
+        }
+    }
 }
 
-if (is-installed yazi) {
-    alias fm = yazi
+def --wrapped 'cat' [...rest] {
+    if not (which bat | is-empty) {
+        ^bat ...$rest
+    } else {
+        if not (which batcat | is-empty) {
+            ^batcat ...$rest
+        } else {
+            print "batcat is not installed or available in the path. using nu-shell's open command"
+            ^open ...$rest
+        }
+    }
 }
-else {
-    echo "yazi is not installed or available in path."
+
+def --wrapped 'fm' [...rest] {
+    if not (which yazi | is-empty) {
+        ^yazi ...$rest
+    } else {
+        print "yazi is not installed or available in the path."
+    }
 }
 
 mkdir ($nu.data-dir | path join "vendor/autoload")
 
-if (is-installed zoxide) {
+if not (which zoxide | is-empty) {
     zoxide init --cmd cd nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
-}
-else {
-    echo "zoxide is not installed or available in path."
+} else {
+    print "zoxide is not installed or available in path."
 }
 
-if (is-installed starship) {
+if not (which starship | is-empty) {
     starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 } else {
-    echo "starship is not installed or available in path. it is required for fancy prompt."
+    print "starship is not installed or available in path. it is required for fancy prompt."
 }
