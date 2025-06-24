@@ -89,6 +89,8 @@ def --wrapped 'fm' [...rest] {
     }
 }
 
+alias neofetch = fastfetch
+
 mkdir ($nu.data-dir | path join "vendor/autoload")
 
 if not (which zoxide | is-empty) {
@@ -101,4 +103,8 @@ if not (which starship | is-empty) {
     starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 } else {
     print "starship is not installed or available in path. it is required for fancy prompt."
+}
+
+if not (which fastfetch | is-empty) {
+    fastfetch
 }
