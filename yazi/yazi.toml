@@ -1,4 +1,23 @@
-[preview]
-image_protocol = "kitty"
-image_width = 40
-image_height = 20
+[opener]
+textedit = [
+	{ run = '$EDITOR "$@"', orphan = true, for = "unix" },
+	{ run = "%EDITOR% %*",  orphan = true, for = "windows" },
+]
+musicedit = [
+	{ run = '$MUSICEDITOR "$@"', orphan = true, for = "unix" },
+	{ run = "%MUSICEDITOR% %*",  orphan = true, for = "windows" },
+]
+imageedit = [
+	{ run = '$IMAGEEDITOR "$@"', orphan = true, for = "unix" },
+	{ run = "%IMAGEEDITOR% %*",  orphan = true, for = "windows" },
+]
+
+[open]
+rules = [
+    { mime = "text/*", use = "textedit" },
+    { name = "*.json", use = "textedit" },
+
+    { mime = "audio/*", use = "audioedit" },
+    
+    { mime = "image/*", use = "imageedit" },
+]
