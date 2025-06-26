@@ -54,6 +54,28 @@ if (Get-Command "nu" -ErrorAction SilentlyContinue) {
 else {
     Write-Host "nushell is not available in your system path and may not be installed. get that corrected and then rerun this script."
 }
+if (Get-Command "yazi" -ErrorAction SilentlyContinue) {
+    if($isElevated) {
+        $yaziConfig = $targetDirectory + "\yazi"
+        $yaziLinkDirectory = $env:USERPROFILE + "\.config"
+        if (-not (Test-Path -Path $yaziLinkDirectory))
+        {
+            New-Item -Path $yaziLinkDirectory -ItemType Directory
+        }
+        $yaziLink = $yaziLinkDirectory + "\yazi"
+        if (Test-Path -Path $yaziLink) {
+            Remove-Item -Path $yaziLink
+        }
+        New-Item -ItemType SymbolicLink -Path $yaziLink -Target $yaziConfig
+        Write-Host "yazi configuration has been installed"
+    }
+    else {
+        "installing yazi configuration files utilizes symbolic links. script must be run elevated to have necessary privileges to do so."
+    }
+}
+else {
+    Write-Host "yazi is not available in your system path and may not be installed. get that corrected and then rerun this script."
+}
 if (Get-Command "wtq.exe" -ErrorAction SilentlyContinue) {
     if ($isElevated) {
         $wtqConfig = $targetDirectory + "\wtq.jsonc"
