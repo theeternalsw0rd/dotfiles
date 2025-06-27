@@ -26,9 +26,9 @@ txtrst=`tput sgr0` # Text reset.
 # OS specific
 # start macOS aka darwin
 if [ "$OS" = "darwin" ]; then
+  echo
+  echo "${txtwht}Installing phoenix config"
 	if [ -e "/Applications/Phoenix.app" ]; then
-		echo
-		echo "${txtwht}Installing phoenix config"
 		if [ -e "$HOME/.config/phoenix" ]; then
 			if [ -L "$HOME/.config/phoenix" ]; then
 				SYMLINK=`readlink "$HOME/.config/phoenix"`
@@ -125,20 +125,22 @@ fi
 echo
 echo "${txtwht}Installing wezterm configuration files${txtrst}"
 if [ `type wezterm >/dev/null 2>&1` ] && [[ -z "${MSYSTEM}" ]]; then
-	FILE=wezterm.lua
-	if [ -e "$HOME/.$FILE" ]; then
-		if [ -L "$HOME/.$FILE" ]; then
-			SYMLINK=`readlink "$HOME/.$FILE"`
-			unlink "$HOME/.$FILE"
-			echo "${txtylw}Removed link from ~/.$FILE to $SYMLINK${txtrst}"
+	if [ -e "$HOME/.config/wezterm" ]; then
+		if [ -L "$HOME/.config/wezterm" ]; then
+			SYMLINK=`readlink "$HOME/.config/wezterm"`
+			unlink "$HOME/.config/wezterm"
+			echo "${txtylw}Removed link from ~/.config/wezterm to $SYMLINK${txtrst}"
 		else
-			mv "$HOME/.$FILE" "$HOME/.$FILE.$TIMESTAMP.bak"
-			echo "${txtylw}Existing ~/.$FILE moved to ~/.$FILE.$TIMESTAMP.bak${txtrst}"
+			mv "$HOME/.config/wezterm" "$HOME/.config/wezterm.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/.config/wezterm moved to ~/.config/wezterm.bak${txtrst}"
 		fi
 	fi
-	ln -f -s "$BASEDIR/$FILE" "$HOME/.$FILE"
-	echo "${txtgrn}.$FILE installed${txtrst}"
+	ln -f -s "$BASEDIR/wezterm-config" "$HOME/.config/wezterm"
+	echo "${txtgrn}wezterm configuration installed${txtrst}"
 	echo
+else
+	echo
+	echo "${txtred}wezterm is not installed so skipping related configuration files"
 fi
 echo
 echo "${txtwht}Installing kitty configuration files${txtrst}"
@@ -199,6 +201,9 @@ if [ `command -v fish` ]; then
 	ln -f -s "$BASEDIR/$FILE" "$TARGET/$FILE"
 	echo "${txtgrn}$TARGET/$FILE installed${txtrst}"
 	echo
+else
+  echo
+  echo "${txtred} fish is not installed so skipping related configuration files."
 fi
 echo
 echo "${txtwht}Installing nushell configuration file${txtrst}"
@@ -219,6 +224,9 @@ if [ `command -v nushell` ]; then
 	ln -f -s "$BASEDIR/$FILE" "$TARGET/$FILE"
 	echo "${txtgrn}$TARGET/$FILE installed${txtrst}"
 	echo
+else
+  echo
+  echo "${txtred} nushell is not installed so skipping related configuration files."
 fi
 echo
 echo "${txtwht}Installing zsh configuration files${txtrst}"
