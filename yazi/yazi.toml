@@ -17,7 +17,7 @@ rules = [
     { mime = "text/*", use = "textedit" },
     { name = "*.json", use = "textedit" },
 
-    { mime = "audio/*", use = "audioedit" },
+    { mime = "audio/*", use = "musicedit" },
     
     { mime = "image/*", use = "imageedit" },
 ]
