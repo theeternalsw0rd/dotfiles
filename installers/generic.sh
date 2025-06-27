@@ -2,7 +2,13 @@
 if [ "x$XDG_CONFIG_HOME" = "x" ]; then
 	XDG_CONFIG_HOME="$HOME/.config"
 fi
-OS=`uname`
+if [ ! -e "$HOME/.config" ]; then
+	mkdir "$HOME/.config"
+	echo
+	echo "${txtgrn} ~/.config staged${txtrst}"
+fi
+
+OS=`uname | tr "[:lower:]"`
 cd ..
 BASEDIR=`pwd`
 TIMESTAMP=`date +%s`
@@ -15,6 +21,32 @@ txtgrn=`tput setaf 2` # Green
 txtylw=`tput setaf 3` # Yellow
 txtwht=`tput setaf 7` # White
 txtrst=`tput sgr0` # Text reset.
+
+
+# OS specific
+# start macOS aka darwin
+if [ "$OS" = "darwin" ]; then
+	if [ -e "/Applications/Phoenix.app" ]; then
+		echo
+		echo "${txtwht}Installing phoenix config"
+		if [ -e "$HOME/.config/phoenix" ]; then
+			if [ -L "$HOME/.config/phoenix" ]; then
+				SYMLINK=`readlink "$HOME/.config/phoenix"`
+				unlink "$HOME/.config/phoenix"
+				echo "${txtylw}Removed link from ~/.config/phoenix to $SYMLINK${txtrst}"
+			else
+				mv "$HOME/.config/phoenix" "$HOME/.config/phoenix.$TIMESTAMP.bak${txtrst}"
+				echo "${txtylw}Existing ~/.config/phoenix moved to ~/.config/phoenix.$TIMESTAMP.bak${txtrst}"
+			fi
+		fi
+		ln -f -s "$BASEDIR/phoenix" "$HOME/.config/phoenix"
+		echo "${txtgrn}phoenix configuration installed"
+	else
+		echo
+		echo "${txtred}Phoenix is not installed. Phoenix is needed for making wezterm quake-style on macOS."
+	fi
+fi
+# end macOS ak darwin
 
 mkdir -p "$XDG_CONFIG_HOME"
 echo
