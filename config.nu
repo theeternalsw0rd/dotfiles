@@ -108,3 +108,4 @@ if not (which starship | is-empty) {
 if not (which fastfetch | is-empty) {
     fastfetch
 }
+source $"($nu.home-path)/.cargo/env.nu"
