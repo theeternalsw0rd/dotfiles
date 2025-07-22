@@ -139,6 +139,22 @@ if (Get-Command "nvim.exe" -ErrorAction SilentlyContinue) {
 else {
   Write-Host "nvim is not available in your system path and may not be installed. get that corrected and then rerun this script."
 }
+if ($isElevated) {
+  $yasbConfig = $targetDirectory + "\yasb"
+  $yasbLinkDirectory = $env:USERPROFILE + "\.config"
+  if (-not (Test-Path -Path $yasbLinkDirectory)) {
+    New-Item -Path $yasbLinkDirectory -ItemType Directory
+  }
+  $yasbLink = $yasbLinkDirectory + "\yasb"
+  if (Test-Path -Path $yasbLink) {
+    Remove-Item -Path $yasbLink
+  }
+  New-Item -ItemType SymbolicLink -Path $yasbLink -Target $yasbConfig
+  Write-Host "yasb configuration has been installed"
+}
+else {
+  Write-Host "installing yasb configuration files utilizes symbolic links. script must be run elevated to have necessary privileges to do so."
+}
 if (Get-Command "git.exe" -ErrorAction SilentlyContinue) {
   $gitignore = $targetDirectory + "\gitignore.conf"
   git config --global user.name "Micah Bucy"

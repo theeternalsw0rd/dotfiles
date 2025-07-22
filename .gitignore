@@ -7,3 +7,5 @@ vim/view
 vim/view/
 vim/view/*
 .vscode/settings.json
+*.log
+.env
