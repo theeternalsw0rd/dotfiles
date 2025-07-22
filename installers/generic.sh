@@ -8,8 +8,15 @@ if [ ! -e "$HOME/.config" ]; then
 	echo "${txtgrn} ~/.config staged${txtrst}"
 fi
 
-OS=`uname | tr "[:lower:]"`
+OS=`uname | awk '{ print tolower($1) }'`
 cd ..
+BASEDISTRO="darwin"
+if [ `command -v pacman` ]; then
+	BASEDISTRO="arch"
+fi
+if [ `command -v apt` ]; then
+	BASEDISTRO="debian"
+fi
 BASEDIR=`pwd`
 TIMESTAMP=`date +%s`
 
@@ -124,7 +131,7 @@ else
 fi
 echo
 echo "${txtwht}Installing wezterm configuration files${txtrst}"
-if [ `type wezterm >/dev/null 2>&1` ] && [[ -z "${MSYSTEM}" ]]; then
+if [ `command -v wezterm` ]; then
 	if [ -e "$HOME/.config/wezterm" ]; then
 		if [ -L "$HOME/.config/wezterm" ]; then
 			SYMLINK=`readlink "$HOME/.config/wezterm"`
@@ -164,7 +171,7 @@ if [ `command -v kitty` ]; then
 fi
 echo
 echo "${txtwht}Installing starship configuration file${txtrst}"
-if [ `type starship >/dev/null 2>&1` ]; then
+if [ `command -v starship` ]; then
   TARGET=$HOME/.config
   mkdir -p $TARGET
 	FILE=starship.toml
@@ -201,13 +208,28 @@ if [ `command -v fish` ]; then
 	ln -f -s "$BASEDIR/$FILE" "$TARGET/$FILE"
 	echo "${txtgrn}$TARGET/$FILE installed${txtrst}"
 	echo
+	TARGET=$HOME/.config/fish/conf.d/
+	FILE="config.$BASEDISTRO.fish"
+	if [ -e "$TARGET/$FILE" ]; then
+		if [ -L "$TARGET/$FILE" ]; then
+			SYMLINK=`readlink "$TARGET/$FILE"`
+			unlink "$TARGET/$FILE"
+			echo "${txtylw}Removed link from ~/.config/fish/conf.d/$FILE to $SYMLINK${txtrst}"
+		else
+			mv "$TARGET/$FILE" "$TARGET/$FILE.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/.config/fish/conf.d/$FILE moved to ~/.config/fish/conf.d/$FILE.$TIMESTAMP.bak${txtrst}"
+		fi
+	fi
+	ln -f -s "$BASEDIR/fish/$FILE" "$TARGET/$FILE"
+	echo "${txtgrn}$TARGET/$FILE installed${txtrst}"
+	echo
 else
   echo
   echo "${txtred} fish is not installed so skipping related configuration files."
 fi
 echo
 echo "${txtwht}Installing nushell configuration file${txtrst}"
-if [ `command -v nushell` ]; then
+if [ `command -v nu` ]; then
   TARGET=$HOME/.config/nushell
   mkdir -p $TARGET
 	FILE=config.nu
@@ -353,11 +375,4 @@ if [ `command -v tmux` ]; then
 	echo "${txtgrn}tmux scripts installed${txtrst}"
 else
 	echo "${txtred}tmux not installed or not in path so skipping related configuration files.${txtrst}"
-fi
-
-TEST=`ls -A "$HOME/.scripts" 2> /dev/null`
-if [ "x$TEST" == "x" ]; then
-	rm "$HOME/.scripts"
-	echo
-	echo "${txtgrn}~/.scripts was not needed and has been removed.${txtrst}"
 fi
