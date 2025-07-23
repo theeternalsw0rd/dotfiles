@@ -75,7 +75,7 @@ widgets:
         min_length: 10
         max_length: 30
       ignore_apps:
-        processes: ["wtq.exe"]
+        processes: ["wtq.exe", "wezterm.exe", "wezterm-gui.exe"]
         titles: []
         classes: []
       container_padding: 
