@@ -37,23 +37,21 @@ bars:
       left:
         [
           "home",
-          "update_check",
+          "windows_workspaces",
+          "taskbar",
           "cpu",
           "memory",
-          "media",
           "traffic",
         ]
       center:
         [
-          "windows_workspaces",
-          "active_window",
-          "taskbar",
+          "cava",
+          "media",
         ]
       right:
         [
           "notes",
           "weather",
-          "cava",
           "volume",
           "wifi",
           "disk",
@@ -275,32 +273,6 @@ widgets:
       max_length: 20
       max_length_ellipsis: "..."
       monitor_exclusive: true
-  wallpapers:
-    type: "yasb.wallpapers.WallpapersWidget"
-    options:
-      label: "<span>\uf03e</span>"
-      image_path: "~\\Pictures\\Wallpapers" # Example path to folder with images
-      change_automatically: false # Automatically change wallpaper
-      update_interval: 60 # If change_automatically is true, update interval in seconds
-      gallery:
-        enabled: true
-        blur: false
-        image_width: 200
-        image_per_page: 8
-        show_buttons: true
-        orientation: "portrait"
-        image_spacing: 8
-        lazy_load: true
-        lazy_load_delay: 80
-        lazy_load_fadein: 400
-        image_corner_radius: 20
-        enable_cache: true
-      icons:
-        recording: "\ueba7"
-        stopped: "\ueba5"
-        paused: "\ueba7"
-      hide_when_not_recording: true
-      blinking_icon: true
   disk:
     type: "yasb.disk.DiskWidget"
     options:
@@ -379,19 +351,6 @@ widgets:
           "\udb82\udd25",  # Icon for 41-80% strength
           "\udb82\udd28"   # Icon for 81-100% strength
         ]
-  update_check:
-    type: "yasb.update_check.UpdateCheckWidget"
-    options:
-      winget_update:
-        enabled: true
-        label: "<span>\uf0ab</span>{count}"
-        interval: 180
-        exclude: []
-      windows_update:
-        enabled: false
-        label: "<span>\uf0ab</span>{count}"
-        interval: 240
-        exclude: []
   traffic:
     type: "yasb.traffic.TrafficWidget"
     options:

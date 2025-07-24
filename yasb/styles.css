@@ -234,7 +234,6 @@
 .media-widget .label {
 	color: var(--text);
     padding: 0 10px;
-    max-width: 300px;
 }
 
 .media-widget .label span {
