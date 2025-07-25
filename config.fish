@@ -22,6 +22,8 @@ fish_vi_key_bindings insert
 alias which=type
 alias multiplex="tmux -u a || tmux -u"
 
+set -gx TERM wezterm
+
 if type -q nvim
     alias vim=nvim
 else
