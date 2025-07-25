@@ -19,6 +19,14 @@ set fish_cursor_visual block
 # The argument specifies the initial mode (insert, "default" or visual).
 fish_vi_key_bindings insert
 
+alias which=type
+alias multiplex="tmux -u a || tmux -u"
+
+if type -q nvim
+    alias vim=nvim
+else
+    echo "Warning: 'nvim' command is not available, please install neovim."
+end
 if type -q fastfetch
     # Use fastfetch as a replacement for neofetch if available
     function neofetch
