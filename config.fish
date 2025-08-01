@@ -19,21 +19,33 @@ set fish_cursor_visual block
 # The argument specifies the initial mode (insert, "default" or visual).
 fish_vi_key_bindings insert
 
+alias which=type
+alias multiplex="tmux -u a || tmux -u"
+
+set -gx TERM wezterm
+
+if type -q nvim
+    alias vim=nvim
+else
+    echo "Warning: 'nvim' command is not available, please install neovim."
+end
 if type -q fastfetch
     # Use fastfetch as a replacement for neofetch if available
     function neofetch
         command fastfetch $argv
     end
-    fastfetch
-else if type -q neofetch
-    # Use neofetch if available
-    function neofetch
-        command neofetch $argv
+    if status is-interactive
+        neofetch
     end
-    neofetch
-    echo "Warning: neofetch is no longer maintained, switch to fastfetch."
 else
-    echo "Warning: 'neofetch' command is not available, please install fastfetch."
+    if type -q neofetch
+        if status is-interactive
+            neofetch
+        end
+        echo "Warning: neofetch is no longer maintained, switch to fastfetch."
+    else
+        echo "Warning: 'neofetch' command is not available, please install fastfetch."
+    end
 end
 
 if type -q eza

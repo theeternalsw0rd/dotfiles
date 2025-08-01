@@ -104,6 +104,8 @@ if [ `command -v tic` ]; then
 		&& tic -x -o ~/.terminfo $tempfile \
 		&& rm $tempfile
 	echo "${txtgrn}wezterm terminfo file installed"
+  tic -x -o ~/.terminfo "$BASEDIR/wezterm-direct.terminfo"
+  echo "${txtgrn}wezterm-direct terminfo file installed"
 fi
 echo
 if [ "`pidof transmission-daemon | sed 's/[0-9]*/1/'`" = "1" ]; then

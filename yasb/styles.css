@@ -1,35 +1,34 @@
-
 /* -------------------------------------------------------------------------------------------------- */
 /* Variables                                                                                         */
 /* -------------------------------------------------------------------------------------------------- */
 
 :root {
-	--rosewater: rgb(245, 224, 220);
-	--flamingo: rgb(242, 205, 205);
-	--pink: rgb(245, 194, 231);
-	--mauve: rgb(203, 166, 247);
-	--red: rgb(243, 139, 168);
-	--maroon: rgb(235, 160, 172);
-	--peach: rgb(250, 179, 135);
-	--yellow: rgb(249, 226, 175);
-	--green: rgb(166, 227, 161);
-	--teal: rgb(148, 226, 213);
-	--sky: rgb(137, 220, 235);
-	--sapphire: rgb(116, 199, 236);
-	--blue: rgb(137, 180, 250);
-	--lavender: rgb(180, 190, 254);
-	--text: rgb(133, 86, 219);
-	--subtext1: rgb(186, 194, 222);
-	--subtext0: rgb(166, 173, 200);
-	--overlay2: rgb(147, 153, 178);
-	--overlay1: rgb(127, 132, 156);
-	--overlay0: rgb(108, 112, 134);
-	--surface2: rgb(88, 91, 112);
-	--surface1: rgb(69, 71, 90);
-	--surface0: rgb(25, 21, 33);
-	--base: rgb(30, 30, 46);
-	--mantle: rgb(11, 07, 17);
-	--crust: rgb(17, 17, 27);
+  --rosewater: rgb(245, 224, 220);
+  --flamingo: rgb(242, 205, 205);
+  --pink: rgb(245, 194, 231);
+  --mauve: rgb(203, 166, 247);
+  --red: rgb(243, 139, 168);
+  --maroon: rgb(235, 160, 172);
+  --peach: rgb(250, 179, 135);
+  --yellow: rgb(249, 226, 175);
+  --green: rgb(166, 227, 161);
+  --teal: rgb(148, 226, 213);
+  --sky: rgb(137, 220, 235);
+  --sapphire: rgb(116, 199, 236);
+  --blue: rgb(137, 180, 250);
+  --lavender: rgb(180, 190, 254);
+  --text: rgb(133, 86, 219);
+  --subtext1: rgb(186, 194, 222);
+  --subtext0: rgb(166, 173, 200);
+  --overlay2: rgb(147, 153, 178);
+  --overlay1: rgb(127, 132, 156);
+  --overlay0: rgb(108, 112, 134);
+  --surface2: rgb(88, 91, 112);
+  --surface1: rgb(69, 71, 90);
+  --surface0: rgb(25, 21, 33);
+  --base: rgb(30, 30, 46);
+  --mantle: rgb(11, 07, 17);
+  --crust: rgb(17, 17, 27);
 }
 
 /* -------------------------------------------------------------------------------------------------- */
@@ -37,32 +36,31 @@
 /* -------------------------------------------------------------------------------------------------- */
 
 * {
-	font-size: 11pt;
-	color: var(--text);
-	font-weight: 600;
-	font-family: "FantasqueSansM Nerd Font Mono", "Segoe UI", sans-serif;
-	margin: 0;
-	padding: 0;
+  font-size: 9pt;
+  color: var(--text);
+  font-weight: 600;
+  font-family: "FantasqueSansM Nerd Font Mono", "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 .yasb-bar {
-	padding: 0 8px;
-	margin: 0;
-	background-color: var(--mantle);
-	border-radius: 0;
+  padding: 0 8px;
+  margin: 0;
+  background-color: var(--mantle);
+  border-radius: 0;
 }
 
 .widget {
-	padding: 0 10px;
-	margin: 0;
+  padding: 0 10px;
+  margin: 0;
 }
 
 .widget .label {
-	padding: 2px 2px 1px 2px;
-
+  padding: 2px 2px 1px 2px;
 }
 
 .widget .label.alt {
-	padding: 1px 8px 1px 8px;
+  padding: 1px 8px 1px 8px;
 }
 
 /* -------------------------------------------------------------------------------------------------- */
@@ -70,11 +68,11 @@
 /* -------------------------------------------------------------------------------------------------- */
 
 .taskbar-widget .app-icon {
-    padding:0 6px;
+  padding: 0 6px;
 }
 
-.taskbar-widget .app-icon.foreground{
-    background-color: rgba(106, 32, 108, 0.4);
+.taskbar-widget .app-icon.foreground {
+  background-color: rgba(106, 32, 108, 0.4);
 }
 
 /* -------------------------------------------------------------------------------------------------- */
@@ -84,697 +82,688 @@
 /***---------------------------------      • Audio Widget •      ----------------------------------***/
 
 .audio-menu {
-	background-color: var(--mantle);
+  background-color: var(--mantle);
 }
 .audio-container .device {
-	background-color: var(--mantle);
-	border: none;
-	padding: 6px 8px 6px 4px;
-	margin: 2px 0;
-	font-size: 12px;
-	border-radius: 4px;
+  background-color: var(--mantle);
+  border: none;
+  padding: 6px 8px 6px 4px;
+  margin: 2px 0;
+  font-size: 12px;
+  border-radius: 4px;
 }
 .audio-container .device.selected {
-	background-color: var(--crust);
+  background-color: var(--crust);
 }
 .audio-container .device:hover {
-	background-color: var(--base);
+  background-color: var(--base);
 }
 
 .volume-slider::groove {
-	color: transparent;
+  color: transparent;
 }
 .volume-slider::handle {
-	background-color: transparent;
+  background-color: transparent;
 }
 .audio-menu {
-	background-color: var(--mantle);
+  background-color: var(--mantle);
 }
 
 /***-------------------------------      • Power Menu Widget •      --------------------------------***/
 
 .power-menu-popup {
-	background: var(--crust);
-	border-radius: 8px;
+  background: var(--crust);
+  border-radius: 8px;
 }
 
 .power-menu-widget .label {
-	color: var(--subtext1);
-        padding: 0
+  color: var(--subtext1);
+  padding: 0;
 }
 .power-menu-popup .button {
-	padding: 0px;
-	margin: 5px;
-	width: 250px;
-	height: 175px;
-	border-radius: 8px;
-	background-color: var(--mantle);
-	color: var(--text);
-
+  padding: 0px;
+  margin: 5px;
+  width: 250px;
+  height: 175px;
+  border-radius: 8px;
+  background-color: var(--mantle);
+  color: var(--text);
 }
 .power-menu-popup .button.hover {
-	background-color: var(--surface1);
+  background-color: var(--surface1);
 }
 .power-menu-popup .button .label {
-	margin-bottom: 0px;
-	font-size: 16px;
-	font-weight: 600;
-	color: var(--text);
+  margin-bottom: 0px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
 }
 .power-menu-popup .button .icon {
-	font-size: 55px;
-	padding-top: 25px;
-	padding-right: 10px;
-	color: var(--subtext1);
+  font-size: 55px;
+  padding-top: 25px;
+  padding-right: 10px;
+  color: var(--subtext1);
 }
 .power-menu-popup .button.cancel .icon {
-	color: var(--red);
+  color: var(--red);
 }
 .power-menu-popup .button.cancel .label {
-	color: var(--red);
+  color: var(--red);
 }
-
 
 /* --------------------------------------------------------------------------------------------------- */
 /* 6. Icons & Typography                                                                               */
 /* --------------------------------------------------------------------------------------------------- */
 
 .widget .icon {
-	font-size: 16px;
-    color: var(--subtext1)
+  font-size: 16px;
+  color: var(--subtext1);
 }
 .volume-widget .icon {
-	color: var(--subtext1);
-	margin: 1px 2px 0 0;
+  color: var(--subtext1);
+  margin: 1px 2px 0 0;
 }
 .start-menu .icon {
-	font-size: 18px;
-	color: var(--subtext1);
+  font-size: 18px;
+  color: var(--subtext1);
 }
 .clock-widget .icon {
-	color: var(--subtext1);
-	font-size: 14px;
-	margin-right: 7px;
+  color: var(--subtext1);
+  font-size: 14px;
+  margin-right: 7px;
 }
 
 /***---------------------------------      • Windows Desktops •      ----------------------------------***/
 .windows-desktops .ws-btn {
-    color: var(--subtext1);
+  color: var(--subtext1);
 }
 .windows-desktops .ws-btn.active {
-    color: var(--subtext1);
+  color: var(--subtext1);
 }
 
 /***---------------------------------      • Weather Icons •      ----------------------------------***/
 
 .weather-widget .icon {
-    color: var(--subtext1);
+  color: var(--subtext1);
 }
 
 /***----------------------------------      • Weather Card •      -----------------------------------***/
 
 .weather-card {
-	background-color: var(--mantle);
+  background-color: var(--mantle);
 }
 .weather-card-today {
-	border-radius: 8px;
-	background-color: var(--mantle);
-	color: var(--text);
+  border-radius: 8px;
+  background-color: var(--mantle);
+  color: var(--text);
 }
 .weather-card-today .label {
-	font-size: 12px;
+  font-size: 12px;
 }
 .weather-card-today .label.location {
-	font-size: 24px;
-	font-weight: 800;
+  font-size: 24px;
+  font-weight: 800;
 }
 .weather-card-today .label.alert {
-	font-size: 12px;
-	font-weight: 700;
-	background-color: rgba(247, 199, 42, 0.05);
-	border: 1px solid rgba(247, 209, 42, 0.1);
-	color: rgba(196, 181, 162, 0.85);
-	border-radius: 6px;
-	padding: 5px 0;
+  font-size: 12px;
+  font-weight: 700;
+  background-color: rgba(247, 199, 42, 0.05);
+  border: 1px solid rgba(247, 209, 42, 0.1);
+  color: rgba(196, 181, 162, 0.85);
+  border-radius: 6px;
+  padding: 5px 0;
 }
 .weather-card-day {
-	border-radius: 8px;
-	background-color: var(--mantle);
+  border-radius: 8px;
+  background-color: var(--mantle);
 }
 .weather-card-day .label {
-	font-size: 12px;
+  font-size: 12px;
 }
 
 /* Media Widget */
 
 .media-widget {
-	padding: 0;
-	margin-left: 0;
+  padding: 0;
+  margin-left: 0;
 }
 .media-widget .label {
-	color: var(--text);
-    padding: 0 10px;
+  color: var(--text);
+  padding: 0 10px;
 }
 
 .media-widget .label span {
-    color: var(--subtext1);
+  color: var(--subtext1);
 }
 
 /* Hide media widget buttons */
 
 .media-widget .btn {
-	max-width: 0;
+  max-width: 0;
 }
 
 .calendar {
-	background-color: var(--mantle);
+  background-color: var(--mantle);
 }
 .calendar .calendar-table,
 .calendar .calendar-table::item {
-	background-color: rgba(17, 17, 27, 0);
-	color: var(--overlay1);
-	margin: 0;
-	padding: 0;
-	border: none;
-	outline: none;
+  background-color: rgba(17, 17, 27, 0);
+  color: var(--overlay1);
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
 }
 
 .calendar .calendar-table::item:selected {
-	color: var(--mantle);
-	background: var(--text);
-	border-radius: 8px;
+  color: var(--mantle);
+  background: var(--text);
+  border-radius: 8px;
 }
 .calendar .day-label {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 .calendar .day-label,
 .calendar .month-label,
 .calendar .date-label {
-	font-size: 16px;
-	color: var(--text);
-	font-weight: 700;
-	min-width: 180px;
-	max-width: 180px;
+  font-size: 16px;
+  color: var(--text);
+  font-weight: 700;
+  min-width: 180px;
+  max-width: 180px;
 }
 .calendar .month-label {
-	font-weight: normal;
-	padding-bottom: 12px;
+  font-weight: normal;
+  padding-bottom: 12px;
 }
 .calendar .date-label {
-	font-size: 88px;
-	font-weight: 600;
-	color: var(--text);
+  font-size: 88px;
+  font-weight: 600;
+  color: var(--text);
 }
 
 .home-menu {
-	background-color: var(--mantle);
-	border-radius: 8px;
-	padding: 0;
-	margin-left: 0px;
+  background-color: var(--mantle);
+  border-radius: 8px;
+  padding: 0;
+  margin-left: 0px;
 }
 .home-menu .menu-item {
-	padding: 8px 48px 8px 12px;
-	font-size: 13px;
-	font-weight: 600;
+  padding: 8px 48px 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
 }
 .home-menu .menu-item:hover {
-	background-color: var(--text);
-	color: var(--mantle);
-	margin: 4px 6px;
-	border-radius: 4px;
+  background-color: var(--text);
+  color: var(--mantle);
+  margin: 4px 6px;
+  border-radius: 4px;
 }
 .home-menu .separator {
-	max-height: 1px;
-	background-color: #45475a;
-	margin: 0 8px;
+  max-height: 1px;
+  background-color: #45475a;
+  margin: 0 8px;
 }
 
 .wallpapers-gallery-window {
-	background-color: var(--mantle);
-	border: 2px;
-	margin: 0;
+  background-color: var(--mantle);
+  border: 2px;
+  margin: 0;
 }
 
 .volume-slider {
-	border: none;
+  border: none;
 }
 .audio-menu {
-	background-color: var(--mantle);
+  background-color: var(--mantle);
 }
 .audio-container .device {
-	background-color: transparent;
-	border: none;
-	padding: 6px 8px 6px 4px;
-	margin: 2px 0;
-	font-size: 12px;
-	border-radius: 4px;
+  background-color: transparent;
+  border: none;
+  padding: 6px 8px 6px 4px;
+  margin: 2px 0;
+  font-size: 12px;
+  border-radius: 4px;
 }
 .audio-container .device.selected {
-	background-color: rgba(255, 255, 255, 0.085);
+  background-color: rgba(255, 255, 255, 0.085);
 }
 .audio-container .device:hover {
-	background-color: rgba(255, 255, 255, 0.06);
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 /***----------------------------------      • Disk •      -----------------------------------***/
 
 .disk-widget {
-    padding: 0 6px 0 6px;
+  padding: 0 6px 0 6px;
 }
 .disk-group {
-    background-color: var(--mantle);
+  background-color: var(--mantle);
 }
 .disk-group-row {
-    min-width: 220px;
-    max-width: 220px;
-    max-height: 40px;
-    margin: 0;
-    padding: 0;
-    border-radius: 6px;
-    border: 1px solid rgba(128, 128, 128, 0);
+  min-width: 220px;
+  max-width: 220px;
+  max-height: 40px;
+  margin: 0;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid rgba(128, 128, 128, 0);
 }
 .disk-group-row:hover {
-    background-color:rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.disk-group-label-bar{
-    max-height:8px;
-    border:0px solid rgba(128, 128, 128, 0);
-    background-color: rgba(137, 180, 250, 0.1);
-    border-radius: 4px;
+.disk-group-label-bar {
+  max-height: 8px;
+  border: 0px solid rgba(128, 128, 128, 0);
+  background-color: rgba(137, 180, 250, 0.1);
+  border-radius: 4px;
 }
-.disk-group-label-bar::chunk{
-    background-color: var(--text);
-    border-radius: 4px;
+.disk-group-label-bar::chunk {
+  background-color: var(--text);
+  border-radius: 4px;
 }
 .disk-group-label {
-    font-size: 10px;
+  font-size: 10px;
 }
 .disk-group-label-size {
-    font-size: 10px;
-    color: var(--text);
+  font-size: 10px;
+  color: var(--text);
 }
 .disk-widget .icon {
   color: var(--subtext1);
 }
 
-
 .cava-widget {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 /* CPU MEMORY Setting */
 .cpu-widget {
-    padding-right: 0;
+  padding-right: 0;
 }
 .memory-widget {
-    padding-left: 0;
+  padding-left: 0;
 }
 .cpu-widget .widget-container {
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
 }
 .memory-widget .widget-container {
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
 }
 .memory-widget .label {
-    min-width: 34px;
-    max-width: 44px;
+  min-width: 34px;
+  max-width: 44px;
 }
 .cpu-widget .label {
-    min-width: 34px;
-    max-width: 44px;
+  min-width: 34px;
+  max-width: 44px;
 }
 .cpu-widget .icon {
-    color: var(--subtext1);
-    margin-right: 4px;
+  color: var(--subtext1);
+  margin-right: 4px;
 }
 .memory-widget .icon {
-    color: var(--subtext1);
-    margin-right: 4px;
+  color: var(--subtext1);
+  margin-right: 4px;
 }
-
 
 /* WIFI Setting */
-.wifi-widget, .wifi-widget * {
-    color: var(--subtext1);
+.wifi-widget,
+.wifi-widget * {
+  color: var(--subtext1);
 }
-
 
 .update-check-widget {
-    padding: 0 0px 0 0px;
+  padding: 0 0px 0 0px;
 }
 .update-check-widget .icon {
-    font-size: 16px;
-    color: var(--subtext1)
+  font-size: 16px;
+  color: var(--subtext1);
 }
 .update-check-widget .widget-container.winget,
 .update-check-widget .widget-container.windows {
-    background: var(--text);
-    margin: 0px 0px 0px 0px;
-    border-radius: 10px;
-    border: 0px solid var(--sapphire);
+  background: var(--text);
+  margin: 0px 0px 0px 0px;
+  border-radius: 10px;
+  border: 0px solid var(--sapphire);
 }
 .update-check-widget .widget-container.winget .icon,
 .update-check-widget .widget-container.windows .icon {
-    color: var(--subtext1);
-    margin: 0 2px 0 6px;
+  color: var(--subtext1);
+  margin: 0 2px 0 6px;
 }
 .update-check-widget .widget-container.winget .label,
 .update-check-widget .widget-container.windows .label {
-    margin: 0 6px 0 1px;
-    color: var(--text);
-    font-weight: 900;
-    font-size: 14px;
+  margin: 0 6px 0 1px;
+  color: var(--text);
+  font-weight: 900;
+  font-size: 14px;
 }
 
 .traffic-widget .icon {
-    color: var(--subtext1);
-    padding-right: 6px;
-    padding-left: 6px;
+  color: var(--subtext1);
+  padding-right: 6px;
+  padding-left: 6px;
 }
 .traffic-widget .label {
-    margin-left: 0;
-    color: var(--text);
+  margin-left: 0;
+  color: var(--text);
 }
 
 .traffic-menu {
-    background-color: rgba(34, 5, 37, 1);
-    min-width: 280px;
+  background-color: rgba(34, 5, 37, 1);
+  min-width: 280px;
 }
 .traffic-menu .header {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .traffic-menu .header .title {
-    padding: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #ffffff
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
 }
 .traffic-menu .header .reset-button {
-    font-size: 11px;
-    padding: 4px 8px;
-    margin-right: 8px;
-    font-family: 'Segoe UI';
-    border-radius: 4px;
-    font-weight: 600;
-    background-color: transparent;
-    border: none;
+  font-size: 11px;
+  padding: 4px 8px;
+  margin-right: 8px;
+  font-family: "Segoe UI";
+  border-radius: 4px;
+  font-weight: 600;
+  background-color: transparent;
+  border: none;
 }
 .traffic-menu .reset-button:hover {
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .traffic-menu .reset-button:pressed {
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 /* Speed column styles */
 .traffic-menu .download-speed,
 .traffic-menu .upload-speed {
-    background-color: transparent;
-    padding: 4px 10px;
-    margin-right: 12px;
-    margin-left: 12px;
-    margin-top: 16px;
-    margin-bottom: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: transparent;
+  padding: 4px 10px;
+  margin-right: 12px;
+  margin-left: 12px;
+  margin-top: 16px;
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 .traffic-menu .download-speed {
-    margin-left: 12px;
-    margin-right: 12px;
+  margin-left: 12px;
+  margin-right: 12px;
 }
 .traffic-menu .speed-separator {
-    max-width: 1px;
-    background-color: rgba(255, 255, 255, 0.2);
-    margin: 32px 0 16px 0;
+  max-width: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 32px 0 16px 0;
 }
 .traffic-menu .upload-speed-value,
 .traffic-menu .download-speed-value {
-    font-size: 24px;
-    font-weight: 900;
-    color: #bcc2c5;
+  font-size: 24px;
+  font-weight: 900;
+  color: #bcc2c5;
 }
 .traffic-menu .upload-speed-unit,
 .traffic-menu .download-speed-unit {
-    font-size: 13px;
-    font-weight: 600;
-    padding-top: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  padding-top: 4px;
 }
 .traffic-menu .upload-speed-placeholder,
 .traffic-menu .download-speed-placeholder {
-    color: #747474;
-    font-size: 11px;
-    padding: 0 0 4px 0;
+  color: #747474;
+  font-size: 11px;
+  padding: 0 0 4px 0;
 }
 
 /* Section and data styles */
 .traffic-menu .section-title {
-    font-size: 12px;
-    font-weight: 600;
-    color: #7c8192;
-    margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7c8192;
+  margin-bottom: 4px;
 }
 .traffic-menu .session-section,
 .traffic-menu .today-section,
 .traffic-menu .alltime-section {
-    margin: 8px 8px 0 8px;
-    padding: 0 10px 10px 10px;
-    background-color: transparent;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 8px 8px 0 8px;
+  padding: 0 10px 10px 10px;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .traffic-menu .data-text {
-    font-size: 13px;
-    color: #afb5cc;
-    padding: 2px 0;
-
+  font-size: 13px;
+  color: #afb5cc;
+  padding: 2px 0;
 }
 .traffic-menu .data-value {
-    font-weight: 600;
-    font-size: 13px;
-    padding: 2px 0;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 2px 0;
 }
 
 /* Interface and Internet info styles */
 .traffic-menu .interface-info,
 .traffic-menu .internet-info {
-    font-size: 12px;
-    color: #6f7486;
-    padding: 8px 0;
+  font-size: 12px;
+  color: #6f7486;
+  padding: 8px 0;
 }
 .traffic-menu .internet-info {
-    background-color: transparent;
+  background-color: transparent;
 }
 .traffic-menu .internet-info.connected {
-    color: #a6e3a1;
+  color: #a6e3a1;
 }
 .traffic-menu .internet-info.disconnected {
-    color: #f38ba8;
+  color: #f38ba8;
 }
-
 
 .widget {
-   border-radius: 8px;
-    margin: 8px 4px;
-    background-color: var(--surface0);
+  border-radius: 8px;
+  margin: 8px 4px;
+  background-color: var(--surface0);
 }
-
 
 .notes-widget {
-    padding: 4;
+  padding: 4;
 }
 .notes-widget .label {
-   font-size: 14px;
-   color: rgb(203, 166, 247);
+  font-size: 14px;
+  color: rgb(203, 166, 247);
 }
 .notes-widget .icon {
-    font-size: 16px;
-    color: var(--subtext1);
+  font-size: 16px;
+  color: var(--subtext1);
 }
 /* Notes Widget Menu */
 .notes-menu {
-    min-width: 400px;
-    max-width: 400px;
-    background-color: var(--mantle);
+  min-width: 400px;
+  max-width: 400px;
+  background-color: var(--mantle);
 }
 .notes-menu .note-item {
-    background-color:transparent;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .notes-menu .note-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 .notes-menu .note-item .icon {
-    font-size: 16px;
-    padding: 0 4px;
-    color: var(--subtext1);
+  font-size: 16px;
+  padding: 0 4px;
+  color: var(--subtext1);
 }
 .notes-menu .delete-button {
-    color: #ff6b6b;
-    background: transparent;
-    border: none;
-    font-size: 8px;
-    padding: 7px 8px;
-    border-radius: 3px;
+  color: #ff6b6b;
+  background: transparent;
+  border: none;
+  font-size: 8px;
+  padding: 7px 8px;
+  border-radius: 3px;
 }
 .notes-menu .delete-button:hover {
-    background-color: rgba(128, 128, 128, 0.5);
+  background-color: rgba(128, 128, 128, 0.5);
 }
 .notes-menu .note-item .title {
-    font-size: 13px;
-    font-family: 'Segoe UI';
+  font-size: 13px;
+  font-family: "Segoe UI";
 }
 .notes-menu .note-item .date {
-    font-size: 12px;
-    font-family: 'Segoe UI';
-    color: rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+  font-family: "Segoe UI";
+  color: rgba(255, 255, 255, 0.4);
 }
 .notes-menu .empty-list {
-    font-family: 'Segoe UI';
-    color: rgb(203, 166, 247);
-    font-size: 24px;
-    font-weight: 600;
-    padding: 10px 0 20px 0;     
+  font-family: "Segoe UI";
+  color: rgb(203, 166, 247);
+  font-size: 24px;
+  font-weight: 600;
+  padding: 10px 0 20px 0;
 }
-.notes-menu .add-button,  
+.notes-menu .add-button,
 .notes-menu .cancel-button {
-    padding: 8px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 4px;
-    color: white;
-    font-family: 'Segoe UI';
+  padding: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-family: "Segoe UI";
 }
 .notes-menu .cancel-button {
-    margin-left: 4px;
+  margin-left: 4px;
 }
 .notes-menu .add-button:hover,
 .notes-menu .cancel-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .notes-menu .scroll-area {
-    background: transparent; 
-    border: none; 
-    border-radius:0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
 }
 .notes-menu .note-input {
-    background-color:rgba(17, 17, 27, 0.2);
-    border: 1px solid rgb(203, 166, 247);
-    font-family: 'Segoe UI';
-    font-size: 14px;
-    max-height: 30px;
-    padding: 4px;
-    border-radius: 6px;
+  background-color: rgba(17, 17, 27, 0.2);
+  border: 1px solid rgb(203, 166, 247);
+  font-family: "Segoe UI";
+  font-size: 14px;
+  max-height: 30px;
+  padding: 4px;
+  border-radius: 6px;
 }
 .note-input:focus {
-    border: 1px solid rgb(203, 166, 247);
+  border: 1px solid rgb(203, 166, 247);
 }
 
 .media-menu {
-    min-width: 420px;
-    max-width: 420px;
-    background-color: #1e1e2e;
-	border-radius: 8px;
+  min-width: 420px;
+  max-width: 420px;
+  background-color: #1e1e2e;
+  border-radius: 8px;
 }
 .media-menu .title,
 .media-menu .artist,
 .media-menu .source {
-    font-size: 14px;
-    font-weight: 600;
-    margin-left: 10px;
-    font-family: 'Segoe UI';
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 10px;
+  font-family: "Segoe UI";
 }
 .media-menu .artist {
-    font-size: 13px;
-    color: var(--text);
-    margin-top: 0px;
-    margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--text);
+  margin-top: 0px;
+  margin-bottom: 8px;
 }
 .media-menu .source {
-    font-size: 11px;
-    color: #000;
-    font-weight: normal;
-    border-radius: 3px;
-    background-color: #bac2de;
-    padding: 2px 4px;
-
+  font-size: 11px;
+  color: #000;
+  font-weight: normal;
+  border-radius: 3px;
+  background-color: #bac2de;
+  padding: 2px 4px;
 }
 /* The source class name is the same as what you see in the media widget; just replace spaces with dashes and convert it to lowercase.
 Example: "Windows Media" becomes "windows-media" */
 .media-menu .source.firefox {
-    background-color: #ff583b;
-    color: #ffffff;
+  background-color: #ff583b;
+  color: #ffffff;
 }
 .media-menu .source.spotify {
-    background-color: #199143;
-    color: #ffffff;
+  background-color: #199143;
+  color: #ffffff;
 }
 .media-menu .source.edge {
-    background-color: #0078d4;
-    color: #ffffff;
+  background-color: #0078d4;
+  color: #ffffff;
 }
 .media-menu .source.windows-media {
-    background-color: #0078d4;
-    color: #ffffff;
+  background-color: #0078d4;
+  color: #ffffff;
 }
 
 .media-menu .btn {
-    font-family: "Segoe Fluent Icons";
-    font-size: 18px;
-    font-weight: 400;
-    margin: 10px 2px 0px 2px;
-    min-width: 40px;
-    max-width: 40px;
-    min-height: 40px;
-    max-height: 40px;
-    border-radius: 20px;
-	color: var(--overlay0) ;
+  font-family: "Segoe Fluent Icons";
+  font-size: 18px;
+  font-weight: 400;
+  margin: 10px 2px 0px 2px;
+  min-width: 40px;
+  max-width: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  border-radius: 20px;
+  color: var(--overlay0);
 }
 .media-menu .btn.prev {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 .media-menu .btn:hover {
-    color: var(--overlay2);
+  color: var(--overlay2);
 }
 .media-menu .btn.play {
-    font-size: 24px
+  font-size: 24px;
 }
 .media-menu .btn.disabled:hover,
 .media-menu .btn.disabled {
-    color: #4e525c;
-    background-color: rgba(0, 0, 0, 0);
+  color: #4e525c;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .media-menu .playback-time {
-    font-size: 13px;
-    color: var(--text);
-    margin-top: 20px;
-    min-width: 100px;
+  font-size: 13px;
+  color: var(--text);
+  margin-top: 20px;
+  min-width: 100px;
 }
 .media-menu .progress-slider {
-    height: 10px;
-    margin: 5px 4px;
-    border-radius: 3px;
+  height: 10px;
+  margin: 5px 4px;
+  border-radius: 3px;
 }
 .media-menu .progress-slider::groove {
-    background: transparent;
-    height: 2px;
-    border-radius: 3px;
-    background: rgba(255, 255, 255, 0.1);
-
+  background: transparent;
+  height: 2px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.1);
 }
 .media-menu .progress-slider::groove:hover {
-    background: transparent;
-    height: 6px;
-    border-radius: 3px;
-    background: rgba(255, 255, 255, 0.2);
+  background: transparent;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.2);
 }
 .media-menu .progress-slider::sub-page {
-    background: var(--text);
-    border-radius: 3px;
-    height: 4px;
+  background: var(--text);
+  border-radius: 3px;
+  height: 4px;
 }
