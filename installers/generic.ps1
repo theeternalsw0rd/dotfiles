@@ -156,11 +156,11 @@ else {
   Write-Host "installing yasb configuration files utilizes symbolic links. script must be run elevated to have necessary privileges to do so."
 }
 if (Get-Command "git.exe" -ErrorAction SilentlyContinue) {
-  $gitignore = $targetDirectory + "\gitignore.conf"
+  $gitignore = $targetDirectory + "\gitignore_global.conf"
   git config --global user.name "Micah Bucy"
   git config --global user.email "micah.bucy@theeternalsw0rd.rocks"
 	git config --global init.defaultBranch main
-  git config --global core.excludeFiles "$gitignore"
+  git config --global core.excludesfile "$gitignore"
   Write-Host "global git configuration values set"
 }
 else {
