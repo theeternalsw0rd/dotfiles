@@ -127,4 +127,10 @@ if status is-interactive
     if type -q starship
         starship init fish | source
     end
+
+    if type -q atuin
+        atuin init fish | source
+    else
+        echo "Warning: 'atuin' is not available."
+    end
 end
