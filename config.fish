@@ -113,16 +113,18 @@ else
     echo "Warning: 'grep' command is not available, please install ripgrep or grep."
 end
 
-if type -q zoxide
-    # Use zoxide as a replacement for cd if available
-    zoxide init --cmd cd fish | source
-else if type -q z
-    # Use z as a replacement for cd if available
-    function cd
-        command z $argv
+if status is-interactive
+    if type -q zoxide
+        # Use zoxide as a replacement for cd if available
+        zoxide init --cmd cd fish | source
+    else if type -q z
+        # Use z as a replacement for cd if available
+        function cd
+            command z $argv
+        end
     end
-end
 
-if type -q starship
-    starship init fish | source
+    if type -q starship
+        starship init fish | source
+    end
 end
