@@ -13,6 +13,7 @@ else {
 }
 
 if($IsWindows) {
+
   function head {
     [CmdletBinding()]
     Param([Parameter(ValueFromPipeline=$true)] $pipeline, [Int] $n = 20)
@@ -291,9 +292,22 @@ else {
 
 if (Get-Command "gsudo" -ErrorAction SilentlyContinue) {
   Set-Alias -Name sudo -Value gsudo -Force
+  if (Get-Command "btop4win" -ErrorAction SilentlyContinue) {
+    function btop { gsudo btop4win }
+  }
+  else {
+    Write-Host "You have not installed btop4win yet, or it is not in your PATH."
+  }
 }
 else {
   Write-Host "You have not installed gsudo yet, or it is not in your PATH."
 }
 
 Set-PSReadLineOption -EditMode vi
+
+if (Get-Command atuin -ErrorAction SilentlyContinue) {
+    atuin init powershell | Out-String | Invoke-Expression
+}
+else {
+  Write-Host "atuin is not installed or not in your PATH."
+}
