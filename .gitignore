@@ -6,6 +6,7 @@ scripts/tmux/local.conf
 vim/view
 vim/view/
 vim/view/*
+yasb/notes.json
 .vscode/settings.json
 *.log
 .env
