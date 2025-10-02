@@ -113,16 +113,34 @@ else
     echo "Warning: 'grep' command is not available, please install ripgrep or grep."
 end
 
-if type -q zoxide
-    # Use zoxide as a replacement for cd if available
-    zoxide init --cmd cd fish | source
-else if type -q z
-    # Use z as a replacement for cd if available
-    function cd
-        command z $argv
+if status is-interactive
+    if type -q zoxide
+        # Use zoxide as a replacement for cd if available
+        zoxide init --cmd cd fish | source
+    else if type -q z
+        # Use z as a replacement for cd if available
+        function cd
+            command z $argv
+        end
     end
-end
 
-if type -q starship
-    starship init fish | source
+    if type -q starship
+        starship init fish | source
+    end
+
+    if type -q atuin
+        set -l __atuin_init (atuin init fish | string replace -ra -- 'bind -M ([^ ]+)\s+-k ' 'bind -M $1 ' | string replace -ra -- 'bind\s+-k ' 'bind ')
+        if test -n "$__atuin_init"
+            printf '%s\n' $__atuin_init | source
+            if functions -q _atuin_bind_up
+                bind up _atuin_bind_up
+                bind -M insert up _atuin_bind_up
+            end
+        else
+            # fallback: source unmodified but silence deprecation noise
+            atuin init fish 2>/dev/null | source
+        end
+    else
+        echo "Warning: 'atuin' is not available."
+    end
 end
