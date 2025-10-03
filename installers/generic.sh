@@ -17,6 +17,7 @@ fi
 if [ `command -v apt` ]; then
 	BASEDISTRO="debian"
 fi
+DISTRO="macos"
 BASEDIR=`pwd`
 TIMESTAMP=`date +%s`
 
@@ -54,6 +55,11 @@ if [ "$OS" = "darwin" ]; then
 	fi
 fi
 # end macOS ak darwin
+# start linux
+if [ "$OS" = "linux" ]; then
+  DISTRO=`grep --no-filename /etc/*release -e "^ID=" | sed 's/ID=\(.*\)/\1/'`
+fi
+# end linux
 
 mkdir -p "$XDG_CONFIG_HOME"
 echo
@@ -228,6 +234,31 @@ if [ `command -v fish` ]; then
 else
   echo
   echo "${txtred} fish is not installed so skipping related configuration files."
+fi
+echo
+echo
+echo "${txtwht}Installing fastfetch configuration file${txtrst}"
+if [ `command -v fastfetch` ]; then
+  TARGET=$HOME/.config
+  mkdir -p $TARGET
+	FILE=fastfetch
+	if [ -e "$TARGET/$FILE" ]; then
+		if [ -L "$TARGET/$FILE" ]; then
+			SYMLINK=`readlink "$TARGET/$FILE"`
+			unlink "$TARGET/$FILE"
+			echo "${txtylw}Removed link from ~/.config/$FILE to $SYMLINK${txtrst}"
+		else
+			mv "$TARGET/$FILE" "$TARGET/$FILE.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/.config/$FILE moved to ~/.config/$FILE.$TIMESTAMP.bak${txtrst}"
+		fi
+	fi
+	ln -f -s "$BASEDIR/$FILE" "$TARGET/$FILE"
+  cp "$BASEDIR/$FILE/pngs/$DISTRO-chan.png" "$BASEDIR/$FILE/pngs/os-chan.png"
+	echo "${txtgrn}$TARGET/$FILE installed${txtrst}"
+	echo
+else
+  echo
+  echo "${txtred} fastfetch is not installed so skipping related configuration files."
 fi
 echo
 echo "${txtwht}Installing nushell configuration file${txtrst}"
