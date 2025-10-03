@@ -66,9 +66,13 @@
 /* -------------------------------------------------------------------------------------------------- */
 /* 2. Widget Containers                                                                               */
 /* -------------------------------------------------------------------------------------------------- */
+.taskbar-widget {
+  padding: 2px;
+}
 
 .taskbar-widget .app-icon {
-  padding: 0 6px;
+  padding: 0 2px;
+  min-width: 16px;
 }
 
 .taskbar-widget .app-icon.foreground {
