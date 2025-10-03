@@ -155,6 +155,25 @@ if ($isElevated) {
 else {
   Write-Host "installing yasb configuration files utilizes symbolic links. script must be run elevated to have necessary privileges to do so."
 }
+if (Get-Command "fastfetch.exe" -ErrorAction SilentlyContinue) {
+  if ($isElevated) {
+    $fastfetchConfig = $targetDirectory + "\fastfetch"
+    $winver = (Get-WmiObject Win32_OperatingSystem).Caption -replace '\D', ''
+    Copy-Item "$fastfetchConfig\pngs\windows$winver-chan.png" $fastfetchConfig\pngs\os-chan.png -Force
+    $fastfetchLinkDirectory = $env:USERPROFILE + "\.config"
+    if (-not (Test-Path -Path $fastfetchLinkDirectory)) {
+      New-Item -Path $fastfetchLinkDirectory -ItemType Directory
+    }
+    $fastfetchLink = $fastfetchLinkDirectory + "\fastfetch"
+    if (Test-Path -Path $fastfetchLink) {
+      Remove-Item -Path $fastfetchLink
+    }
+    New-Item -ItemType SymbolicLink -Path $fastfetchLink -Target $fastfetchConfig
+    Write-Host "fastfetch configuration has been installed"
+  }
+} else {
+  Write-Host "fastfetch is not available in your system path and may not be installed. get that corrected and then rerun this script."
+}
 if (Get-Command "git.exe" -ErrorAction SilentlyContinue) {
   $gitignore = $targetDirectory + "\gitignore_global.conf"
   git config --global user.name "Micah Bucy"

@@ -284,7 +284,7 @@ else {
 
 if (Get-Command "fastfetch" -ErrorAction SilentlyContinue) {
   function neofetch { fastfetch $args }
-  fastfetch
+  fastfetch --logo "$env:USERPROFILE\.config\fastfetch\pngs\windows11-chan.png" --logo-type "iterm" --logo-height 25 --logo-width 35
 }
 else {
   Write-Host "Warning: 'neofetch' command is not available, please install fastfetch."
