@@ -7,6 +7,7 @@ vim/view
 vim/view/
 vim/view/*
 yasb/notes.json
+fastfetch/pngs/os-chan.png
 .vscode/settings.json
 *.log
 .env
