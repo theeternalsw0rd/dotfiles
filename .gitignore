@@ -10,4 +10,5 @@ yasb/notes.json
 fastfetch/pngs/os-chan.png
 .vscode/settings.json
 *.log
+*.log.*
 .env
