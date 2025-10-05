@@ -19,6 +19,9 @@ set fish_cursor_visual block
 # The argument specifies the initial mode (insert, "default" or visual).
 fish_vi_key_bindings insert
 
+# Suppress fish welcome message
+set -U fish_greeting ""
+
 alias which=type
 alias multiplex="tmux -u a || tmux -u"
 
