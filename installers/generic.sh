@@ -58,6 +58,12 @@ fi
 # start linux
 if [ "$OS" = "linux" ]; then
   DISTRO=`grep --no-filename /etc/*release -e "^ID=" | sed 's/ID=\(.*\)/\1/'`
+  if [ "$DISTRO" = "debian" ]; then
+    RASPBIAN=`uname -a | grep rpi | wc -l`
+    if [ "$RASPBIAN" -gt "0" ]; then
+      DISTRO="raspbian"
+    fi
+  fi
 fi
 # end linux
 
