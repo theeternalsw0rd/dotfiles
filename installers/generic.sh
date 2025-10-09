@@ -259,6 +259,12 @@ if [ `command -v fastfetch` ]; then
 		fi
 	fi
 	ln -f -s "$BASEDIR/$FILE" "$TARGET/$FILE"
+  if [ "$OS" = "linux" ]; then
+    WSL=`uname -a | grep -i wsl | wc -l`
+    if [ "$WSL" -gt 0 ]; then
+      DISTRO="$DISTRO+wsl"
+    fi
+  fi
   cp "$BASEDIR/$FILE/pngs/$DISTRO-chan.png" "$BASEDIR/$FILE/pngs/os-chan.png"
 	echo "${txtgrn}$TARGET/$FILE installed${txtrst}"
 	echo
