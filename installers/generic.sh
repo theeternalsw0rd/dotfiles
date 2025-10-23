@@ -64,6 +64,29 @@ if [ "$OS" = "linux" ]; then
       DISTRO="raspbian"
     fi
   fi
+  echo
+  echo "${txtwht}Installing powershell configuration file${txtrst}"
+  if [ `command -v pwsh` ]; then
+    TARGET=$HOME/.config/powershell
+    mkdir -p $TARGET
+    FILE=Microsoft.PowerShell_profile.ps1
+    if [ -e "$TARGET/$FILE" ]; then
+      if [ -L "$TARGET/$FILE" ]; then
+        SYMLINK=`readlink "$TARGET/$FILE"`
+        unlink "$TARGET/$FILE"
+        echo "${txtylw}Removed link from ~/.config/powershell/$FILE to $SYMLINK${txtrst}"
+      else
+        mv "$TARGET/$FILE" "$TARGET/$FILE.$TIMESTAMP.bak"
+        echo "${txtylw}Existing ~/.config/powershell/$FILE moved to ~/.config/powershell/$FILE.$TIMESTAMP.bak${txtrst}"
+      fi
+    fi
+    ln -f -s "$BASEDIR/$FILE" "$TARGET/$FILE"
+    echo "${txtgrn}$TARGET/$FILE installed${txtrst}"
+    echo
+  else
+    echo
+    echo "${txtred} powershell is not installed so skipping related configuration files."
+  fi
 fi
 # end linux
 

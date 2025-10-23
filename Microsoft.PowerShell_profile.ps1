@@ -1,14 +1,12 @@
 if (Get-Command starship -ErrorAction SilentlyContinue) {
   Invoke-Expression (&starship init powershell)
-}
-else {
+} else {
   Write-Host "starship is not installed or not in your PATH."
 }
 
 if (Get-Module -ListAvailable -Name cd-extras) {
   Import-Module cd-extras
-} 
-else {
+} else {
   Write-Host "you should install module cd-extras"
 }
 
@@ -27,8 +25,7 @@ if($IsWindows) {
     End {
       if (Get-Command "bat" -ErrorAction SilentlyContinue) {
         $inputPipeList | Select-Object -first $n | bat --color=always --paging=never
-      }
-      else {
+      } else {
         $inputPipeList | Select-Object -first $n
       }
     }
@@ -47,8 +44,7 @@ if($IsWindows) {
     End {
       if (Get-Command "bat" -ErrorAction SilentlyContinue) {
         $inputPipeList | Select-Object -last $n | bat --color=always --paging=never
-      }
-      else {
+      } else {
         $inputPipeList | Select-Object -last $n
       }
     }
@@ -58,8 +54,7 @@ if($IsWindows) {
   $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
   if (Test-Path($ChocolateyProfile)) {
     Import-Module "$ChocolateyProfile"
-  }
-  else {
+  } else {
     Write-Host "choco is not installed yet."
   }
 
@@ -73,8 +68,7 @@ if($IsWindows) {
     # $env:RBENV_USE_MIRROR = "https://abc.com/abc-<version>"
 
     & "$rbenvScript" init
-  }
-  else {
+  } else {
     Write-Host "rbenv for Windows is not installed yet or it is not in your PATH."
   }
 
@@ -89,18 +83,17 @@ if($IsWindows) {
     )
     $cmdLine = """$scriptName"" $args & set"
     & $Env:SystemRoot\system32\cmd.exe /c $cmdLine |
-    select-string '^([^=]*)=(.*)$' | foreach-object {
-      $varName = $_.Matches[0].Groups[1].Value
-      $varValue = $_.Matches[0].Groups[2].Value
-      set-item Env:$varName $varValue
-    }
+      select-string '^([^=]*)=(.*)$' | foreach-object {
+        $varName = $_.Matches[0].Groups[1].Value
+        $varValue = $_.Matches[0].Groups[2].Value
+        set-item Env:$varName $varValue
+      }
   }
 
   function UnloadToolChain {
     if (Get-Command "refreshenv" -ErrorAction SilentlyContinue) {
       refreshenv
-    }
-    else {
+    } else {
       Write-Host "refreshenv command not found, please install chocolatey or manually reset your environment."
     }
   }
@@ -115,10 +108,9 @@ if($IsWindows) {
     }
     $vcvarsall = "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat"
     if (Test-Path $vcvarsall) {
-        Invoke-CmdScript "$vcvarsall" $arch
-        Write-Host "Visual Studio environment variables loaded for $arch."
-    }
-    else {
+      Invoke-CmdScript "$vcvarsall" $arch
+      Write-Host "Visual Studio environment variables loaded for $arch."
+    } else {
       Write-Host "Visual Studio not found."
     }
   }
@@ -131,8 +123,7 @@ if($IsWindows) {
     if (Test-Path $mingwPath) {
       $env:PATH = "$mingwPath\usr\bin;$mingwPath\ucrt64\bin;$mingwPath\ucrt64\lib;$env:PATH"
       Write-Host "MinGW environment variables loaded."
-    }
-    else {
+    } else {
       Write-Host "MinGW not found."
     }
   }
@@ -163,14 +154,14 @@ if($IsWindows) {
       $fileName = $url -replace '.*/', '' -replace '\?.*', ''
       $currentDirectory = Get-Location
       $path = "$currentDirectory\$fileName"
-      Try { [io.file]::OpenWrite($path).close() }
-      Catch { 
+      Try {
+        [io.file]::OpenWrite($path).close() 
+      } Catch { 
         Write-Host "Cannot write to $path, using user download directory instead."
         $currentDirectory = "$env:USERPROFILE\Downloads"
         $path = "$currentDirectory\$fileName"
       }
-    }
-    else {
+    } else {
       $path = $output
       $fileName = [io.path]::GetFileName($path)
       # strip trailing whitespace to aviod Windows not being able to delete or rename the file
@@ -181,8 +172,9 @@ if($IsWindows) {
         return
       }
       # check if the output path is writable
-      Try { [io.file]::OpenWrite($path).close() }
-      Catch { 
+      Try {
+        [io.file]::OpenWrite($path).close() 
+      } Catch { 
         Write-Host "Cannot write to $path"
         $currentDirectory = "$env:USERPROFILE\Downloads"
         $path = "$currentDirectory\$fileName"
@@ -194,24 +186,32 @@ if($IsWindows) {
       Start-BitsTransfer -Source $url -Destination $path -ErrorAction Stop
       if ($?) {
         Write-Host "Downloaded $fileName to $path"
-      }
-      else {
+      } else {
         Write-Host "Failed to download $fileName from $url"
       }
-    }
-    else {
+    } else {
       Write-Host "Start-BitsTransfer is not available, using Invoke-WebRequest instead."
       Invoke-WebRequest -Uri $url -OutFile $path -ErrorAction Stop
       if ($?) {
         Write-Host "Downloaded $fileName to $path"
-      }
-      else {
+      } else {
         Write-Host "Failed to download $fileName from $url"
       }
     }
   }
-}
-else {
+  if (Get-Command "gsudo" -ErrorAction SilentlyContinue) {
+    Set-Alias -Name sudo -Value gsudo -Force
+    if (Get-Command "btop4win" -ErrorAction SilentlyContinue) {
+      function btop {
+        gsudo btop4win 
+      }
+    } else {
+      Write-Host "You have not installed btop4win yet, or it is not in your PATH."
+    }
+  } else {
+    Write-Host "You have not installed gsudo yet, or it is not in your PATH."
+  }
+} else {
   function LoadMSVC {
     Write-Host "LoadMSVC is not supported on non-Windows systems."
   }
@@ -223,26 +223,29 @@ else {
 Set-Alias -Name which -Value Get-Command
 
 if (Get-Command "eza" -ErrorAction SilentlyContinue) {
-  Remove-Alias ls
-  function ls { eza --icons $args }
+  if($IsWindows) {
+    Remove-Alias ls
+  }
+  function ls {
+    eza --icons $args 
+  }
   Set-Alias -Name winls -Value Get-ChildItem
-}
-else {
+} else {
   Write-Host "You have not installed eza yet, or it is not in your PATH."
 }
 
 if (Get-Command "bat" -ErrorAction SilentlyContinue) {
-  Remove-Alias cat
+  if($IsWindows) {
+    Remove-Alias cat
+  }
   function cat {
     if($input) {
       $input | bat --color=always $args
-    }
-    else {
+    } else {
       bat --color=always $args
     }
   }
-}
-else {
+} else {
   Write-Host "You have not installed bat yet, or it is not in your PATH."
 }
 
@@ -251,63 +254,57 @@ if (Get-Command "rg" -ErrorAction SilentlyContinue) {
   function grep {
     if ($input) {
       $input | rg --color=always $args
-    }
-    else {
+    } else {
       rg --color=always $args
     }
   }
-}
-elseif (Get-Command "ripgrep" -ErrorAction SilentlyContinue) {
+} elseif (Get-Command "ripgrep" -ErrorAction SilentlyContinue) {
   function grep { 
     if ($input) {
       $input | ripgrep --color=always $args
-    }
-    else {
+    } else {
+      if (Get-Command "gsudo" -ErrorAction SilentlyContinue) {
+        Set-Alias -Name sudo -Value gsudo -Force
+        if (Get-Command "btop4win" -ErrorAction SilentlyContinue) {
+          function btop {
+            gsudo btop4win 
+          }
+        } else {
+          Write-Host "You have not installed btop4win yet, or it is not in your PATH."
+        }
+      } else {
+        Write-Host "You have not installed gsudo yet, or it is not in your PATH."
+      }
+
       ripgrep --color=always $args
     }
   }
-}
-elseif (Get-Command "grep" -ErrorAction SilentlyContinue) {
+} elseif (Get-Command "grep" -ErrorAction SilentlyContinue) {
   function grep {
     if($input) {
       $input | grep --color=auto $args
-    }
-    else {
+    } else {
       grep --color=auto $args
     }
   }
   Write-Host "Warning: 'grep' command is not ripgrep or rg, using default grep with color support."
-}
-else {
+} else {
   Write-Host "Warning: 'grep' command is not available, please install ripgrep or grep."
 }
 
 if (Get-Command "fastfetch" -ErrorAction SilentlyContinue) {
-  function neofetch { fastfetch $args }
-  fastfetch --logo "$env:USERPROFILE\.config\fastfetch\pngs\windows11-chan.png" --logo-type "iterm" --logo-height 25 --logo-width 35
-}
-else {
+  function neofetch {
+    fastfetch $args 
+  }
+  fastfetch
+} else {
   Write-Host "Warning: 'neofetch' command is not available, please install fastfetch."
-}
-
-if (Get-Command "gsudo" -ErrorAction SilentlyContinue) {
-  Set-Alias -Name sudo -Value gsudo -Force
-  if (Get-Command "btop4win" -ErrorAction SilentlyContinue) {
-    function btop { gsudo btop4win }
-  }
-  else {
-    Write-Host "You have not installed btop4win yet, or it is not in your PATH."
-  }
-}
-else {
-  Write-Host "You have not installed gsudo yet, or it is not in your PATH."
 }
 
 Set-PSReadLineOption -EditMode vi
 
 if (Get-Command atuin -ErrorAction SilentlyContinue) {
-    atuin init powershell | Out-String | Invoke-Expression
-}
-else {
+  atuin init powershell | Out-String | Invoke-Expression
+} else {
   Write-Host "atuin is not installed or not in your PATH."
 }
