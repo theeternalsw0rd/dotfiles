@@ -37,13 +37,13 @@
     },
     {
       "type": "os",
-      "key": "   OS",
+      "key": "   OS",
       "keyColor": "blue"
     },
     {
       "type": "kernel",
-      "key": "   Kernel",
-      "keyColor": "green"
+      "key": "  󰞸 Kernel",
+      "keyColor": "38:5:11"
     },
     {
       "type": "packages",
@@ -52,18 +52,23 @@
     },
     {
       "type": "display",
-      "key": "  󱍜 Display",
+      "key": "  󰍹 Display",
       "keyColor": "38;5;208"
     },
     {
       "type": "wm",
-      "key": "   WM",
+      "key": "   WM",
       "keyColor": "38;5;81"
     },
     {
       "type": "terminal",
-      "key": "   Terminal",
-      "keyColor": "38;5;81"
+      "key": "   Terminal",
+      "keyColor": "38;5;129"
+    },
+    {
+      "type": "shell",
+      "key": "   Shell",
+      "keyColor": "38;5;91"
     },
     {
       "type": "media",
