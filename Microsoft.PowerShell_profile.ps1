@@ -155,8 +155,8 @@ if($IsWindows) {
       $currentDirectory = Get-Location
       $path = "$currentDirectory\$fileName"
       Try {
-        [io.file]::OpenWrite($path).close() 
-      } Catch { 
+        [io.file]::OpenWrite($path).close()
+      } Catch {
         Write-Host "Cannot write to $path, using user download directory instead."
         $currentDirectory = "$env:USERPROFILE\Downloads"
         $path = "$currentDirectory\$fileName"
@@ -173,8 +173,8 @@ if($IsWindows) {
       }
       # check if the output path is writable
       Try {
-        [io.file]::OpenWrite($path).close() 
-      } Catch { 
+        [io.file]::OpenWrite($path).close()
+      } Catch {
         Write-Host "Cannot write to $path"
         $currentDirectory = "$env:USERPROFILE\Downloads"
         $path = "$currentDirectory\$fileName"
@@ -203,7 +203,7 @@ if($IsWindows) {
     Set-Alias -Name sudo -Value gsudo -Force
     if (Get-Command "btop4win" -ErrorAction SilentlyContinue) {
       function btop {
-        gsudo btop4win 
+        gsudo btop4win
       }
     } else {
       Write-Host "You have not installed btop4win yet, or it is not in your PATH."
@@ -227,7 +227,7 @@ if (Get-Command "eza" -ErrorAction SilentlyContinue) {
     Remove-Alias ls
   }
   function ls {
-    eza --icons $args 
+    eza --icons $args
   }
   Set-Alias -Name winls -Value Get-ChildItem
 } else {
@@ -259,7 +259,7 @@ if (Get-Command "rg" -ErrorAction SilentlyContinue) {
     }
   }
 } elseif (Get-Command "ripgrep" -ErrorAction SilentlyContinue) {
-  function grep { 
+  function grep {
     if ($input) {
       $input | ripgrep --color=always $args
     } else {
@@ -267,7 +267,7 @@ if (Get-Command "rg" -ErrorAction SilentlyContinue) {
         Set-Alias -Name sudo -Value gsudo -Force
         if (Get-Command "btop4win" -ErrorAction SilentlyContinue) {
           function btop {
-            gsudo btop4win 
+            gsudo btop4win
           }
         } else {
           Write-Host "You have not installed btop4win yet, or it is not in your PATH."
@@ -293,8 +293,15 @@ if (Get-Command "rg" -ErrorAction SilentlyContinue) {
 }
 
 if (Get-Command "fastfetch" -ErrorAction SilentlyContinue) {
+  $pwsh = Get-Process -Id $PID
+  $terminal = $pwsh.Parent.ProcessName
+  if ($terminal -eq "Zed") {
+    function fastfetch {
+      fastfetch.exe $args --logo-type builtin --logo "" --logo-height 0 --logo-width 0
+    }
+  }
   function neofetch {
-    fastfetch $args 
+    fastfetch $args
   }
   fastfetch
 } else {
