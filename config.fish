@@ -25,6 +25,14 @@ set -U fish_greeting ""
 alias which=type
 alias multiplex="tmux -u a || tmux -u"
 
+if test -e ~/.spicetify/spicetify
+    function spicetify
+        ~/.spicetify/spicetify $argv
+    end
+else 
+    echo "Warning: 'spicetify' command is not available, please install Spicetify."
+end
+
 set -gx TERM wezterm
 
 if type -q nvim
@@ -147,3 +155,7 @@ if status is-interactive
         echo "Warning: 'atuin' is not available."
     end
 end
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH "$VOLTA_HOME/bin" $PATH
+
+export PATH="$PATH:$HOME/.local/bin"

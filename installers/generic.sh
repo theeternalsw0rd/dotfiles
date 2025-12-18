@@ -30,40 +30,8 @@ txtylw=`tput setaf 3` # Yellow
 txtwht=`tput setaf 7` # White
 txtrst=`tput sgr0` # Text reset.
 
-
-# OS specific
-# start macOS aka darwin
-if [ "$OS" = "darwin" ]; then
-  echo
-  echo "${txtwht}Installing phoenix config"
-	if [ -e "/Applications/Phoenix.app" ]; then
-		if [ -e "$HOME/.config/phoenix" ]; then
-			if [ -L "$HOME/.config/phoenix" ]; then
-				SYMLINK=`readlink "$HOME/.config/phoenix"`
-				unlink "$HOME/.config/phoenix"
-				echo "${txtylw}Removed link from ~/.config/phoenix to $SYMLINK${txtrst}"
-			else
-				mv "$HOME/.config/phoenix" "$HOME/.config/phoenix.$TIMESTAMP.bak${txtrst}"
-				echo "${txtylw}Existing ~/.config/phoenix moved to ~/.config/phoenix.$TIMESTAMP.bak${txtrst}"
-			fi
-		fi
-		ln -f -s "$BASEDIR/phoenix" "$HOME/.config/phoenix"
-		echo "${txtgrn}phoenix configuration installed"
-	else
-		echo
-		echo "${txtred}Phoenix is not installed. Phoenix is needed for making wezterm quake-style on macOS."
-	fi
-fi
-# end macOS ak darwin
-# start linux
-if [ "$OS" = "linux" ]; then
-  DISTRO=`grep --no-filename /etc/*release -e "^ID=" | sed 's/ID=\(.*\)/\1/'`
-  if [ "$DISTRO" = "debian" ]; then
-    RASPBIAN=`uname -a | grep rpi | wc -l`
-    if [ "$RASPBIAN" -gt "0" ]; then
-      DISTRO="raspbian"
-    fi
-  fi
+unix_shared()
+{
   echo
   echo "${txtwht}Installing powershell configuration file${txtrst}"
   if [ `command -v pwsh` ]; then
@@ -87,6 +55,24 @@ if [ "$OS" = "linux" ]; then
     echo
     echo "${txtred} powershell is not installed so skipping related configuration files."
   fi
+}
+
+# OS specific
+# start macOS aka darwin
+if [ "$OS" = "darwin" ]; then
+	unix_shared
+fi
+# end macOS ak darwin
+# start linux
+if [ "$OS" = "linux" ]; then
+  DISTRO=`grep --no-filename /etc/*release -e "^ID=" | sed 's/ID=\(.*\)/\1/'`
+  if [ "$DISTRO" = "debian" ]; then
+    RASPBIAN=`uname -a | grep rpi | wc -l`
+    if [ "$RASPBIAN" -gt "0" ]; then
+      DISTRO="raspbian"
+    fi
+  fi
+  unix_shared
 fi
 # end linux
 

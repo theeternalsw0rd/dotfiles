@@ -309,6 +309,23 @@ if (Get-Command "fastfetch" -ErrorAction SilentlyContinue) {
 }
 
 Set-PSReadLineOption -EditMode vi
+# Source - https://stackoverflow.com/q
+# Posted by Sabito, modified by community. See post 'Timeline' for change history
+# Retrieved 2025-12-18, License - CC BY-SA 4.0
+
+# This example emits a cursor change VT escape in response to a Vi mode change.
+
+function OnViModeChange {
+    if ($args[0] -eq 'Command') {
+        # Set the cursor to a blinking block.
+        Write-Host -NoNewLine "`e[1 q"
+    } else {
+        # Set the cursor to a blinking line.
+        Write-Host -NoNewLine "`e[5 q"
+    }
+}
+Set-PSReadLineOption -ViModeIndicator Script -ViModeChangeHandler $Function:OnViModeChange
+
 
 if (Get-Command atuin -ErrorAction SilentlyContinue) {
   atuin init powershell | Out-String | Invoke-Expression
