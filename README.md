@@ -19,47 +19,57 @@ I have switched to using fish on linux and macOS, so my zsh configuration is out
 
 I use WezTerm on all platforms I use. Pretty much any nerdfont should work with my setup. I use Fantasque Sans M as my font. I use windows-terminal-quake on Windows for a quake style WezTerm and for opacity. I am in the midst of changing desktop environments on Linux and will update configurations when I reach stability.
 
-I use an Automator Quick Action I have called WezTerm-Quake that takes no input and runs the following AppleScript.
+I use an Automator Quick Action I have called WezTerm-Quake that takes no input and runs the terminal command `open -jg -a "WezTerm-Quake"`.
+
+The Wezterm-Quake that is being opened is an AppleScript exported as an application. This is the contents of the AppleScript:
 
 ```
-on run {input, parameters}
-	
-	global makeActive
-	
-	set wezterm to application "WezTerm"
-	set appName to "WezTerm"
-	
-	set makeActive to false
-	
-	if not (application appName is running) then
-		set makeActive to true
-	else
-		tell application "System Events"
-			if visible of application process appName is true then
-				if frontmost of application process appName then
-					set visible of application process appName to false
-				else
-					set makeActive to true
-				end if
+global makeActive
+
+set wezterm to application "WezTerm"
+set appName to "WezTerm"
+
+set makeActive to false
+
+if not (application appName is running) then
+	set makeActive to true
+else
+	tell application "System Events"
+		if visible of application process appName is true then
+			if frontmost of application process appName then
+				set visible of application process appName to false
 			else
-				set visible of application process appName to true
-				set frontmost of application process appName to true
+				set makeActive to true
 			end if
-		end tell
-	end if
-	
-	if makeActive then
-		tell wezterm
-			activate
-		end tell
-		tell application "System Events"
+		else
+			set visible of application process appName to true
 			set frontmost of application process appName to true
-		end tell
-		set makeActive to false
-	end if
-	
-	return input
-end run
+		end if
+	end tell
+end if
+
+if makeActive then
+	tell wezterm
+		activate
+	end tell
+	tell application "System Events"
+		set frontmost of application process appName to true
+	end tell
+	set makeActive to false
+end if
 ```
 
-You can set a global hotkey for Automator Quick Actions by going to System Preferences > Keyboard > Shortcuts and you'll find it under Services. If you use Spaces, make sure WezTerm is set to show on all Spaces, so it doesn't matter which Space you are on. I tried using both Phoenix and Hammerspoon, but couldn't get either to work correctly, so this is the solution I came up with. Opacity is set in WezTerm config as Metal consistently works.
+After exporting to `/Applications/WezTerm-Quake.app` there are a few commands to run to allow the app to run without stealing focus. Run these commands in terminal in zsh or bash shell:
+
+```
+APP="/Applications/WezTerm-Quake.app"
+PLIST="$APP/Contents/Info.plist"
+/usr/libexec/PlistBuddy -c "Add :LSUIElement bool true" "$PLIST" 2>/dev/null \
+ || /usr/libexec/PlistBuddy -c "Set :LSUIElement true" "$PLIST"
+xattr -cr "$APP"
+codesign --force --deep --sign - "$APP"
+```
+
+The first time you run the action, you'll be asked to allow the WezTerm-Quake.app the permission to use System Events from Accessibility.
+
+You can set a global hotkey for Automator Quick Actions by going to System Preferences > Keyboard > Shortcuts and you'll find it under Services. If you use Spaces, make sure WezTerm is set to show on all Spaces, so it doesn't matter which Space you are on. I tried using both Phoenix and Hammerspoon performing this task, but couldn't get either to work correctly, so this is the solution I came up with. Opacity is set in WezTerm config as Metal consistently works.
