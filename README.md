@@ -19,28 +19,47 @@ I have switched to using fish on linux and macOS, so my zsh configuration is out
 
 I use WezTerm on all platforms I use. Pretty much any nerdfont should work with my setup. I use Fantasque Sans M as my font. I use windows-terminal-quake on Windows for a quake style WezTerm and for opacity. I am in the midst of changing desktop environments on Linux and will update configurations when I reach stability.
 
-I use the following AppleScript saved as an application and then use Automator action to assign a global keystroke to it to get quake style WezTerm.
+I use an Automator Quick Action I have called WezTerm-Quake that takes no input and runs the following AppleScript.
 
 ```
-set appName to "WezTerm"
-
-if not (application appName is running) then
-	tell application appName
-		activate
-	end tell
-	tell application "System Events"
-		set frontmost of application process appName to true
-	end tell
-else
-	tell application "System Events"
-		if visible of application process appName is true then
-			set visible of application process appName to false
-		else
-			set visible of application process appName to true
+on run {input, parameters}
+	
+	global makeActive
+	
+	set wezterm to application "WezTerm"
+	set appName to "WezTerm"
+	
+	set makeActive to false
+	
+	if not (application appName is running) then
+		set makeActive to true
+	else
+		tell application "System Events"
+			if visible of application process appName is true then
+				if frontmost of application process appName then
+					set visible of application process appName to false
+				else
+					set makeActive to true
+				end if
+			else
+				set visible of application process appName to true
+				set frontmost of application process appName to true
+			end if
+		end tell
+	end if
+	
+	if makeActive then
+		tell wezterm
+			activate
+		end tell
+		tell application "System Events"
 			set frontmost of application process appName to true
-		end if
-	end tell
-end if
+		end tell
+		set makeActive to false
+	end if
+	
+	return input
+end run
 ```
 
-If you use Spaces, make sure WezTerm is set to show on all Spaces, so it doesn't matter which Space you are on. Only thing that doesn't work currently is it doesn't automatically hide when losing focus, so if WezTerm loses focus, you will need to hit the hotkey twice. I tried using both Phoenix and Hammerspoon, but couldn't get either to work correctly. Opacity is set in WezTerm config as Metal consistently works.
+You can set a global hotkey for Automator Quick Actions by going to System Preferences > Keyboard > Shortcuts and you'll find it under Services. If you use Spaces, make sure WezTerm is set to show on all Spaces, so it doesn't matter which Space you are on. I tried using both Phoenix and Hammerspoon, but couldn't get either to work correctly, so this is the solution I came up with. Opacity is set in WezTerm config as Metal consistently works.
