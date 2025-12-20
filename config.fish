@@ -139,6 +139,22 @@ if status is-interactive
         starship init fish | source
     end
 
+    if type -q carapace
+        set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
+        carapace _carapace | source
+    else
+        echo "Warning: 'carapace' is not available."
+    end
+
+    if type -q fzf
+        # Initialize fzf key bindings and fuzzy completion
+        set -q FZF_BASE && set -gx FZF_BASE $FZF_BASE || set -gx FZF_BASE $HOME/.fzf
+        source $FZF_BASE/shell/key-bindings.fish
+        source $FZF_BASE/shell/completion.fish
+    else
+        echo "Warning: 'fzf' is not available."
+    end
+
     if type -q atuin
         set -l __atuin_init (atuin init fish | string replace -ra -- 'bind -M ([^ ]+)\s+-k ' 'bind -M $1 ' | string replace -ra -- 'bind\s+-k ' 'bind ')
         if test -n "$__atuin_init"
@@ -155,7 +171,10 @@ if status is-interactive
         echo "Warning: 'atuin' is not available."
     end
 end
-set -gx VOLTA_HOME "$HOME/.volta"
-set -gx PATH "$VOLTA_HOME/bin" $PATH
+
+if type -q volta
+    set -gx VOLTA_HOME "$HOME/.volta"
+    set -gx PATH "$VOLTA_HOME/bin" $PATH
+end
 
 export PATH="$PATH:$HOME/.local/bin"
