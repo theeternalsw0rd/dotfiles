@@ -115,7 +115,9 @@ const cargo_source = if ($nu.os-info.name != "windows") { $"($nu.home-path)/.car
 if ($cargo_source | path exists) {
     source $cargo_source
 } else {
-    print "cargo env file not found at $cargo_source"
+    if ($nu.os-info.name != "windows") {
+        ️print "cargo env file not found at $cargo_source"
+    }
 }
 
 if not (which carapace | is-empty) {
