@@ -27,7 +27,11 @@ alias grep="grep --color=auto"
 alias sudo="sudo "
 
 # load starship prompt
-eval "$(starship init zsh)"
+if [ `command  -v starship` ]; then
+  eval "$(starship init zsh)"
+else
+  echo "starship is not installed or available in path."
+fi
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -170,6 +174,10 @@ fi
 export PATH="$PATH:$HOME/.local/bin"
 
 # carapace setup
-export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
-zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-source <(carapace _carapace)
+if [ `command -v carapace` ]; then
+  export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+  zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+  source <(carapace _carapace)
+else
+  echo "carapace is not installed or available in path."
+fi
