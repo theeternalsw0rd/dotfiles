@@ -332,3 +332,6 @@ if (Get-Command atuin -ErrorAction SilentlyContinue) {
 } else {
   Write-Host "atuin is not installed or not in your PATH."
 }
+        
+# Powershell starts in insert mode so use the correct cursor shape
+Write-Host -NoNewLine "`e[5 q"
