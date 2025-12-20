@@ -110,9 +110,23 @@ if not (which starship | is-empty) {
 if not (which fastfetch | is-empty) {
     fastfetch
 }
+
 const cargo_source = if ($nu.os-info.name != "windows") { $"($nu.home-path)/.cargo/env.nu" } else { $null_device }
 if ($cargo_source | path exists) {
     source $cargo_source
 } else {
     print "cargo env file not found at $cargo_source"
+}
+
+if not (which carapace | is-empty) {
+    $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+    const carapace_cache = $"($nu.cache-dir)/carapace.nu"
+    if not ($carapace_cache | path exists) {
+        mkdir $"($nu.cache-dir)"
+        carapace _carapace nushell | save --force $"($nu.cache-dir)/carapace.nu"
+    }
+    const carapace_source = if ($carapace_cache | path exists) { $carapace_cache } else { $null_device }
+    source $carapace_source
+} else {
+    print "carapace is not installed or available in path."
 }
