@@ -17,6 +17,8 @@
 # You can remove these comments if you want or leave
 # them for future reference.
 
+use std/util null_device
+
 def --wrapped 'vim' [...rest] {
     if not (which nvim | is-empty) {
         ^nvim ...$rest
@@ -108,4 +110,9 @@ if not (which starship | is-empty) {
 if not (which fastfetch | is-empty) {
     fastfetch
 }
-source $"($nu.home-path)/.cargo/env.nu"
+const cargo_source = if ($nu.os-info.name != "windows") { $"($nu.home-path)/.cargo/env.nu" } else { $null_device }
+if ($cargo_source | path exists) {
+    source $cargo_source
+} else {
+    print "cargo env file not found at $cargo_source"
+}
