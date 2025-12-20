@@ -1,15 +1,3 @@
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-	SESSION_TYPE=remote/ssh
-	# many other tests omitted
-else
-	case $(ps -o comm= -p $PPID) in
-		sshd|*/sshd) SESSION_TYPE=remote/ssh;;
-	esac
-fi
-if [ "$SESSION_TYPE" = "remote/ssh" ] && [ -z "$TMUX" ]; then
-	tmux -u a || tmux -u && exit
-fi
-
 # load antigen
 source ~/.scripts/zsh/antigen.zsh
 
@@ -28,13 +16,6 @@ if [ `command -v fastfetch` ]; then
   fastfetch
 fi
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # global user exports go up top so subscripts have access
 source $HOME/.scripts/zsh/local.zsh
 export LC_ALL=en_US.UTF-8
@@ -45,8 +26,8 @@ ulimit -n 2048
 alias grep="grep --color=auto"
 alias sudo="sudo "
 
-# load powerlevel10k
-source ~/.scripts/zsh/powerlevel10k/powerlevel10k.zsh-theme
+# load starship prompt
+eval "$(starship init zsh)"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -186,9 +167,9 @@ else
   alias lsc='ls -1'
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-export PATH=$PATH:/Users/micah.bucy/.spicetify
-
 export PATH="$PATH:$HOME/.local/bin"
+
+# carapace setup
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
