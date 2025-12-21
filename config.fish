@@ -25,12 +25,12 @@ set -U fish_greeting ""
 alias which=type
 alias multiplex="tmux -u a || tmux -u"
 
-if test -e ~/.spicetify/spicetify
-    function spicetify
+function spicetify
+    if test -e ~/.spicetify/spicetify
         ~/.spicetify/spicetify $argv
+    else
+        echo "Warning: 'spicetify' command is not available, please install Spicetify."
     end
-else 
-    echo "Warning: 'spicetify' command is not available, please install Spicetify."
 end
 
 set -gx TERM wezterm
