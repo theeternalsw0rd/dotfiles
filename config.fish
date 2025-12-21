@@ -147,10 +147,15 @@ if status is-interactive
     end
 
     if type -q fzf
-        # Initialize fzf key bindings and fuzzy completion
-        set -q FZF_BASE && set -gx FZF_BASE $FZF_BASE || set -gx FZF_BASE $HOME/.fzf
-        source $FZF_BASE/shell/key-bindings.fish
-        source $FZF_BASE/shell/completion.fish
+        if type -q fisher
+            if test -f "$HOME/.config/fish/conf.d/fzf.fish"
+            else
+                echo "Warning: 'fzf fisher plugin not installed"
+            end
+        else
+            echo "Warning: 'fisher' is not available."
+        end
+        fzf --fish | source
     else
         echo "Warning: 'fzf' is not available."
     end
