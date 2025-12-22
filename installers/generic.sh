@@ -173,6 +173,26 @@ else
 	echo "${txtred}wezterm is not installed so skipping related configuration files"
 fi
 echo
+echo "${txtwht}Installing xonsh configuration files${txtrst}"
+if [ `command -v xonsh` ]; then
+	if [ -e "$HOME/.config/xonsh" ]; then
+		if [ -L "$HOME/.config/xonsh" ]; then
+			SYMLINK=`readlink "$HOME/.config/xonsh"`
+			unlink "$HOME/.config/xonsh"
+			echo "${txtylw}Removed link from ~/.config/xonsh to $SYMLINK${txtrst}"
+		else
+			mv "$HOME/.config/xonsh" "$HOME/.config/xonsh.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/.config/xonsh moved to ~/.config/xonsh.bak${txtrst}"
+		fi
+	fi
+	ln -f -s "$BASEDIR/xonsh-config" "$HOME/.config/xonsh"
+	echo "${txtgrn}xonsh configuration installed${txtrst}"
+	echo
+else
+	echo
+	echo "${txtred}xonsh is not installed so skipping related configuration files"
+fi
+echo
 echo "${txtwht}Installing kitty configuration files${txtrst}"
 if [ `command -v kitty` ]; then
   TARGET=$HOME/.config/kitty
