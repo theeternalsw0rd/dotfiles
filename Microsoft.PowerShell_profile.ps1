@@ -326,7 +326,6 @@ function OnViModeChange {
 }
 Set-PSReadLineOption -ViModeIndicator Script -ViModeChangeHandler $Function:OnViModeChange
 
-
 if (Get-Command atuin -ErrorAction SilentlyContinue) {
   atuin init powershell | Out-String | Invoke-Expression
 } else {
