@@ -33,6 +33,10 @@ else
   echo "starship is not installed or available in path."
 fi
 
+if [ `command -v atuin` ]; then
+  eval "$(atuin init zsh)"
+fi
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
