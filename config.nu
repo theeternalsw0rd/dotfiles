@@ -19,6 +19,12 @@
 
 use std/util null_device
 
+$env.config.edit_mode = "vi"
+$env.PROMPT_INDICATOR_VI_INSERT = ""
+$env.PROMPT_INDICATOR_VI_NORMAL = ""
+$env.config.cursor_shape.vi_insert = "blink_line"
+$env.config.cursor_shape.vi_normal = "blink_block"
+
 def --wrapped 'vim' [...rest] {
     if not (which nvim | is-empty) {
         ^nvim ...$rest
