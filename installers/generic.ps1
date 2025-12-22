@@ -54,6 +54,28 @@ if (Get-Command "nu" -ErrorAction SilentlyContinue) {
 else {
   Write-Host "nushell is not available in your system path and may not be installed. get that corrected and then rerun this script."
 }
+if (Get-Command "xonsh" -ErrorAction SilentlyContinue) {
+  if($isElevated) {
+    $xonshConfig = $targetDirectory + "\xonsh"
+    $xonshLinkDirectory = $env:USERPROFILE + "\.config"
+    if (-not (Test-Path -Path $xonshLinkDirectory))
+    {
+      New-Item -Path $xonshLinkDirectory -ItemType Directory
+    }
+    $xonshLink = $xonshLinkDirectory + "\xonsh"
+    if (Test-Path -Path $xonshLink) {
+      Remove-Item -Path $xonshLink
+    }
+    New-Item -ItemType SymbolicLink -Path $xonshLink -Target $xonshConfig
+    Write-Host "xonsh configuration has been installed"
+  }
+  else {
+    "installing xonsh configuration files utilizes symbolic links. script must be run elevated to have necessary privileges to do so."
+  }
+}
+else {
+  Write-Host "xonsh is not available in your system path and may not be installed. get that corrected and then rerun this script."
+}
 if (Get-Command "yazi" -ErrorAction SilentlyContinue) {
   if($isElevated) {
     $yaziConfig = $targetDirectory + "\yazi"
