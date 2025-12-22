@@ -185,7 +185,7 @@ if [ `command -v xonsh` ]; then
 			echo "${txtylw}Existing ~/.config/xonsh/rc.d moved to ~/.config/xonsh/rc.d.$TIMESTAMP.bak${txtrst}"
 		fi
 	fi
-	ln -f -s "$BASEDIR/xonsh-config/rc.d" "$HOME/.config/xonsh/rc.d"
+	ln -f -s "$BASEDIR/xonsh/rc.d" "$HOME/.config/xonsh/rc.d"
 	echo "${txtgrn}xonsh configuration installed${txtrst}"
 	echo
 else
