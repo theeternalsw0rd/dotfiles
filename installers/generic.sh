@@ -175,17 +175,17 @@ fi
 echo
 echo "${txtwht}Installing xonsh configuration files${txtrst}"
 if [ `command -v xonsh` ]; then
-	if [ -e "$HOME/.config/xonsh" ]; then
-		if [ -L "$HOME/.config/xonsh" ]; then
-			SYMLINK=`readlink "$HOME/.config/xonsh"`
-			unlink "$HOME/.config/xonsh"
-			echo "${txtylw}Removed link from ~/.config/xonsh to $SYMLINK${txtrst}"
+	if [ -e "$HOME/.config/xonsh/rc.d" ]; then
+		if [ -L "$HOME/.config/xonsh/rc.d" ]; then
+			SYMLINK=`readlink "$HOME/.config/xonsh/rc.d"`
+			unlink "$HOME/.config/xonsh/rc.d"
+			echo "${txtylw}Removed link from ~/.config/xonsh/rc.d to $SYMLINK${txtrst}"
 		else
-			mv "$HOME/.config/xonsh" "$HOME/.config/xonsh.$TIMESTAMP.bak"
-			echo "${txtylw}Existing ~/.config/xonsh moved to ~/.config/xonsh.bak${txtrst}"
+			mv "$HOME/.config/xonsh/rc.d" "$HOME/.config/xonsh/rc.d.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/.config/xonsh/rc.d moved to ~/.config/xonsh/rc.d.$TIMESTAMP.bak${txtrst}"
 		fi
 	fi
-	ln -f -s "$BASEDIR/xonsh-config" "$HOME/.config/xonsh"
+	ln -f -s "$BASEDIR/xonsh-config/rc.d" "$HOME/.config/xonsh/rc.d"
 	echo "${txtgrn}xonsh configuration installed${txtrst}"
 	echo
 else
