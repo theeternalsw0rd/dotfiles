@@ -153,6 +153,19 @@ if [ `command -v nvim` ]; then
   }
 fi
 
+if [ `command -v fd` ]; then
+  alias find='fd'
+fi
+
+if [ `command -v pyenv` ]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  # Initialize pyenv into the shell session
+  eval "$(pyenv init -)"
+  # Initialize pyenv-virtualenv plugin into the shell session
+  eval "$(pyenv virtualenv-init -)"
+fi
+
 if [ `command -v eza` ]; then
   function ls() {
     eza --icons $@
