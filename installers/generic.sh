@@ -195,6 +195,7 @@ fi
 echo
 echo "${txtwht}Installing xonsh configuration files${txtrst}"
 if [ `command -v xonsh` ]; then
+  mkdir -p "$HOME/.config/xonsh"
 	if [ -e "$HOME/.config/xonsh/rc.d" ]; then
 		if [ -L "$HOME/.config/xonsh/rc.d" ]; then
 			SYMLINK=`readlink "$HOME/.config/xonsh/rc.d"`
