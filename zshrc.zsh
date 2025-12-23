@@ -35,6 +35,8 @@ fi
 
 if [ `command -v atuin` ]; then
   eval "$(atuin init zsh)"
+else
+  echo "atuin is not installed or available in path."
 fi
 
 # Set to this to use case-sensitive completion
@@ -139,7 +141,6 @@ setopt hist_verify
 
 # put at end to override any other scripts
 unset -v GREP_OPTIONS
-[[ -x /usr/libexec/path_helper ]] && export PATH='' && eval $(/usr/libexec/path_helper -s)
 source $HOME/.scripts/zsh/path.zsh
 
 # this is annoying but until universal support is available
