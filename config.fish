@@ -177,9 +177,4 @@ if status is-interactive
     end
 end
 
-if type -q volta
-    set -gx VOLTA_HOME "$HOME/.volta"
-    set -gx PATH "$VOLTA_HOME/bin" $PATH
-end
-
 export PATH="$PATH:$HOME/.local/bin"
