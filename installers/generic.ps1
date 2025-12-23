@@ -98,6 +98,28 @@ if (Get-Command "yazi" -ErrorAction SilentlyContinue) {
 else {
   Write-Host "yazi is not available in your system path and may not be installed. get that corrected and then rerun this script."
 }
+if (Get-Command "elvish" -ErrorAction SilentlyContinue) {
+  if($isElevated) {
+    $elvishConfig = $targetDirectory + "\elvish"
+    $elvishLinkDirectory = $env:APPDATA
+    if (-not (Test-Path -Path $elvishLinkDirectory))
+    {
+      New-Item -Path $elvishLinkDirectory -ItemType Directory
+    }
+    $elvishLink = $elvishLinkDirectory + "\elvish"
+    if (Test-Path -Path $elvishLink) {
+      Remove-Item -Path $elvishLink
+    }
+    New-Item -ItemType SymbolicLink -Path $elvishLink -Target $elvishConfig
+    Write-Host "elvish configuration has been installed"
+  }
+  else {
+    "installing elvish configuration files utilizes symbolic links. script must be run elevated to have necessary privileges to do so."
+  }
+}
+else {
+  Write-Host "elvish is not available in your system path and may not be installed. get that corrected and then rerun this script."
+}
 if (Get-Command "wtq.exe" -ErrorAction SilentlyContinue) {
   if ($isElevated) {
     $wtqConfig = $targetDirectory + "\wtq.jsonc"

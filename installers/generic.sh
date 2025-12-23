@@ -173,6 +173,26 @@ else
 	echo "${txtred}wezterm is not installed so skipping related configuration files"
 fi
 echo
+echo "${txtwht}Installing elvish configuration files${txtrst}"
+if [ `command -v elvish` ]; then
+	if [ -e "$HOME/.config/elvish" ]; then
+		if [ -L "$HOME/.config/elvish" ]; then
+			SYMLINK=`readlink "$HOME/.config/elvish"`
+			unlink "$HOME/.config/elvish"
+			echo "${txtylw}Removed link from ~/.config/elvish to $SYMLINK${txtrst}"
+		else
+			mv "$HOME/.config/elvish" "$HOME/.config/elvish.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/.config/elvish moved to ~/.config/elvish.bak${txtrst}"
+		fi
+	fi
+	ln -f -s "$BASEDIR/elvish" "$HOME/.config/elvish"
+	echo "${txtgrn}elvish configuration installed${txtrst}"
+	echo
+else
+	echo
+	echo "${txtred}elvish is not installed so skipping related configuration files"
+fi
+echo
 echo "${txtwht}Installing xonsh configuration files${txtrst}"
 if [ `command -v xonsh` ]; then
 	if [ -e "$HOME/.config/xonsh/rc.d" ]; then
