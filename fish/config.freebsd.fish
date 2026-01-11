@@ -1,5 +1,5 @@
-set -gx VOLTA_HOME "$HOME/.volta"
-set -gx PATH "$VOLTA_HOME/bin" $PATH
+# nodejs has no official binaries for bsd flavors
+# so we must use package manager for installing
 
 set -gx PYENV_ROOT "$HOME/.pyenv"
 set -gx PATH "$PYENV_ROOT/bin" $PATH
