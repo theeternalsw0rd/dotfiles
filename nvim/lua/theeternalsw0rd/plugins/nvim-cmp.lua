@@ -14,10 +14,15 @@ return {
       -- install jsregexp (optional!).
       build = (function()
         local is_windows = vim.fn.has("win32") == 1
+        local is_freebsd = vim.loop.os_uname().sysname == "FreeBSD"
         if is_windows then
           return "pwsh -File jsregexp.ps1 install"
         else
-          return "make install_jsregexp"
+          if is_freebsd then
+            return "gmake install_jsregexp"
+          else
+            return "make install_jsregexp"
+          end
         end
       end)()
     },
