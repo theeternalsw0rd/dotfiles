@@ -35,6 +35,13 @@ end
 
 set -gx TERM wezterm
 
+# this is for bsd flavors which prefer doas over sudo
+if type -q doas
+    if not type -q sudo
+        alias sudo=doas
+    end
+end
+    
 if type -q nvim
     alias vim=nvim
 else

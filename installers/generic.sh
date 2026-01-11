@@ -17,6 +17,9 @@ fi
 if [ `command -v apt` ]; then
 	BASEDISTRO="debian"
 fi
+if [ `command -v pkg` ]; then
+	BASEDISTRO="freebsd"
+fi
 DISTRO="macos"
 BASEDIR=`pwd`
 TIMESTAMP=`date +%s`
@@ -314,6 +317,9 @@ if [ `command -v fastfetch` ]; then
     if [ "$WSL" -gt 0 ]; then
       DISTRO="$DISTRO+wsl"
     fi
+  fi
+  if [ "$OS" = "freebsd" ]; then
+    DISTRO="freebsd"
   fi
   cp "$BASEDIR/$FILE/pngs/$DISTRO-chan.png" "$BASEDIR/$FILE/pngs/os-chan.png"
 	echo "${txtgrn}$TARGET/$FILE installed${txtrst}"
