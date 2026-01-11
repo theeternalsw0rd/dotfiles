@@ -23,3 +23,9 @@ function rbenv
 end
 
 set -gx PATH "~/.local/bin" $PATH
+
+if type -q clang
+  set -gx CC clang
+else
+  echo "Warning: FreeBSD should have clang installed"
+end
