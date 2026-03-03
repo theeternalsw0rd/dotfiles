@@ -108,7 +108,7 @@ widgets:
       bars_number: 8
       bar_spacing: 2
       bar_width: 5
-      noise_reduction: 0.25
+      noise_reduction: 1
       sleep_timer: 2
       hide_empty: false
       container_padding:
@@ -211,8 +211,8 @@ widgets:
         cloudyNight: "\ue226"
         rainyDay: "\ue371"
         rainyNight: "\ue371"
-        snowyIcyDay: "\udb81\udf17"
-        snowyIcyNight: "\udb81\udf17"
+        snowyDay: "\udb81\udf17"
+        snowyNight: "\udb81\udf17"
         blizzardDay: "\udb81\udd99"
         default: "\udb81\udd99"
       weather_card:
