@@ -22,6 +22,8 @@ fish_vi_key_bindings insert
 # Suppress fish welcome message
 set -U fish_greeting ""
 
+set -gx PATH "$HOME/.local/bin" $PATH
+
 alias which=type
 alias multiplex="tmux -u a || tmux -u"
 
@@ -40,6 +42,10 @@ if type -q doas
     if not type -q sudo
         alias sudo=doas
     end
+end
+
+if type -q mise
+    mise activate fish | source
 end
     
 if type -q nvim
@@ -184,4 +190,3 @@ if status is-interactive
     end
 end
 
-export PATH="$PATH:$HOME/.local/bin"
