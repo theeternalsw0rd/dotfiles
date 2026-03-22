@@ -340,6 +340,12 @@ if (Get-Command carapace -ErrorAction SilentlyContinue) {
 } else {
   Write-Host "carapace is not installed or not in your PATH."
 }
+
+if (Get-Command "mise" -ErrorAction SilentlyContinue) {
+  mise activate pwsh | Out-String | Invoke-Expression
+} else {
+  Write-Host "mise is not installed or not in your PATH."
+}
         
 # Powershell starts in insert mode so use the correct cursor shape
 Write-Host -NoNewLine "`e[5 q"
