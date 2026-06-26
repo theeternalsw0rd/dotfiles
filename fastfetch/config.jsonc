@@ -4,7 +4,7 @@
     "separator": " : "
   },
   "logo": {
-    "type": "iterm",
+    "type": "kitty-direct",
     "source": "~/.config/fastfetch/pngs/os-chan.png",
     "height": 25,
     "width": 35

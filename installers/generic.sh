@@ -176,6 +176,27 @@ else
 	echo "${txtred}wezterm is not installed so skipping related configuration files"
 fi
 echo
+echo "${txtwht}Installing herdr configuration files${txtrst}"
+if [ `command -v herdr` ]; then
+  mkdir -p "$HOME/.config/herdr"
+	if [ -e "$HOME/.config/herdr/config.toml" ]; then
+		if [ -L "$HOME/.config/herdr/config.toml" ]; then
+			SYMLINK=`readlink "$HOME/.config/herdr/config.toml"`
+			unlink "$HOME/.config/herdr/config.toml"
+			echo "${txtylw}Removed link from ~/.config/herdr/config.toml to $SYMLINK${txtrst}"
+		else
+			mv "$HOME/.config/herdr/config.toml" "$HOME/.config/herdr/config.toml.$TIMESTAMP.bak"
+			echo "${txtylw}Existing ~/.config/herdr/config.toml moved to ~/.config/herdr/config.toml.bak${txtrst}"
+		fi
+	fi
+	ln -f -s "$BASEDIR/herdr/config.toml" "$HOME/.config/herdr/config.toml"
+	echo "${txtgrn}herdr configuration installed${txtrst}"
+	echo
+else
+	echo
+	echo "${txtred}herdr is not installed so skipping related configuration files"
+fi
+echo
 echo "${txtwht}Installing elvish configuration files${txtrst}"
 if [ `command -v elvish` ]; then
 	if [ -e "$HOME/.config/elvish" ]; then

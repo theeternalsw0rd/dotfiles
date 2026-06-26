@@ -53,24 +53,6 @@ if type -q nvim
 else
     echo "Warning: 'nvim' command is not available, please install neovim."
 end
-if type -q fastfetch
-    # Use fastfetch as a replacement for neofetch if available
-    function neofetch
-        command fastfetch $argv
-    end
-    if status is-interactive
-        neofetch
-    end
-else
-    if type -q neofetch
-        if status is-interactive
-            neofetch
-        end
-        echo "Warning: neofetch is no longer maintained, switch to fastfetch."
-    else
-        echo "Warning: 'neofetch' command is not available, please install fastfetch."
-    end
-end
 
 if type -q eza
     # Use eza as a replacement for ls if available
@@ -187,6 +169,26 @@ if status is-interactive
         end
     else
         echo "Warning: 'atuin' is not available."
+    end
+end
+
+if type -q fastfetch
+    # Use fastfetch as a replacement for neofetch if available
+    function neofetch
+        command fastfetch $argv
+    end
+    if status is-interactive
+        sleep 0.1
+        neofetch
+    end
+else
+    if type -q neofetch
+        if status is-interactive
+            neofetch
+        end
+        echo "Warning: neofetch is no longer maintained, switch to fastfetch."
+    else
+        echo "Warning: 'neofetch' command is not available, please install fastfetch."
     end
 end
 
