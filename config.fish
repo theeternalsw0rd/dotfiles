@@ -174,8 +174,17 @@ end
 
 if type -q fastfetch
     # Use fastfetch as a replacement for neofetch if available
-    function neofetch
-        command fastfetch $argv
+    if test -n "$SSH_CLIENT"; or test -n "$SSH_TTY"
+        function neofetch
+            command fastfetch --logo-type kitty $argv
+        end
+        function fastfetch
+            command fastfetch --logo-type kitty $argv
+        end
+    else
+        function neofetch
+            command fastfetch $argv
+        end
     end
     if status is-interactive
         sleep 0.1
