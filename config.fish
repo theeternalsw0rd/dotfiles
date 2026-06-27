@@ -175,7 +175,7 @@ end
 if type -q fastfetch
     # Use fastfetch as a replacement for neofetch if available
     if test -z "$HERDR_ENV"; and begin
-        test -n "$SSH_CLIENT"; or test -n "$SSH_TTY"
+        test -n "$SSH_CLIENT"; or test -n "$SSH_TTY"; or test -n "$WSL_DISTRO_NAME"
       end
         function neofetch
             command fastfetch --logo-type kitty $argv

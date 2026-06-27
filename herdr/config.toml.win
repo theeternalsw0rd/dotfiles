@@ -29,7 +29,7 @@ onboarding = false
 [terminal]
 # Executable used for new interactive panes.
 # Empty means $SHELL, then /bin/sh.
-default_shell = "fish"
+# default_shell = "fish"
 
 # Startup mode for new interactive pane shells: "auto", "login", or "non_login".
 # "auto" uses login shells on macOS and keeps the current behavior elsewhere.
@@ -43,7 +43,7 @@ default_shell = "fish"
 [update]
 # Update channel used by background version checks and `herdr update`.
 # Use "stable" for normal releases or "preview" for opt-in preview builds.
-# channel = "stable"
+channel = "preview"
 
 # Check herdr.dev for new Herdr versions in the background.
 # version_check = true

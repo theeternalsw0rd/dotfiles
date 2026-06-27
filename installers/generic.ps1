@@ -32,6 +32,28 @@ if (Get-Command "starship" -ErrorAction SilentlyContinue) {
 else {
   Write-Host "starship is not available in your system path and may not be installed. get that corrected and then rerun this script."
 }
+if (Get-Command "herdr" -ErrorAction SilentlyContinue) {
+  if($isElevated) {
+    $herdrConfig = $targetDirectory + "\herdr\config.toml.win"
+    $herdrLinkDirectory = $env:USERPROFILE + "\.config\herdr"
+    if (-not (Test-Path -Path $herdrLinkDirectory))
+    {
+      New-Item -Path $herdrLinkDirectory -ItemType Directory
+    }
+    $herdrLink = $herdrLinkDirectory + "\config.toml"
+    if (Test-Path -Path $herdrLink) {
+      Remove-Item -Path $herdrLink
+    }
+    New-Item -ItemType SymbolicLink -Path $herdrLink -Target $herdrConfig
+    Write-Host "herdr config has been installed"
+  }
+  else {
+    "installing herdr configuration file utilizes symbolic links. script must be run elevated to have necessary privileges to do so."
+  }
+}
+else {
+  Write-Host "herdr is not available in your system path and may not be installed. get that corrected and then rerun this script."
+}
 if (Get-Command "nu" -ErrorAction SilentlyContinue) {
   if($isElevated) {
     $nuConfig = $targetDirectory + "\config.nu"
