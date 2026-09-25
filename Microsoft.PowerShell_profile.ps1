@@ -332,6 +332,12 @@ if (Get-Command atuin -ErrorAction SilentlyContinue) {
   Write-Host "atuin is not installed or not in your PATH."
 }
 
+if (Get-Command "mise" -ErrorAction SilentlyContinue) {
+  mise activate pwsh | Out-String | Invoke-Expression
+} else {
+  Write-Host "mise is not installed or not in your PATH."
+}
+        
 if (Get-Command carapace -ErrorAction SilentlyContinue) {
   $env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
   Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
@@ -341,11 +347,5 @@ if (Get-Command carapace -ErrorAction SilentlyContinue) {
   Write-Host "carapace is not installed or not in your PATH."
 }
 
-if (Get-Command "mise" -ErrorAction SilentlyContinue) {
-  mise activate pwsh | Out-String | Invoke-Expression
-} else {
-  Write-Host "mise is not installed or not in your PATH."
-}
-        
 # Powershell starts in insert mode so use the correct cursor shape
 Write-Host -NoNewLine "`e[5 q"
